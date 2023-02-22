@@ -14,7 +14,13 @@ Brick::~Brick()
 {
 }
 
-void Brick::locate(int x, int y)
+void Brick::setPos(int x, int y)
 {
+	this->pos.x = x;
+	this->pos.y = y;
+}
 
+Vector2 Brick::getPos()
+{
+	return pos;
 }

@@ -13,7 +13,8 @@ private:
 public:
 	Brick();
 	~Brick();
-	void locate(int x, int y);
+	void setPos(int x, int y);
+	Vector2 getPos();
 };
 
 

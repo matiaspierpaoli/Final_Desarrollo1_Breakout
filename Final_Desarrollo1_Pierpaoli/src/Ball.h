@@ -13,5 +13,8 @@ private:
 public:
 	Ball();
 	~Ball();
+
+	void setPos(int x, int y);
+	Vector2 getpos();
 };
 

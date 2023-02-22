@@ -165,6 +165,7 @@ XCOPY "$(SolutionDir)raylib-3.7.0_win32_msvc16\" "$(TargetDir)" /e /h /y /s</Com
     <ClCompile Include="..\src\Brick.cpp" />
     <ClCompile Include="..\src\Credits.cpp" />
     <ClCompile Include="..\src\Game.cpp" />
+    <ClCompile Include="..\src\Level.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\Menu.cpp" />
     <ClCompile Include="..\src\Player.cpp" />
@@ -177,6 +178,7 @@ XCOPY "$(SolutionDir)raylib-3.7.0_win32_msvc16\" "$(TargetDir)" /e /h /y /s</Com
     <ClInclude Include="..\src\Brick.h" />
     <ClInclude Include="..\src\Credits.h" />
     <ClInclude Include="..\src\Game.h" />
+    <ClInclude Include="..\src\Level.h" />
     <ClInclude Include="..\src\Menu.h" />
     <ClInclude Include="..\src\Rules.h" />
     <ClInclude Include="..\src\SceneManager.h" />

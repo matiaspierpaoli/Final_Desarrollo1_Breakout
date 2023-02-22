@@ -3,7 +3,7 @@
 Ball::Ball()
 {
 	radius = 20;
-	pos = { static_cast<float>(GetScreenWidth() / 2), static_cast<float>(GetScreenHeight() / 2) };
+	setPos(static_cast<float>(GetScreenWidth() / 2), static_cast<float>(GetScreenHeight() / 2));
 	active = false;
 	speed = { 0,0 };
 }
@@ -11,4 +11,10 @@ Ball::Ball()
 Ball::~Ball()
 {
 
+}
+
+void Ball::setPos(int x, int y)
+{
+	this->pos.x = x;
+	this->pos.y = y;
 }
