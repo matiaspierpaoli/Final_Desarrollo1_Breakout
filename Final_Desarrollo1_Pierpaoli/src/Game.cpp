@@ -2,7 +2,7 @@
 
 Game::Game(SceneManager* sceneManager)
 {
-
+	this->sceneManager = sceneManager;
 }
 
 Game::~Game()

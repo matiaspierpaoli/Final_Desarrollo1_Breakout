@@ -2,7 +2,7 @@
 
 SceneManager::SceneManager()
 {
-
+	scene = Scene::MENU;
 }
 
 SceneManager::~SceneManager()

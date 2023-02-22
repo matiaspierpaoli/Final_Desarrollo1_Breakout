@@ -5,6 +5,7 @@
 class Menu
 {
 private:
+	SceneManager* sceneManager;
 
 public:
 	Menu(SceneManager* sceneManager);
