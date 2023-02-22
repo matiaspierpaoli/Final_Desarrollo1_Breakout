@@ -14,6 +14,11 @@ Menu::Menu(SceneManager* sceneManager)
 	playBox.x = GetScreenWidth() / 2 - playBox.width / 2;
 	playBox.y = GetScreenHeight() / 2 - 100;
 
+	rulesBox.width = 200;
+	rulesBox.height = 75;
+	rulesBox.x = GetScreenWidth() / 2 - rulesBox.width / 2;
+	rulesBox.y = GetScreenHeight() / 2 + 100;
+
 	exitBox.width = 150;
 	exitBox.height = 75;
 	exitBox.x = GetScreenWidth() / 2 - exitBox.width / 2;
@@ -35,11 +40,15 @@ void Menu::UpdateAndDraw()
 	if (CheckCollisionPointRec(GetMousePosition(), playBox)) DrawText("Play", playBox.x, playBox.y, 80, RED);
 	else  DrawText(FormatText("Play"), playBox.x, playBox.y, 80, WHITE);
 
+	if (CheckCollisionPointRec(GetMousePosition(), rulesBox)) DrawText("Rules", rulesBox.x, rulesBox.y, 80, RED);
+	else  DrawText(FormatText("Rules"), rulesBox.x, rulesBox.y, 80, WHITE);
+
 	if (CheckCollisionPointRec(GetMousePosition(), exitBox)) DrawText("Exit", exitBox.x, exitBox.y, 80, RED);
 	else  DrawText(FormatText("Exit"), exitBox.x, exitBox.y, 80, WHITE);
 
 
 	if (CheckCollisionPointRec(GetMousePosition(), playBox) && IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) sceneManager->setScene(Scene::GAMEPLAY);
+	if (CheckCollisionPointRec(GetMousePosition(), rulesBox) && IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) sceneManager->setScene(Scene::RULES);
 	if (CheckCollisionPointRec(GetMousePosition(), exitBox) && IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) sceneManager->setScene(Scene::EXIT);
 
 	EndDrawing();
