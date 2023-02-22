@@ -161,26 +161,26 @@ XCOPY "$(SolutionDir)raylib-3.7.0_win32_msvc16\" "$(TargetDir)" /e /h /y /s</Com
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\src\App.cpp" />
+    <ClCompile Include="..\src\Ball.cpp" />
+    <ClCompile Include="..\src\Brick.cpp" />
     <ClCompile Include="..\src\Credits.cpp" />
     <ClCompile Include="..\src\Game.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\Menu.cpp" />
+    <ClCompile Include="..\src\Player.cpp" />
     <ClCompile Include="..\src\Rules.cpp" />
     <ClCompile Include="..\src\SceneManager.cpp" />
-    <ClCompile Include="Ball.cpp" />
-    <ClCompile Include="Brick.cpp" />
-    <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\App.h" />
+    <ClInclude Include="..\src\Ball.h" />
+    <ClInclude Include="..\src\Brick.h" />
     <ClInclude Include="..\src\Credits.h" />
     <ClInclude Include="..\src\Game.h" />
     <ClInclude Include="..\src\Menu.h" />
     <ClInclude Include="..\src\Rules.h" />
     <ClInclude Include="..\src\SceneManager.h" />
     <ClInclude Include="..\src\ScreenProperties.h" />
-    <ClInclude Include="Ball.h" />
-    <ClInclude Include="Brick.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
