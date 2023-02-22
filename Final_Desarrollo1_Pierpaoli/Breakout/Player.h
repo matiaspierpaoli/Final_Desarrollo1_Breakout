@@ -8,7 +8,7 @@ private:
 	Vector2 pos;
 	Vector2 size;
 	int speed;
-	int lifes;
+	int lives;
 
 public:
 	Player();
