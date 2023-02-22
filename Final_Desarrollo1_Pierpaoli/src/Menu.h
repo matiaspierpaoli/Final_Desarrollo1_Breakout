@@ -7,6 +7,7 @@ class Menu
 private:
 	SceneManager* sceneManager;
 
+	Rectangle titleBox;
 	Rectangle playBox;
 	Rectangle exitBox;
 	
@@ -14,7 +15,6 @@ private:
 public:
 	Menu(SceneManager* sceneManager);
 	~Menu();
-	void Update();
-	void Draw();
+	void UpdateAndDraw();
 	
 };
