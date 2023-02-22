@@ -22,6 +22,11 @@ void Game::Init()
 			brick[i][j] = new Brick();
 		}
 	}
+		
+	level = new Level();
+
+	//level->setMapLevel1();
+	
 }
 
 void Game::Input()
@@ -51,4 +56,6 @@ void Game::DeInit()
 			delete brick[i][j];
 		}
 	}
+
+	delete level;
 }

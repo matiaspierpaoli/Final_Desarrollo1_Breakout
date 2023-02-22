@@ -3,8 +3,11 @@
 #include "Player.h"
 #include "Ball.h"
 #include "Brick.h"
+#include "Level.h"
+
 
 #include "SceneManager.h"
+
 class Game
 {
 private:
@@ -17,6 +20,9 @@ private:
 	static const int columns = 6;
 
 	Brick* brick[rows][columns];
+
+	Level* level;
+	
 
 public:
 	Game(SceneManager* sceneManager);
