@@ -4,7 +4,7 @@
 #include "Menu.h"
 #include "Rules.h"
 #include "Game.h"
-
+#include "Credits.h"
 
 
 
@@ -16,6 +16,7 @@ private:
 	Menu* menu;
 	Rules* rules;
 	Game* game;
+	Credits* credits;
 
 public:
 	App();
