@@ -167,6 +167,7 @@ XCOPY "$(SolutionDir)raylib-3.7.0_win32_msvc16\" "$(TargetDir)" /e /h /y /s</Com
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\App.h" />
+    <ClInclude Include="..\src\Game.h" />
     <ClInclude Include="..\src\Menu.h" />
     <ClInclude Include="..\src\SceneManager.h" />
     <ClInclude Include="..\src\ScreenProperties.h" />
