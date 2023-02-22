@@ -7,6 +7,7 @@ class Credits
 private:
 	SceneManager* sceneManager;
 
+	Rectangle exitBox;
 public:
 	Credits(SceneManager* sceneManager);
 	~Credits();
