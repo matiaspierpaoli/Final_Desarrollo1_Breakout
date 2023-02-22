@@ -1,12 +1,14 @@
 #pragma once
 
+
+#include "SceneManager.h"
 class Game
 {
 private:
 
 
 public:
-	Game();
+	Game(SceneManager* sceneManager);
 	~Game();
 	void Init();
 	void Input();
