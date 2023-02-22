@@ -7,6 +7,10 @@ class Menu
 private:
 	SceneManager* sceneManager;
 
+	Rectangle playBox;
+	Rectangle exitBox;
+	
+
 public:
 	Menu(SceneManager* sceneManager);
 	~Menu();
