@@ -17,12 +17,12 @@ Menu::Menu(SceneManager* sceneManager)
 	rulesBox.width = 200;
 	rulesBox.height = 75;
 	rulesBox.x = GetScreenWidth() / 2 - rulesBox.width / 2;
-	rulesBox.y = GetScreenHeight() / 2 + 100;
+	rulesBox.y = GetScreenHeight() / 2;
 
 	creditsBox.width = 300;
 	creditsBox.height = 75;
 	creditsBox.x = GetScreenWidth() / 2 - creditsBox.width / 2;
-	creditsBox.y = GetScreenHeight() / 2;
+	creditsBox.y = GetScreenHeight() / 2 + 100;
 
 	exitBox.width = 150;
 	exitBox.height = 75;
