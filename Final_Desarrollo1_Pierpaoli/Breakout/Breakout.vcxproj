@@ -165,6 +165,7 @@ XCOPY "$(SolutionDir)raylib-3.7.0_win32_msvc16\" "$(TargetDir)" /e /h /y /s</Com
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\App.h" />
+    <ClInclude Include="..\src\SceneManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
