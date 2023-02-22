@@ -11,6 +11,7 @@ App::App()
 	sceneManager = new SceneManager();
 	menu = new Menu(sceneManager);
 	game = new Game(sceneManager);
+	rules = new Rules(sceneManager);
 
 }
 
@@ -18,6 +19,7 @@ App::~App()
 {
 	delete sceneManager;
 	delete menu;
+	delete rules;
 
 	game->DeInit();
 	delete game;
@@ -41,7 +43,7 @@ void App::start()
 			game->Draw();
 			break;
 		case Scene::RULES:
-
+			rules->DrawAndUpdate();
 			break;
 		case Scene::CREDITS:
 
