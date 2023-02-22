@@ -10,6 +10,7 @@ private:
 	Rectangle titleBox;
 	Rectangle playBox;
 	Rectangle rulesBox;
+	Rectangle creditsBox;
 	Rectangle exitBox;
 	
 
