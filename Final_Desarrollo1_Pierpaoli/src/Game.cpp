@@ -39,8 +39,8 @@ void Game::Input()
 		{			
 			ball->setActive(true);
 			
-			float random = GetRandomValue(0, GetScreenWidth());
-			ball->setSpeed({ -random , -300 });
+			float random = GetRandomValue(-GetScreenWidth() / 2, GetScreenWidth() / 2);
+			ball->setSpeed({ random , -300 });
 		}
 	}
 

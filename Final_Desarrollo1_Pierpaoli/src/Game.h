@@ -16,7 +16,7 @@ private:
 	Player* player;
 	Ball* ball;
 
-	static const int rows = 30;
+	static const int rows = 20;
 	static const int columns = 6;
 
 	Brick* bricks[rows][columns];
