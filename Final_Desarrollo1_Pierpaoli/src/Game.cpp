@@ -32,16 +32,28 @@ void Game::Init()
 
 void Game::Input()
 {
+	// Activate Ball
+	if (!ball->getActive())
+	{
+		if (IsKeyPressed(KEY_SPACE))
+		{			
+			ball->setActive(true);
+			
+			float random = GetRandomValue(0, GetScreenWidth());
+			ball->setSpeed({ -random , -300 });
+		}
+	}
 
-}
-
-void Game::Update()
-{
+	// Player Movement
 	if (IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_A))
 		player->moveLeft();
 	if (IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_D))
 		player->moveRight();
 
+}
+
+void Game::Update()
+{
 	// Ball Movement
 	if (ball->getActive())	
 		ball->move();	
@@ -94,7 +106,7 @@ void Game::Draw()
 	{
 		for (int j = 0; j < columns; j++)
 		{
-			if (bricks[i][j]->getState())
+			if (bricks[i][j]->getActive())
 			{
 				switch (bricks[i][j]->getColor())
 				{

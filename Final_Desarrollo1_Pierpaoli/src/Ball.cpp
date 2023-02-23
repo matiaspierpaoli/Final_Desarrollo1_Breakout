@@ -24,6 +24,11 @@ void Ball::setSpeed(Vector2 speed)
 	this->speed = speed;
 }
 
+void Ball::setActive(bool active)
+{
+	this->active = active;
+}
+
 int Ball::getRadius()
 {
 	return radius;
@@ -32,6 +37,22 @@ int Ball::getRadius()
 Vector2 Ball::getPos()
 {
 	return pos;
+}
+
+bool Ball::getActive()
+{
+	return active;
+}
+
+Vector2 Ball::getSpeed()
+{
+	return speed;
+}
+
+void Ball::move()
+{	
+	pos.x += speed.x * GetFrameTime();
+	pos.y += speed.y * GetFrameTime();
 }
 
 void Ball::changeYDirection()

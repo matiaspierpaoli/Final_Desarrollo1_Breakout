@@ -16,9 +16,13 @@ public:
 
 	void setPos(int x, int y);
 	void setSpeed(Vector2 speed);
+	void setActive(bool active);
 	
 	int getRadius();
 	Vector2 getPos();
+	bool getActive();
+	Vector2 getSpeed();
+
 	void move();
 
 	void changeYDirection();
