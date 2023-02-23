@@ -146,51 +146,51 @@ void Game::Draw()
 
 	if (!win)
 	{
-		if (!pause)
+		DrawRectangle(static_cast<int>(player->getPos().x), static_cast<int>(player->getPos().y), static_cast<int>(player->getSize().x), static_cast<int>(player->getSize().y), BLUE);
+		DrawCircleV(ball->getPos(), static_cast<float>(ball->getRadius()), RED);
+
+		DrawLine(startLinePosX, linePosY, endLinePosX, linePosY, BLACK);
+
+		for (int i = 0; i < rows; i++)
 		{
-			DrawRectangle(static_cast<int>(player->getPos().x), static_cast<int>(player->getPos().y), static_cast<int>(player->getSize().x), static_cast<int>(player->getSize().y), BLUE);
-			DrawCircleV(ball->getPos(), static_cast<float>(ball->getRadius()), RED);
-
-			DrawLine(startLinePosX, linePosY, endLinePosX, linePosY, BLACK);
-
-			for (int i = 0; i < rows; i++)
+			for (int j = 0; j < columns; j++)
 			{
-				for (int j = 0; j < columns; j++)
+				if (bricks[i][j]->getActive())
 				{
-					if (bricks[i][j]->getActive())
+					switch (bricks[i][j]->getColor())
 					{
-						switch (bricks[i][j]->getColor())
-						{
-						case 0:
-							DrawRectangle(bricks[i][j]->getPos().x, bricks[i][j]->getPos().y, bricks[i][j]->getSize().x, bricks[i][j]->getSize().y, RED);
-							break;
-						case 1:
-							DrawRectangle(bricks[i][j]->getPos().x, bricks[i][j]->getPos().y, bricks[i][j]->getSize().x, bricks[i][j]->getSize().y, ORANGE);
-							break;
-						case 2:
-							DrawRectangle(bricks[i][j]->getPos().x, bricks[i][j]->getPos().y, bricks[i][j]->getSize().x, bricks[i][j]->getSize().y, BROWN);
-							break;
-						case 3:
-							DrawRectangle(bricks[i][j]->getPos().x, bricks[i][j]->getPos().y, bricks[i][j]->getSize().x, bricks[i][j]->getSize().y, YELLOW);
-							break;
-						case 4:
-							DrawRectangle(bricks[i][j]->getPos().x, bricks[i][j]->getPos().y, bricks[i][j]->getSize().x, bricks[i][j]->getSize().y, GREEN);
-							break;
-						case 5:
-							DrawRectangle(bricks[i][j]->getPos().x, bricks[i][j]->getPos().y, bricks[i][j]->getSize().x, bricks[i][j]->getSize().y, BLUE);
-							break;
-						default:
-							break;
-						}
+					case 0:
+						DrawRectangle(bricks[i][j]->getPos().x, bricks[i][j]->getPos().y, bricks[i][j]->getSize().x, bricks[i][j]->getSize().y, RED);
+						break;
+					case 1:
+						DrawRectangle(bricks[i][j]->getPos().x, bricks[i][j]->getPos().y, bricks[i][j]->getSize().x, bricks[i][j]->getSize().y, ORANGE);
+						break;
+					case 2:
+						DrawRectangle(bricks[i][j]->getPos().x, bricks[i][j]->getPos().y, bricks[i][j]->getSize().x, bricks[i][j]->getSize().y, BROWN);
+						break;
+					case 3:
+						DrawRectangle(bricks[i][j]->getPos().x, bricks[i][j]->getPos().y, bricks[i][j]->getSize().x, bricks[i][j]->getSize().y, YELLOW);
+						break;
+					case 4:
+						DrawRectangle(bricks[i][j]->getPos().x, bricks[i][j]->getPos().y, bricks[i][j]->getSize().x, bricks[i][j]->getSize().y, GREEN);
+						break;
+					case 5:
+						DrawRectangle(bricks[i][j]->getPos().x, bricks[i][j]->getPos().y, bricks[i][j]->getSize().x, bricks[i][j]->getSize().y, BLUE);
+						break;
+					default:
+						break;
 					}
 				}
 			}
+		}
 
+		if (!pause)
+		{
 			DrawText(TextFormat("Lives: %4i", player->getLives()), 5, static_cast<int>(GetScreenHeight() - 40), 40, DARKGREEN);
 		}
 		else
 		{
-			DrawText(TextFormat("Press P to unpause"), static_cast<int>(GetScreenWidth() / 2) - 150, static_cast<int>(GetScreenHeight() / 2) + 20, 40, RED);
+			DrawText(TextFormat("Press P to unpause"), static_cast<int>(GetScreenWidth() / 2) - 190, static_cast<int>(GetScreenHeight() / 2) + 20, 40, RED);
 			DrawText(TextFormat("Press M to go back to menu"), static_cast<int>(GetScreenWidth() / 2) - 250, static_cast<int>(GetScreenHeight() / 2) + 70, 40, RED);
 		}	
 	}
