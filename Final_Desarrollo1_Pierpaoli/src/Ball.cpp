@@ -33,6 +33,17 @@ Vector2 Ball::getPos()
 {
 	return pos;
 }
+
+void Ball::changeYDirection()
+{
+	speed.y *= -1;
+}
+
+void Ball::changeXDirection()
+{
+	speed.x *= -1;
+}
+
 bool Ball::checkCollisionWithWalls()
 {
 	if (pos.x - radius <= 0)	
