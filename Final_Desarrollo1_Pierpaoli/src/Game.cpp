@@ -97,6 +97,7 @@ void Game::Draw()
 	DrawRectangle(static_cast<int>(player->getPos().x), static_cast<int>(player->getPos().y), static_cast<int>(player->getSize().x), static_cast<int>(player->getSize().y), BLUE);
 	DrawCircleV(ball->getPos(), static_cast<float>(ball->getRadius()), RED);
 
+	DrawLine(startLinePosX, startLinePosY, endLinePosX, endLinePosY, BLACK);
 
 	for (int i = 0; i < rows; i++)
 	{
