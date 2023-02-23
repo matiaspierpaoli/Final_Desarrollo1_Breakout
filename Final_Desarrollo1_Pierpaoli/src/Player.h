@@ -13,4 +13,14 @@ private:
 public:
 	Player();
 	~Player();
+
+	void setPos(int x, int y);
+	void setSize(int x, int y);
+	void setSpeed(int speed);
+	void setLives(int lives);
+
+	Vector2 getPos();
+	Vector2 getSize();
+	int getLives();
+
 };
