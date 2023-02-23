@@ -25,6 +25,7 @@ private:
 
 	bool win;
 	int points;
+	bool pause;
 	
 	// Line separating game and HUD
 	int startLinePosX = 1;	
