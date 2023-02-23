@@ -19,6 +19,11 @@ void Ball::setPos(int x, int y)
 	this->pos.y = y;
 }
 
+void Ball::setSpeed(Vector2 speed)
+{
+	this->speed = speed;
+}
+
 int Ball::getRadius()
 {
 	return radius;

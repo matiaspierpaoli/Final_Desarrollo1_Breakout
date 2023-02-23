@@ -42,6 +42,11 @@ void Game::Update()
 	if (IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_D))
 		player->moveRight();
 
+	// Ball Movement
+	if (ball->getActive())	
+		ball->move();	
+	else	
+		ball->setSpeed({ player->getPos().x + player->getSize().x / 2, player->getPos().y - ball->getRadius() });
 
 }
 
