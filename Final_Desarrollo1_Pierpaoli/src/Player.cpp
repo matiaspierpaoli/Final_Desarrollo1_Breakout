@@ -2,7 +2,7 @@
 
 Player::Player()
 {
-	setSize(static_cast<float>(GetScreenWidth()) / 6, static_cast<float>(GetScreenHeight()) / 15);
+	setSize(static_cast<float>(GetScreenWidth()) / 6, static_cast<float>(GetScreenHeight()) / 30);
 	setPos(static_cast<float>(GetScreenWidth()) / 2 - size.x / 2, static_cast<float>(GetScreenHeight()) - size.y - 10);
 	setSpeed(400);
 	setLives(5);
