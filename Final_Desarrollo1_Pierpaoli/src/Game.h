@@ -16,15 +16,15 @@ private:
 	Player* player;
 	Ball* ball;
 
-	static const int rows = 20;
+	static const int rows = 15;
 	static const int columns = 6;
 
 	Brick* bricks[rows][columns];
 
 	Level* level;
 
-	bool win = false;
-	int points = 0;
+	bool win;
+	int points;
 	
 	// Line separating game and HUD
 	int startLinePosX = 1;	

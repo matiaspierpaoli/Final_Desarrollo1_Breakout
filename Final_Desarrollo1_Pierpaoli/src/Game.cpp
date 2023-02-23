@@ -89,6 +89,7 @@ void Game::Update()
 					{
 						bricks[i][j]->setState(false);
 						ball->changeYDirection();
+						points += 1;
 					}
 				}
 
@@ -98,7 +99,8 @@ void Game::Update()
 		if (player->getLives() == 0)		
 			win = !win;
 
-
+		if (points >= rows * columns)
+			win = !win;
 		
 	}
 	
