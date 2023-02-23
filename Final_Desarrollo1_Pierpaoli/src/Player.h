@@ -19,6 +19,8 @@ public:
 	void setSpeed(int speed);
 	void setLives(int lives);
 
+	void reduceLives();
+
 	Vector2 getPos();
 	Vector2 getSize();
 	int getLives();

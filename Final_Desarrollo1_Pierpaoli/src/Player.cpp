@@ -35,6 +35,14 @@ void Player::setLives(int lives)
 	this->lives = lives;
 }
 
+void Player::reduceLives()
+{
+	lives -= 1;
+
+	if (lives <= 0)
+		lives = 0;
+}
+
 Vector2 Player::getPos()
 {
 	return pos;
