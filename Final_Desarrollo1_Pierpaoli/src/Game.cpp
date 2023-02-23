@@ -150,6 +150,8 @@ void Game::Draw()
 				}
 			}
 		}
+
+		DrawText(TextFormat("Lives: %4i", player->getLives()), 5, static_cast<int>(GetScreenHeight() - 40), 40, DARKGREEN);
 	}
 
 	EndDrawing();
