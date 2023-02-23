@@ -6,6 +6,8 @@ App::App()
 {
 	InitWindow(screenWidth, screenHeight, "Breakout by Matias Pierpaoli");
 
+	srand(time(NULL));
+
 	SetTargetFPS(60);
 
 	sceneManager = new SceneManager();
