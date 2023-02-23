@@ -56,6 +56,28 @@ void Game::Update()
 		player->reduceLives();
 	}
 
+	// Ball - Player collisions
+	ball->checkCollisionWithPlayer(player->getPos(), player->getSize());
+
+	// Ball - Bricks collisions
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < columns; j++)
+		{
+			if (bricks[i][j]->getActive())
+			{
+				if (CheckCollisionCircleRec(ball->getPos(), static_cast<float>(ball->getRadius()), {bricks[i][j]->getPos().x, bricks[i][j]->getPos().y, bricks[i][j]->getSize().x, bricks[i][j]->getSize().y}))
+				{
+					bricks[i][j]->setState(false);
+					ball->changeYDirection();
+				}
+			}
+			
+		}
+	}
+
+	
+
 
 }
 

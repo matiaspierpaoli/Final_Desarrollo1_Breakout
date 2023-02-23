@@ -62,6 +62,18 @@ bool Ball::checkCollisionWithWalls()
 	return false;
 }
 
+void Ball::checkCollisionWithPlayer(Vector2 playerPos, Vector2 playerSize)
+{
+	if (CheckCollisionCircleRec(pos, static_cast<float>(radius), { playerPos.x, playerPos.y, playerSize.x, playerSize.y }))
+	{
+		if (speed.y > 0)
+		{
+			changeYDirection();
+			speed.x = (pos.x - playerPos.x) / (playerSize.x / 2) * 500;
+		}
+	}
+}
+
 void Ball::reset(Vector2 playerPos, Vector2 playerSize)
 {
 	speed = { 0,0 };

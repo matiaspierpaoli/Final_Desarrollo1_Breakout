@@ -25,6 +25,8 @@ public:
 	void changeXDirection();
 
 	bool checkCollisionWithWalls();
+	void checkCollisionWithPlayer(Vector2 playerPos, Vector2 playerSize);
+
 	void reset(Vector2 playerPos, Vector2 playerSize);
 };
 
