@@ -24,10 +24,10 @@ private:
 	Level* level;
 	
 	// Line separating game and HUD
-	int startLinePosX = 1;
-	int startLinePosY = GetScreenHeight() - 50;
+	int startLinePosX = 1;	
 	int endLinePosX = GetScreenWidth() - 1;
-	int endLinePosY = GetScreenHeight() - 50;
+	int linePosY = GetScreenHeight() - 50;
+	
 
 public:
 	Game(SceneManager* sceneManager);

@@ -65,7 +65,7 @@ void Ball::changeXDirection()
 	speed.x *= -1;
 }
 
-bool Ball::checkCollisionWithWalls()
+bool Ball::checkCollisionWithWalls(int linePosY)
 {
 	if (pos.x - radius <= 0)	
 		changeXDirection();
@@ -76,7 +76,7 @@ bool Ball::checkCollisionWithWalls()
 	if (pos.y - radius <= 0)	
 		changeYDirection();
 	
-	if (pos.y + radius >= GetScreenHeight())			
+	if (pos.y + radius >= linePosY)
 		return true;
 	
 

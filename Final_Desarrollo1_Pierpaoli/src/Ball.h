@@ -28,7 +28,7 @@ public:
 	void changeYDirection();
 	void changeXDirection();
 
-	bool checkCollisionWithWalls();
+	bool checkCollisionWithWalls(int linePosY);
 	void checkCollisionWithPlayer(Vector2 playerPos, Vector2 playerSize);
 
 	void reset(Vector2 playerPos, Vector2 playerSize);

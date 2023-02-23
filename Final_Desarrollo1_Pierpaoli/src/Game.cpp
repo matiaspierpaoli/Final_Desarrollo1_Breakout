@@ -62,7 +62,7 @@ void Game::Update()
 	
 
 	// Ball - Walls collisions
-	if (ball->checkCollisionWithWalls()) // Only true if ball hits wall below player
+	if (ball->checkCollisionWithWalls(linePosY)) // Only true if ball hits line below player
 	{
 		ball->reset(player->getPos(), player->getSize());
 		player->reduceLives();
@@ -97,7 +97,7 @@ void Game::Draw()
 	DrawRectangle(static_cast<int>(player->getPos().x), static_cast<int>(player->getPos().y), static_cast<int>(player->getSize().x), static_cast<int>(player->getSize().y), BLUE);
 	DrawCircleV(ball->getPos(), static_cast<float>(ball->getRadius()), RED);
 
-	DrawLine(startLinePosX, startLinePosY, endLinePosX, endLinePosY, BLACK);
+	DrawLine(startLinePosX, linePosY, endLinePosX, linePosY, BLACK);
 
 	for (int i = 0; i < rows; i++)
 	{
