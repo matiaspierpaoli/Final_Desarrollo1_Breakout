@@ -28,19 +28,23 @@ Menu::Menu(SceneManager* sceneManager)
 	exitBox.height = 50;
 	exitBox.x = GetScreenWidth() / 2 - exitBox.width / 2;
 	exitBox.y = GetScreenHeight() - 100;
+
+	texture = LoadTexture("../res/MainMenu.png");
 }
 
 Menu::~Menu()
 {
-
+	UnloadTexture(texture);
 }
 
 void Menu::UpdateAndDraw()
 {
 	BeginDrawing();
-	ClearBackground(BLACK);
+	
 
-	DrawText("Breakout ", titleBox.x, titleBox.y, 100, RED);
+	DrawTexture(texture, 0, 0, WHITE);
+
+	/*DrawText("Breakout ", titleBox.x, titleBox.y, 100, RED);
 
 	if (CheckCollisionPointRec(GetMousePosition(), playBox)) DrawText("Play", playBox.x, playBox.y, 80, RED);
 	else  DrawText(FormatText("Play"), playBox.x, playBox.y, 80, WHITE);
@@ -52,7 +56,7 @@ void Menu::UpdateAndDraw()
 	else  DrawText(FormatText("Credits"), creditsBox.x, creditsBox.y, 80, WHITE);
 
 	if (CheckCollisionPointRec(GetMousePosition(), exitBox)) DrawText("Exit", exitBox.x, exitBox.y, 50, RED);
-	else  DrawText(FormatText("Exit"), exitBox.x, exitBox.y, 50, WHITE);
+	else  DrawText(FormatText("Exit"), exitBox.x, exitBox.y, 50, WHITE);*/
 
 
 	if (CheckCollisionPointRec(GetMousePosition(), playBox) && IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) sceneManager->setScene(Scene::GAMEPLAY);

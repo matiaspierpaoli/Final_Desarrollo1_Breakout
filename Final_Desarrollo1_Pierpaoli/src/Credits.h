@@ -7,6 +7,8 @@ class Credits
 private:
 	SceneManager* sceneManager;
 
+	Texture2D texture;
+
 	Rectangle exitBox;
 public:
 	Credits(SceneManager* sceneManager);

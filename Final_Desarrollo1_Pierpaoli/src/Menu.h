@@ -12,6 +12,8 @@ private:
 	Rectangle rulesBox;
 	Rectangle creditsBox;
 	Rectangle exitBox;
+
+	Texture2D texture;
 	
 
 public:

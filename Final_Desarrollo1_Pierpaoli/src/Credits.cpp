@@ -8,21 +8,20 @@ Credits::Credits(SceneManager* sceneManager)
 	exitBox.height = 50;
 	exitBox.x = GetScreenWidth() / 2 - exitBox.width / 2;
 	exitBox.y = GetScreenHeight() - 100;
+
+	texture = LoadTexture("../res/Credits.png");
 }
 
 Credits::~Credits()
 {
-
+	UnloadTexture(texture);
 }
 
 void Credits::UpdateAndDraw()
 {
 	BeginDrawing();
 
-	ClearBackground(BLACK);
-
-	if (CheckCollisionPointRec(GetMousePosition(), exitBox)) DrawText("Exit", exitBox.x, exitBox.y, 50, RED);
-	else  DrawText(FormatText("Exit"), exitBox.x, exitBox.y, 50, WHITE);
+	DrawTexture(texture, 0, 0, WHITE);
 
 	if (CheckCollisionPointRec(GetMousePosition(), exitBox) && IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) sceneManager->setScene(Scene::MENU);
 
