@@ -22,7 +22,7 @@ public:
 	Vector2 getPos();
 	int getColor();
 	Vector2 getSize();
-	bool getState();
+	bool getActive();
 
 	
 };

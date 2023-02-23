@@ -46,7 +46,7 @@ Vector2 Brick::getSize()
 	return size;
 }
 
-bool Brick::getState()
+bool Brick::getActive()
 {
 	return active;
 }
