@@ -37,6 +37,11 @@ void Game::Input()
 
 void Game::Update()
 {
+	if (IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_A))
+		player->moveLeft();
+	if (IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_D))
+		player->moveRight();
+
 
 }
 

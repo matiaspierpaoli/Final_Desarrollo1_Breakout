@@ -49,3 +49,19 @@ int Player::getLives()
 {
 	return lives;
 }
+
+void Player::moveLeft()
+{
+	if (pos.x > 0)
+	{
+		pos.x -= GetFrameTime() * speed;
+	}
+}
+
+void Player::moveRight()
+{
+	if (pos.x + size.x <= GetScreenWidth())
+	{
+		pos.x += GetFrameTime() * speed;
+	}
+}

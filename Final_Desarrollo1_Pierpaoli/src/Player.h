@@ -23,4 +23,7 @@ public:
 	Vector2 getSize();
 	int getLives();
 
+
+	void moveLeft();
+	void moveRight();
 };
