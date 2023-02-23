@@ -20,5 +20,7 @@ public:
 	int getRadius();
 	Vector2 getPos();
 	void move();
+	bool checkCollisionWithWalls();
+	void reset(Vector2 playerPos, Vector2 playerSize);
 };
 

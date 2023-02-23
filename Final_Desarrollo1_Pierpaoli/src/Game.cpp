@@ -47,6 +47,15 @@ void Game::Update()
 		ball->move();	
 	else	
 		ball->setSpeed({ player->getPos().x + player->getSize().x / 2, player->getPos().y - ball->getRadius() });
+	
+
+	// Ball - Walls collisions
+	if (ball->checkCollisionWithWalls()) // Only true if ball hits wall below player
+	{
+		ball->reset(player->getPos(), player->getSize());
+		player->reduceLives();
+	}
+
 
 }
 

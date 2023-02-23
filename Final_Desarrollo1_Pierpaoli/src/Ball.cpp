@@ -33,3 +33,30 @@ Vector2 Ball::getPos()
 {
 	return pos;
 }
+bool Ball::checkCollisionWithWalls()
+{
+	if (pos.x - radius <= 0)	
+		changeXDirection();
+	
+	if (pos.x + radius >= GetScreenWidth())	
+		changeXDirection();
+	
+	if (pos.y - radius <= 0)	
+		changeYDirection();
+	
+	if (pos.y + radius >= GetScreenHeight())			
+		return true;
+	
+
+	return false;
+}
+
+void Ball::reset(Vector2 playerPos, Vector2 playerSize)
+{
+	speed = { 0,0 };
+	pos.x = playerPos.x + playerSize.x / 2;
+	pos.y = playerPos.y - radius;
+	active = false;
+}
+
+
