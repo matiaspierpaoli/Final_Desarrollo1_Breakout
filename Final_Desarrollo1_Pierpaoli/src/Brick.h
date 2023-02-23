@@ -13,8 +13,18 @@ private:
 public:
 	Brick();
 	~Brick();
+	
 	void setPos(int x, int y);
+	void setSize(int x, int y);
+	void setColor(int color);
+	void setState(bool active);
+
 	Vector2 getPos();
+	int getColor();
+	Vector2 getSize();
+	bool getState();
+
+	
 };
 
 

@@ -2,12 +2,7 @@
 
 Brick::Brick()
 {
-
-	color = GetRandomValue(0, 4);
-	size = { static_cast<float>(GetScreenWidth()) / 10 ,
-			static_cast<float>(GetScreenHeight()) / 10 };
 	active = true;
-
 }
 
 Brick::~Brick()
@@ -20,7 +15,40 @@ void Brick::setPos(int x, int y)
 	this->pos.y = y;
 }
 
+void Brick::setSize(int x, int y)
+{
+	this->size.x = x;
+	this->size.y = y;
+}
+
+void Brick::setColor(int color)
+{
+	this->color = color;
+}
+
+void Brick::setState(bool active)
+{
+	active = !active;
+}
+
 Vector2 Brick::getPos()
 {
 	return pos;
 }
+
+int Brick::getColor()
+{
+	return color;
+}
+
+Vector2 Brick::getSize()
+{
+	return size;
+}
+
+bool Brick::getState()
+{
+	return active;
+}
+
+
