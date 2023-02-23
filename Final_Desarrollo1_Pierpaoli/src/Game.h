@@ -22,6 +22,9 @@ private:
 	Brick* bricks[rows][columns];
 
 	Level* level;
+
+	bool win = false;
+	int points = 0;
 	
 	// Line separating game and HUD
 	int startLinePosX = 1;	
