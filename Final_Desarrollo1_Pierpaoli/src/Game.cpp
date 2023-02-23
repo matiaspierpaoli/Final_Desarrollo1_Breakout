@@ -19,13 +19,14 @@ void Game::Init()
 	{
 		for (int j = 0; j < columns; j++)
 		{
-			brick[i][j] = new Brick();
+			bricks[i][j] = new Brick();
+			bricks[i][j]->setSize(GetScreenWidth() / rows, GetScreenHeight() / 20);
 		}
 	}
 		
 	level = new Level();
 
-	//level->setMapLevel1();
+	level->setMapLevel1(rows, columns, bricks);
 	
 }
 
@@ -41,7 +42,43 @@ void Game::Update()
 
 void Game::Draw()
 {
+	BeginDrawing();
+	ClearBackground(RAYWHITE);
 
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < columns; j++)
+		{
+			if (bricks[i][j]->getState())
+			{
+				switch (bricks[i][j]->getColor())
+				{
+				case 0:
+					DrawRectangle(bricks[i][j]->getPos().x, bricks[i][j]->getPos().y, bricks[i][j]->getSize().x, bricks[i][j]->getSize().y, RED);
+					break;
+				case 1:
+					DrawRectangle(bricks[i][j]->getPos().x, bricks[i][j]->getPos().y, bricks[i][j]->getSize().x, bricks[i][j]->getSize().y, ORANGE);
+					break;
+				case 2:
+					DrawRectangle(bricks[i][j]->getPos().x, bricks[i][j]->getPos().y, bricks[i][j]->getSize().x, bricks[i][j]->getSize().y, BROWN);
+					break;
+				case 3:
+					DrawRectangle(bricks[i][j]->getPos().x, bricks[i][j]->getPos().y, bricks[i][j]->getSize().x, bricks[i][j]->getSize().y, YELLOW);
+					break;
+				case 4:
+					DrawRectangle(bricks[i][j]->getPos().x, bricks[i][j]->getPos().y, bricks[i][j]->getSize().x, bricks[i][j]->getSize().y, GREEN);
+					break;
+				case 5:
+					DrawRectangle(bricks[i][j]->getPos().x, bricks[i][j]->getPos().y, bricks[i][j]->getSize().x, bricks[i][j]->getSize().y, BLUE);
+					break;
+				default:
+					break;
+				}
+			}
+		}
+	}
+
+	EndDrawing();
 }
 
 void Game::DeInit()
@@ -53,7 +90,7 @@ void Game::DeInit()
 	{
 		for (int j = 0; j < columns; j++)
 		{
-			delete brick[i][j];
+			delete bricks[i][j];
 		}
 	}
 

@@ -19,7 +19,7 @@ private:
 	static const int rows = 30;
 	static const int columns = 6;
 
-	Brick* brick[rows][columns];
+	Brick* bricks[rows][columns];
 
 	Level* level;
 	
