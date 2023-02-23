@@ -65,7 +65,7 @@ void Game::Input()
 			if (IsKeyPressed(KEY_M))
 			{
 				pause = false;
-				sceneManager->setScene(Scene::GAMEPLAY);
+				sceneManager->setScene(Scene::MENU);
 				Init();
 			}
 		}	
@@ -75,11 +75,11 @@ void Game::Input()
 		if (IsKeyPressed(KEY_M))
 		{
 			pause = false;
-			sceneManager->setScene(Scene::GAMEPLAY);
+			sceneManager->setScene(Scene::MENU);
 			Init();
 		}
 
-		if (IsKeyPressed(KEY_P))
+		if (IsKeyPressed(KEY_R))
 		{
 			pause = false;
 			win = false;
@@ -199,9 +199,9 @@ void Game::Draw()
 		if (points < rows * columns)		
 			DrawText(TextFormat("Game Over"), static_cast<int>(GetScreenWidth() / 2) - 100, static_cast<int>(GetScreenHeight() / 2 - 50), 40, RED);		
 		else
-			DrawText(TextFormat("Victory"), static_cast<int>(GetScreenWidth() / 2) - 100, static_cast<int>(GetScreenHeight() / 2) , 40, GREEN);
+			DrawText(TextFormat("Victory"), static_cast<int>(GetScreenWidth() / 2) - 100, static_cast<int>(GetScreenHeight() / 2 - 50) , 40, GREEN);
 
-		DrawText(TextFormat("Press P to unpause"), static_cast<int>(GetScreenWidth() / 2) - 150, static_cast<int>(GetScreenHeight() / 2) + 20 , 40, RED);
+		DrawText(TextFormat("Press R to replay"), static_cast<int>(GetScreenWidth() / 2) - 150, static_cast<int>(GetScreenHeight() / 2) + 20 , 40, RED);
 		DrawText(TextFormat("Press M to go back to menu"), static_cast<int>(GetScreenWidth() / 2) - 250, static_cast<int>(GetScreenHeight() / 2) + 70, 40, RED);
 	}
 
