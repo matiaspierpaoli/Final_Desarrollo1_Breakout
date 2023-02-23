@@ -18,3 +18,13 @@ void Ball::setPos(int x, int y)
 	this->pos.x = x;
 	this->pos.y = y;
 }
+
+int Ball::getRadius()
+{
+	return radius;
+}
+
+Vector2 Ball::getPos()
+{
+	return pos;
+}

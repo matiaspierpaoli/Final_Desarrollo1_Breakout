@@ -15,6 +15,8 @@ public:
 	~Ball();
 
 	void setPos(int x, int y);
-	Vector2 getpos();
+	
+	int getRadius();
+	Vector2 getPos();
 };
 
