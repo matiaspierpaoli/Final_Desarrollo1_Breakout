@@ -28,7 +28,7 @@ void Brick::setColor(int color)
 
 void Brick::setState(bool active)
 {
-	active = !active;
+	this->active = active;
 }
 
 Vector2 Brick::getPos()

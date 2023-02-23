@@ -87,10 +87,6 @@ void Game::Update()
 			
 		}
 	}
-
-	
-
-
 }
 
 void Game::Draw()
