@@ -17,13 +17,14 @@ Rules::~Rules()
 	UnloadTexture(texture);
 }
 
-void Rules::DrawAndUpdate()
+void Rules::Update()
+{
+	if (CheckCollisionPointRec(GetMousePosition(), exitBox) && IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) sceneManager->setScene(Scene::MENU);
+}
+
+void Rules::Draw()
 {
 	BeginDrawing();
-
 	DrawTexture(texture, 0, 0, WHITE);
-
-	if (CheckCollisionPointRec(GetMousePosition(), exitBox) && IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) sceneManager->setScene(Scene::MENU);
-
 	EndDrawing();
 }

@@ -41,7 +41,8 @@ void App::start()
 		switch (sceneManager->getScene())
 		{
 		case Scene::MENU:
-			menu->UpdateAndDraw();
+			menu->Update();
+			menu->Draw();
 			break;
 		case Scene::GAMEPLAY:
 			game->Input();
@@ -49,10 +50,12 @@ void App::start()
 			game->Draw();
 			break;
 		case Scene::RULES:
-			rules->DrawAndUpdate();
+			rules->Update();
+			rules->Draw();
 			break;
 		case Scene::CREDITS:
-			credits->UpdateAndDraw();
+			credits->Update();
+			credits->Draw();
 			break;
 		case Scene::EXIT:
 			break;

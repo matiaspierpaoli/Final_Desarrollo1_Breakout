@@ -19,6 +19,7 @@ private:
 public:
 	Menu(SceneManager* sceneManager);
 	~Menu();
-	void UpdateAndDraw();
+	void Draw();
+	void Update();
 	
 };

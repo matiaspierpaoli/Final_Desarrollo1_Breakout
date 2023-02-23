@@ -13,5 +13,6 @@ private:
 public:
 	Rules(SceneManager* sceneManager);
 	~Rules();
-	void DrawAndUpdate();
+	void Draw();
+	void Update();
 };

@@ -13,6 +13,7 @@ private:
 public:
 	Credits(SceneManager* sceneManager);
 	~Credits();
-	void UpdateAndDraw();
+	void Draw();
+	void Update();
 
 };

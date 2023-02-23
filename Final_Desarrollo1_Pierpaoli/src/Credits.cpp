@@ -17,13 +17,14 @@ Credits::~Credits()
 	UnloadTexture(texture);
 }
 
-void Credits::UpdateAndDraw()
+void Credits::Update()
+{
+	if (CheckCollisionPointRec(GetMousePosition(), exitBox) && IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) sceneManager->setScene(Scene::MENU);
+}
+
+void Credits::Draw()
 {
 	BeginDrawing();
-
 	DrawTexture(texture, 0, 0, WHITE);
-
-	if (CheckCollisionPointRec(GetMousePosition(), exitBox) && IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) sceneManager->setScene(Scene::MENU);
-
 	EndDrawing();
 }
