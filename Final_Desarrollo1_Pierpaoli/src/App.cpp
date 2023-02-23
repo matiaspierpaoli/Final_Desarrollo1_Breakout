@@ -42,6 +42,7 @@ void App::start()
 			menu->UpdateAndDraw();
 			break;
 		case Scene::GAMEPLAY:
+			game->Input();
 			game->Update();
 			game->Draw();
 			break;
