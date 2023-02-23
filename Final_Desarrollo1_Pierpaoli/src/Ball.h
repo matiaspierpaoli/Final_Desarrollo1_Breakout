@@ -31,6 +31,6 @@ public:
 	bool checkCollisionWithWalls(int linePosY);
 	void checkCollisionWithPlayer(Vector2 playerPos, Vector2 playerSize);
 
-	void reset(Vector2 playerPos, Vector2 playerSize);
+	void reset();
 };
 

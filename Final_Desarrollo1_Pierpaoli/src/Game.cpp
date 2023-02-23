@@ -105,7 +105,7 @@ void Game::Update()
 			// Ball - Walls collisions
 			if (ball->checkCollisionWithWalls(linePosY)) // Only true if ball hits line below player
 			{
-				ball->reset(player->getPos(), player->getSize());
+				ball->reset();
 				player->reduceLives();
 			}
 

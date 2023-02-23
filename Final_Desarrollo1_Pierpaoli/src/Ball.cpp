@@ -95,11 +95,11 @@ void Ball::checkCollisionWithPlayer(Vector2 playerPos, Vector2 playerSize)
 	}
 }
 
-void Ball::reset(Vector2 playerPos, Vector2 playerSize)
+void Ball::reset()
 {
 	speed = { 0,0 };
-	pos.x = playerPos.x + playerSize.x / 2;
-	pos.y = playerPos.y - radius;
+	pos.x = static_cast<float>(GetScreenWidth() / 2);
+	pos.y = static_cast<float>(GetScreenHeight() / 2);
 	active = false;
 }
 
