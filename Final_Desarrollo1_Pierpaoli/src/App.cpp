@@ -5,6 +5,7 @@
 App::App()
 {
 	InitWindow(screenWidth, screenHeight, "Breakout by Matias Pierpaoli");
+	InitAudioDevice();
 
 	srand(time(NULL));
 
@@ -16,6 +17,9 @@ App::App()
 	rules = new Rules(sceneManager);
 	credits = new Credits(sceneManager);
 
+	music = LoadMusicStream("../res/music.mp3");
+	SetMusicVolume(music, 0.2f);
+	music.looping = true;
 }
 
 App::~App()
@@ -25,19 +29,22 @@ App::~App()
 	delete rules;
 	delete credits;
 
-
 	game->DeInit();
 	delete game;
 
+	UnloadMusicStream(music);
 	CloseWindow();
+	CloseAudioDevice();
 }
 
 void App::start()
 {
 	game->Init();
+	PlayMusicStream(music);
 
 	while (!WindowShouldClose() && sceneManager->getScene() != Scene::EXIT)
 	{
+		UpdateMusicStream(music);
 		switch (sceneManager->getScene())
 		{
 		case Scene::MENU:

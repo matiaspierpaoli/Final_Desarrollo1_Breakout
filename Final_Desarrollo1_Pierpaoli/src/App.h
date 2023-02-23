@@ -6,8 +6,6 @@
 #include "Game.h"
 #include "Credits.h"
 
-
-
 class App
 {
 
@@ -17,6 +15,7 @@ private:
 	Rules* rules;
 	Game* game;
 	Credits* credits;
+	Music music;
 
 public:
 	App();
