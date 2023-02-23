@@ -45,6 +45,10 @@ void Game::Draw()
 	BeginDrawing();
 	ClearBackground(RAYWHITE);
 
+	//DrawRectangle(static_cast<int>(player->getPos().x), static_cast<int>(player.pos.y), static_cast<int>(player.size.x), static_cast<int>(player.size.y), BLACK);
+	DrawCircleV(ball->getPos(), static_cast<float>(ball->getRadius()), RED);
+
+
 	for (int i = 0; i < rows; i++)
 	{
 		for (int j = 0; j < columns; j++)
