@@ -13,7 +13,7 @@ private:
 	Texture2D texture;
 
 public:
-	Ball();
+	Ball(Vector2 pos, Vector2 speed, int radius, bool active, Texture2D texture);
 	~Ball();
 
 	void setPos(int x, int y);
@@ -35,6 +35,7 @@ public:
 	void checkCollisionWithPlayer(Vector2 playerPos, Vector2 playerSize, Sound ballSound);
 
 	void reset();
+	void createCopy(Ball ball);
 
 	void Draw();
 };

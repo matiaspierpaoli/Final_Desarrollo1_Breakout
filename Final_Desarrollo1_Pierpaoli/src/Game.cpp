@@ -89,9 +89,7 @@ void Game::Init()
 	level = new Level();
 	level->setMapLevel1(rows, columns, bricks, redBrickTexture, orangeBrickTexture, yellowBrickTexture, greenBrickTexture, skyblueBrickTexture, blueBrickTexture);
 
-	ball = new Ball();
-	ball->setTexture(ballTexture);
-
+	ball = new Ball({ static_cast<float>(GetScreenWidth() / 2), static_cast<float>(GetScreenHeight() / 2) }, {0,0}, 20, false, ballTexture);
 	
 	Vector2 newSize;
 	newSize.x = 5;

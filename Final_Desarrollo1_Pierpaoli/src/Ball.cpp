@@ -1,13 +1,12 @@
 #include "Ball.h"
 
-Ball::Ball()
+Ball::Ball(Vector2 pos, Vector2 speed, int radius, bool active, Texture2D texture)
 {
-	radius = 20;
-	setPos(static_cast<float>(GetScreenWidth() / 2), static_cast<float>(GetScreenHeight() / 2));
-	active = false;
-	speed = { 0,0 };
-
-	texture = { NULL };
+	this->pos = pos;
+	this->speed = speed;
+	this->radius = radius;
+	this->active = active;
+	this->texture = texture;
 }
 
 Ball::~Ball()
