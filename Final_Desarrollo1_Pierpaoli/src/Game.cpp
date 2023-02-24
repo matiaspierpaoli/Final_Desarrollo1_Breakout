@@ -249,7 +249,11 @@ void Game::Update()
 			}
 
 			// Ball - PowerUp collision
-
+			for (int i = 0; i < powerUps.size(); i++)
+			{
+				if (CheckCollisionCircleRec({ ball->getPos().x + ball->getRadius(), ball->getPos().y + ball->getRadius() }, static_cast<float>(ball->getRadius()), { powerUps[i]->getPos().x, powerUps[i]->getPos().y, powerUps[i]->getSize().x,powerUps[i]->getSize().y }))
+					powerUps[i]->setActive(false);			
+			}
 
 			if (player->getLives() == 0)
 			{
