@@ -6,6 +6,8 @@ Ball::Ball()
 	setPos(static_cast<float>(GetScreenWidth() / 2), static_cast<float>(GetScreenHeight() / 2));
 	active = false;
 	speed = { 0,0 };
+
+	texture = { NULL };
 }
 
 Ball::~Ball()
@@ -27,6 +29,11 @@ void Ball::setSpeed(Vector2 speed)
 void Ball::setActive(bool active)
 {
 	this->active = active;
+}
+
+void Ball::setTexture(Texture2D texture)
+{
+	this->texture = texture;
 }
 
 int Ball::getRadius()
@@ -103,6 +110,11 @@ void Ball::reset()
 	pos.x = static_cast<float>(GetScreenWidth() / 2);
 	pos.y = static_cast<float>(GetScreenHeight() / 2);
 	active = false;
+}
+
+void Ball::Draw()
+{
+	DrawTexture(texture, pos.x - 16, pos.y - 16, WHITE);
 }
 
 

@@ -36,6 +36,8 @@ private:
 	Sound victorySound;
 	Sound defeatSound;
 
+	Texture2D ballTexture;
+
 	Texture2D redBrickTexture;
 	Texture2D orangeBrickTexture;
 	Texture2D yellowBrickTexture;

@@ -14,6 +14,8 @@ Game::Game(SceneManager* sceneManager)
 	greenBrickTexture = { NULL };
 	skyblueBrickTexture = { NULL };
 	blueBrickTexture = { NULL };
+
+	ballTexture = { NULL };
 }
 
 Game::~Game()
@@ -24,12 +26,13 @@ Game::~Game()
 	UnloadTexture(greenBrickTexture);
 	UnloadTexture(skyblueBrickTexture);
 	UnloadTexture(blueBrickTexture);
+	UnloadTexture(ballTexture);
 }
 
 void Game::Init()
 {
-	player = new Player();
-	ball = new Ball();
+	
+	
 
 	for (int i = 0; i < rows; i++)
 	{
@@ -57,10 +60,15 @@ void Game::Init()
 	skyblueBrickTexture = LoadTexture("../res/bricks/skyblueBrick.png");
 	blueBrickTexture = LoadTexture("../res/bricks/blueBrick.png");
 
+	ballTexture = LoadTexture("../res/ball.png");
+
+	player = new Player();
+
 	level = new Level();
 	level->setMapLevel1(rows, columns, bricks, redBrickTexture, orangeBrickTexture, yellowBrickTexture, greenBrickTexture, skyblueBrickTexture, blueBrickTexture);
 
-	
+	ball = new Ball();
+	ball->setTexture(ballTexture);
 }
 
 void Game::Input()
@@ -183,7 +191,7 @@ void Game::Draw()
 	if (!win)
 	{
 		DrawRectangle(static_cast<int>(player->getPos().x), static_cast<int>(player->getPos().y), static_cast<int>(player->getSize().x), static_cast<int>(player->getSize().y), BLUE);
-		DrawCircleV(ball->getPos(), static_cast<float>(ball->getRadius()), RED);
+		ball->Draw();
 
 		DrawLine(startLinePosX, linePosY, endLinePosX, linePosY, BLACK);
 
@@ -258,6 +266,7 @@ void Game::DeInit()
 	UnloadTexture(greenBrickTexture);
 	UnloadTexture(skyblueBrickTexture);
 	UnloadTexture(blueBrickTexture);
+	UnloadTexture(ballTexture);
 
 	delete player;
 	delete ball;
