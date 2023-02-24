@@ -27,7 +27,7 @@ void Brick::setColor(int color)
 	this->color = color;
 }
 
-void Brick::setState(bool active)
+void Brick::setActive(bool active)
 {
 	this->active = active;
 }

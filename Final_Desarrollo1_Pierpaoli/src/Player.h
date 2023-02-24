@@ -22,7 +22,8 @@ public:
 	void setLives(int lives);
 	void setTexture(Texture2D texture);
 
-	void reduceLives();
+	void reduceLive();
+	void addLife();
 
 	Vector2 getPos();
 	Vector2 getSize();

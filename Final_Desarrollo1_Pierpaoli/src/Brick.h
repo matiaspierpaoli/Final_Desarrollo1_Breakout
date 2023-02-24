@@ -19,7 +19,7 @@ public:
 	void setPos(int x, int y);
 	void setSize(int x, int y);
 	void setColor(int color);
-	void setState(bool active);
+	void setActive(bool active);
 	void setTexture(Texture2D texture);
 
 	Vector2 getPos();

@@ -94,8 +94,8 @@ void Game::Init()
 
 	
 	Vector2 newSize;
-	newSize.x = 10;
-	newSize.y = 10;
+	newSize.x = 5;
+	newSize.y = 5;
 
 	powerUps.push_back(new PowerUp({0,0}, { newSize }, false, TypeOfPowerUp::AddLife));
 	powerUps.push_back(new PowerUp({ 0,0 }, { newSize }, false, TypeOfPowerUp::SubstractLife));
@@ -223,7 +223,7 @@ void Game::Update()
 			if (ball->checkCollisionWithWalls(linePosY)) // Only true if ball hits line below player
 			{
 				ball->reset();
-				player->reduceLives();
+				player->reduceLive();
 			}
 
 			// Ball - Player collisions
@@ -239,7 +239,7 @@ void Game::Update()
 					{
 						if (CheckCollisionCircleRec(ball->getPos(), static_cast<float>(ball->getRadius()), { bricks[i][j]->getPos().x, bricks[i][j]->getPos().y, bricks[i][j]->getSize().x, bricks[i][j]->getSize().y }))
 						{
-							bricks[i][j]->setState(false);
+							bricks[i][j]->setActive(false);
 							ball->changeYDirection();
 							points += 1;
 						}
@@ -251,8 +251,33 @@ void Game::Update()
 			// Ball - PowerUp collision
 			for (int i = 0; i < powerUps.size(); i++)
 			{
-				if (CheckCollisionCircleRec({ ball->getPos().x + ball->getRadius(), ball->getPos().y + ball->getRadius() }, static_cast<float>(ball->getRadius()), { powerUps[i]->getPos().x, powerUps[i]->getPos().y, powerUps[i]->getSize().x,powerUps[i]->getSize().y }))
-					powerUps[i]->setActive(false);			
+				if (powerUps[i]->getActive())
+				{
+					if (CheckCollisionCircleRec({ ball->getPos().x + ball->getRadius(), ball->getPos().y + ball->getRadius() }, static_cast<float>(ball->getRadius()), { powerUps[i]->getPos().x, powerUps[i]->getPos().y, powerUps[i]->getSize().x,powerUps[i]->getSize().y }))
+					{
+						powerUps[i]->setActive(false);
+
+						switch (powerUps[i]->getTypeOfPowerUp())
+						{
+						case TypeOfPowerUp::AddLife:
+							player->addLife();
+							break;
+						case TypeOfPowerUp::SubstractLife:
+							player->reduceLive();
+							break;
+						case TypeOfPowerUp::MultiplyBall:
+							break;
+						case TypeOfPowerUp::SLowPlayerDown:
+							break;
+						default:
+							break;
+						}
+					}
+				}
+
+				
+
+
 			}
 
 			if (player->getLives() == 0)

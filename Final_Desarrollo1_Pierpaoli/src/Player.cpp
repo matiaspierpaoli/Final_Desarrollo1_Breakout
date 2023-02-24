@@ -42,12 +42,17 @@ void Player::setTexture(Texture2D texture)
 	this->texture = texture;
 }
 
-void Player::reduceLives()
+void Player::reduceLive()
 {
 	lives -= 1;
 
 	if (lives <= 0)
 		lives = 0;
+}
+
+void Player::addLife()
+{
+	lives++;
 }
 
 Vector2 Player::getPos()
