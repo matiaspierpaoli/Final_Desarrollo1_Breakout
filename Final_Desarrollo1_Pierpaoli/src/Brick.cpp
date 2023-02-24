@@ -3,6 +3,7 @@
 Brick::Brick()
 {
 	active = true;
+	texture = { NULL };
 }
 
 Brick::~Brick()
@@ -31,6 +32,11 @@ void Brick::setState(bool active)
 	this->active = active;
 }
 
+void Brick::setTexture(Texture2D texture)
+{
+	this->texture = texture;
+}
+
 Vector2 Brick::getPos()
 {
 	return pos;
@@ -51,4 +57,9 @@ bool Brick::getActive()
 	return active;
 }
 
+void Brick::Draw()
+{
+	DrawRectangle(pos.x, pos.y, size.x, size.y, WHITE);
+	DrawTexture(texture, pos.x, pos.y, WHITE);
+}
 

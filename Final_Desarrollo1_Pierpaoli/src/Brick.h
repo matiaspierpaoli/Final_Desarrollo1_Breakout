@@ -10,6 +10,8 @@ private:
 	bool active;
 	int color;
 
+	Texture2D texture;
+
 public:
 	Brick();
 	~Brick();
@@ -18,13 +20,14 @@ public:
 	void setSize(int x, int y);
 	void setColor(int color);
 	void setState(bool active);
+	void setTexture(Texture2D texture);
 
 	Vector2 getPos();
 	int getColor();
 	Vector2 getSize();
 	bool getActive();
 
-	
+	void Draw();
 };
 
 
