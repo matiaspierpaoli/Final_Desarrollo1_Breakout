@@ -72,7 +72,6 @@ void PowerUp::setNewRndPos(Vector2 playerPos, Vector2 playerSize, Vector2 ballCe
 
 	Vector2 newPos;
 	
-
 	do
 	{
 		newPos.x = GetRandomValue(1, GetScreenWidth() - 1);

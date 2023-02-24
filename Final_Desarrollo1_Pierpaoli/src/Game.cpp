@@ -54,9 +54,6 @@ void Game::Init()
 		case TypeOfPowerUp::SubstractLife:
 			powerUps[i]->setTexture();
 			break;
-		case TypeOfPowerUp::MultiplyBall:
-			powerUps[i]->setTexture();
-			break;
 		case TypeOfPowerUp::SLowPlayerDown:
 			powerUps[i]->setTexture();
 			break;
@@ -89,7 +86,8 @@ void Game::Init()
 	level = new Level();
 	level->setMapLevel1(rows, columns, bricks, redBrickTexture, orangeBrickTexture, yellowBrickTexture, greenBrickTexture, skyblueBrickTexture, blueBrickTexture);
 
-	ball = new Ball({ static_cast<float>(GetScreenWidth() / 2), static_cast<float>(GetScreenHeight() / 2) }, {0,0}, 20, false, ballTexture);
+	ball = new Ball({ static_cast<float>(GetScreenWidth() / 2), static_cast<float>(GetScreenHeight() / 2) }, { 0,0 }, 20, false, ballTexture);
+
 	
 	Vector2 newSize;
 	newSize.x = 5;
@@ -97,12 +95,11 @@ void Game::Init()
 
 	powerUps.push_back(new PowerUp({0,0}, { newSize }, false, TypeOfPowerUp::AddLife));
 	powerUps.push_back(new PowerUp({ 0,0 }, { newSize }, false, TypeOfPowerUp::SubstractLife));
-	powerUps.push_back(new PowerUp({ 0,0 }, { newSize }, false, TypeOfPowerUp::MultiplyBall));
 	powerUps.push_back(new PowerUp({ 0,0 }, { newSize }, false, TypeOfPowerUp::SLowPlayerDown));
 
 	for (int i = 0; i < powerUps.size(); i++)
 	{
-		powerUps[i]->setNewRndPos(player->getPos(), player->getSize(), { ball->getPos().x + ball->getRadius(), ball->getPos().y + ball->getRadius() }, ball->getRadius(), columns * bricks[0][0]->getSize().y, linePosY);
+		powerUps[i]->setNewRndPos(player->getPos(), player->getSize(), { ball->getPos().x + ball->getRadius(), ball->getPos().y + ball->getRadius()}, ball->getRadius(), columns * bricks[0][0]->getSize().y, linePosY);
 	}
 }
 
@@ -189,23 +186,10 @@ void Game::Update()
 			case 400:
 				for (int i = 0; i < powerUps.size(); i++)
 				{
-					if (powerUps[i]->getTypeOfPowerUp() == TypeOfPowerUp::MultiplyBall)
-						powerUps[i]->setActive(true);
-				}
-				break;
-			case 600:
-				for (int i = 0; i < powerUps.size(); i++)
-				{
 					if (powerUps[i]->getTypeOfPowerUp() == TypeOfPowerUp::SLowPlayerDown)
 						powerUps[i]->setActive(true);
 				}
-				break;
-			case 800:
-				for (int i = 0; i < powerUps.size(); i++)
-				{
-					powerUps[i]->setActive(true); // Activate all powerUps
-				}
-				break;
+				break;		
 			default:
 				break;
 			}
@@ -216,19 +200,18 @@ void Game::Update()
 			else
 				ball->setSpeed({ player->getPos().x + player->getSize().x / 2, player->getPos().y - ball->getRadius() });
 
-
-			// Ball - Walls collisions
+			// Original Ball Collisions
+			// Ball - Walls
 			if (ball->checkCollisionWithWalls(linePosY)) // Only true if ball hits line below player
 			{
 				ball->reset();
 				player->reduceLive();
 			}
 
-			// Ball - Player collisions
+			// Ball - Player
 			ball->checkCollisionWithPlayer(player->getPos(), player->getSize(), ballSound);
-				
 
-			// Ball - Bricks collisions
+			// Ball - Bricks
 			for (int i = 0; i < rows; i++)
 			{
 				for (int j = 0; j < columns; j++)
@@ -242,7 +225,6 @@ void Game::Update()
 							points += 1;
 						}
 					}
-
 				}
 			}
 
@@ -251,9 +233,11 @@ void Game::Update()
 			{
 				if (powerUps[i]->getActive())
 				{
+					// Only check with initial ball
 					if (CheckCollisionCircleRec({ ball->getPos().x + ball->getRadius(), ball->getPos().y + ball->getRadius() }, static_cast<float>(ball->getRadius()), { powerUps[i]->getPos().x, powerUps[i]->getPos().y, powerUps[i]->getSize().x,powerUps[i]->getSize().y }))
 					{
 						powerUps[i]->setActive(false);
+						powerUps[i]->setNewRndPos(player->getPos(), player->getSize(), { ball->getPos().x + ball->getRadius(), ball->getPos().y + ball->getRadius() }, ball->getRadius(), columns * bricks[0][0]->getSize().y, linePosY);
 
 						switch (powerUps[i]->getTypeOfPowerUp())
 						{
@@ -263,8 +247,6 @@ void Game::Update()
 						case TypeOfPowerUp::SubstractLife:
 							player->reduceLive();
 							break;
-						case TypeOfPowerUp::MultiplyBall:
-							break;
 						case TypeOfPowerUp::SLowPlayerDown:
 							break;
 						default:
@@ -272,10 +254,6 @@ void Game::Update()
 						}
 					}
 				}
-
-				
-
-
 			}
 
 			if (player->getLives() == 0)
@@ -302,6 +280,8 @@ void Game::Draw()
 	{
 		//DrawRectangle(static_cast<int>(player->getPos().x), static_cast<int>(player->getPos().y), static_cast<int>(player->getSize().x), static_cast<int>(player->getSize().y), BLUE);
 		player->Draw();
+
+		// Original Ball
 		ball->Draw();
 
 		DrawLine(startLinePosX, linePosY, endLinePosX, linePosY, BLACK);
@@ -362,7 +342,7 @@ void Game::DeInit()
 
 	delete player;
 	delete ball;
-	
+
 	for (int i = 0; i < rows; i++)
 	{
 		for (int j = 0; j < columns; j++)

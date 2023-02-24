@@ -25,6 +25,7 @@ public:
 	Vector2 getPos();
 	bool getActive();
 	Vector2 getSpeed();
+	Texture2D getTexture();
 
 	void move();
 
@@ -35,7 +36,6 @@ public:
 	void checkCollisionWithPlayer(Vector2 playerPos, Vector2 playerSize, Sound ballSound);
 
 	void reset();
-	void createCopy(Ball ball);
 
 	void Draw();
 };

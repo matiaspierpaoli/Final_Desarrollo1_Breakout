@@ -55,6 +55,11 @@ Vector2 Ball::getSpeed()
 	return speed;
 }
 
+Texture2D Ball::getTexture()
+{
+	return texture;
+}
+
 void Ball::move()
 {	
 	pos.x += speed.x * GetFrameTime();
