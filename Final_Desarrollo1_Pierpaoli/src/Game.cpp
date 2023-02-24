@@ -7,11 +7,23 @@ Game::Game(SceneManager* sceneManager)
 	ballSound = { NULL };
 	defeatSound = { NULL };
 	victorySound = { NULL };
+
+	redBrickTexture = { NULL };
+	orangeBrickTexture = { NULL };
+	yellowBrickTexture = { NULL };
+	greenBrickTexture = { NULL };
+	skyblueBrickTexture = { NULL };
+	blueBrickTexture = { NULL };
 }
 
 Game::~Game()
 {
-
+	UnloadTexture(redBrickTexture);
+	UnloadTexture(orangeBrickTexture);
+	UnloadTexture(yellowBrickTexture);
+	UnloadTexture(greenBrickTexture);
+	UnloadTexture(skyblueBrickTexture);
+	UnloadTexture(blueBrickTexture);
 }
 
 void Game::Init()
@@ -28,9 +40,7 @@ void Game::Init()
 		}
 	}
 		
-	level = new Level();
-
-	level->setMapLevel1(rows, columns, bricks);
+	
 
 	win = false;
 	points = 0;
@@ -39,6 +49,16 @@ void Game::Init()
 	ballSound = LoadSound("../res/ballSound.mp3");
 	defeatSound = LoadSound("../res/defeatSound.mp3");
 	victorySound = LoadSound("../res/victorySound.mp3");
+
+	redBrickTexture = LoadTexture("../res/bricks/redBrick.png");
+	orangeBrickTexture = LoadTexture("../res/bricks/orangeBrick.png");
+	yellowBrickTexture = LoadTexture("../res/bricks/yellowBrick.png");
+	greenBrickTexture = LoadTexture("../res/bricks/greenBrick.png");
+	skyblueBrickTexture = LoadTexture("../res/bricks/skyblueBrick.png");
+	blueBrickTexture = LoadTexture("../res/bricks/blueBrick.png");
+
+	level = new Level();
+	level->setMapLevel1(rows, columns, bricks, redBrickTexture, orangeBrickTexture, yellowBrickTexture, greenBrickTexture, skyblueBrickTexture, blueBrickTexture);
 
 	
 }
@@ -173,7 +193,9 @@ void Game::Draw()
 			{
 				if (bricks[i][j]->getActive())
 				{
-					switch (bricks[i][j]->getColor())
+					bricks[i][j]->Draw();
+
+					/*switch (bricks[i][j]->getColor())
 					{
 					case 0:
 						DrawRectangle(bricks[i][j]->getPos().x, bricks[i][j]->getPos().y, bricks[i][j]->getSize().x, bricks[i][j]->getSize().y, RED);
@@ -195,7 +217,7 @@ void Game::Draw()
 						break;
 					default:
 						break;
-					}
+					}*/
 				}
 			}
 		}
@@ -229,6 +251,13 @@ void Game::DeInit()
 	UnloadSound(ballSound);
 	UnloadSound(victorySound);
 	UnloadSound(defeatSound);
+
+	UnloadTexture(redBrickTexture);
+	UnloadTexture(orangeBrickTexture);
+	UnloadTexture(yellowBrickTexture);
+	UnloadTexture(greenBrickTexture);
+	UnloadTexture(skyblueBrickTexture);
+	UnloadTexture(blueBrickTexture);
 
 	delete player;
 	delete ball;

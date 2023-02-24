@@ -36,6 +36,13 @@ private:
 	Sound victorySound;
 	Sound defeatSound;
 
+	Texture2D redBrickTexture;
+	Texture2D orangeBrickTexture;
+	Texture2D yellowBrickTexture;
+	Texture2D greenBrickTexture;
+	Texture2D skyblueBrickTexture;
+	Texture2D blueBrickTexture;
+
 public:
 	Game(SceneManager* sceneManager);
 	~Game();
