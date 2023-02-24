@@ -54,6 +54,9 @@ void Game::Init()
 		case TypeOfPowerUp::SubstractLife:
 			powerUps[i]->setTexture();
 			break;
+			case TypeOfPowerUp::MultiplyPlayerSpeed:
+			powerUps[i]->setTexture();
+			break;
 		case TypeOfPowerUp::SLowPlayerDown:
 			powerUps[i]->setTexture();
 			break;
@@ -95,6 +98,7 @@ void Game::Init()
 
 	powerUps.push_back(new PowerUp({0,0}, { newSize }, false, TypeOfPowerUp::AddLife));
 	powerUps.push_back(new PowerUp({ 0,0 }, { newSize }, false, TypeOfPowerUp::SubstractLife));
+	powerUps.push_back(new PowerUp({ 0,0 }, { newSize }, false, TypeOfPowerUp::MultiplyPlayerSpeed));
 	powerUps.push_back(new PowerUp({ 0,0 }, { newSize }, false, TypeOfPowerUp::SLowPlayerDown));
 
 	for (int i = 0; i < powerUps.size(); i++)
@@ -186,6 +190,12 @@ void Game::Update()
 			case 400:
 				for (int i = 0; i < powerUps.size(); i++)
 				{
+					if (powerUps[i]->getTypeOfPowerUp() == TypeOfPowerUp::MultiplyPlayerSpeed)
+						powerUps[i]->setActive(true);
+				}
+			case 600:
+				for (int i = 0; i < powerUps.size(); i++)
+				{
 					if (powerUps[i]->getTypeOfPowerUp() == TypeOfPowerUp::SLowPlayerDown)
 						powerUps[i]->setActive(true);
 				}
@@ -246,6 +256,9 @@ void Game::Update()
 							break;
 						case TypeOfPowerUp::SubstractLife:
 							player->reduceLive();
+							break;
+							case TypeOfPowerUp::MultiplyPlayerSpeed:
+							player->();
 							break;
 						case TypeOfPowerUp::SLowPlayerDown:
 							break;

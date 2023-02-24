@@ -6,6 +6,7 @@ enum class TypeOfPowerUp
 {
 	AddLife,
 	SubstractLife,
+	MultiplyPlayerSpeed,
 	SLowPlayerDown
 };
 
