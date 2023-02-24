@@ -6,6 +6,8 @@ Player::Player()
 	setPos(static_cast<float>(GetScreenWidth()) / 2 - size.x / 2, static_cast<float>(GetScreenHeight()) - size.y - 60);
 	setSpeed(400);
 	setLives(5);
+
+	texture = { NULL };
 }
 
 Player::~Player()
@@ -33,6 +35,11 @@ void Player::setSpeed(int speed)
 void Player::setLives(int lives)
 {
 	this->lives = lives;
+}
+
+void Player::setTexture(Texture2D texture)
+{
+	this->texture = texture;
 }
 
 void Player::reduceLives()
@@ -72,4 +79,9 @@ void Player::moveRight()
 	{
 		pos.x += GetFrameTime() * speed;
 	}
+}
+
+void Player::Draw()
+{
+	DrawTexture(texture, pos.x, pos.y, WHITE);
 }

@@ -10,6 +10,8 @@ private:
 	int speed;
 	int lives;
 
+	Texture2D texture;
+
 public:
 	Player();
 	~Player();
@@ -18,6 +20,7 @@ public:
 	void setSize(int x, int y);
 	void setSpeed(int speed);
 	void setLives(int lives);
+	void setTexture(Texture2D texture);
 
 	void reduceLives();
 
@@ -28,4 +31,6 @@ public:
 
 	void moveLeft();
 	void moveRight();
+
+	void Draw();
 };
