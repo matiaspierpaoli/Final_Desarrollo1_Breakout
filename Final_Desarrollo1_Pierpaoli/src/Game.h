@@ -1,10 +1,11 @@
 #pragma once
+#include <vector>
 
 #include "Player.h"
 #include "Ball.h"
 #include "Brick.h"
 #include "Level.h"
-
+#include "PowerUp.h"
 
 #include "SceneManager.h"
 
@@ -22,6 +23,9 @@ private:
 	Brick* bricks[rows][columns];
 
 	Level* level;
+
+	std::vector<PowerUp*> powerUps;
+	int rndPowerUpActivation;
 
 	bool win;
 	int points;

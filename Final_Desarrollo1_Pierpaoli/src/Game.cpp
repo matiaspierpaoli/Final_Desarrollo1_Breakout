@@ -17,6 +17,8 @@ Game::Game(SceneManager* sceneManager)
 
 	ballTexture = { NULL };
 	playerTexture = { NULL };
+
+	rndPowerUpActivation = 0;
 }
 
 Game::~Game()
@@ -33,9 +35,6 @@ Game::~Game()
 
 void Game::Init()
 {
-	
-	
-
 	for (int i = 0; i < rows; i++)
 	{
 		for (int j = 0; j < columns; j++)
@@ -44,8 +43,27 @@ void Game::Init()
 			bricks[i][j]->setSize(GetScreenWidth() / rows, GetScreenHeight() / 20);
 		}
 	}
-		
-	
+
+	/*for (int i = 0; i < powerUps.size(); i++)
+	{
+		switch (powerUps[i]->getTypeOfPowerUp())		
+		{
+		case TypeOfPowerUp::AddLife:
+			powerUps[i]->setTexture();
+			break;
+		case TypeOfPowerUp::SubstractLife:
+			powerUps[i]->setTexture();
+			break;
+		case TypeOfPowerUp::MultiplyBall:
+			powerUps[i]->setTexture();
+			break;
+		case TypeOfPowerUp::SLowPlayerDown:
+			powerUps[i]->setTexture();
+			break;
+		default:
+			break;
+		}
+	}*/
 
 	win = false;
 	points = 0;
@@ -73,6 +91,21 @@ void Game::Init()
 
 	ball = new Ball();
 	ball->setTexture(ballTexture);
+
+	
+	Vector2 newSize;
+	newSize.x = 10;
+	newSize.y = 10;
+
+	powerUps.push_back(new PowerUp({0,0}, { newSize }, false, TypeOfPowerUp::AddLife));
+	powerUps.push_back(new PowerUp({ 0,0 }, { newSize }, false, TypeOfPowerUp::SubstractLife));
+	powerUps.push_back(new PowerUp({ 0,0 }, { newSize }, false, TypeOfPowerUp::MultiplyBall));
+	powerUps.push_back(new PowerUp({ 0,0 }, { newSize }, false, TypeOfPowerUp::SLowPlayerDown));
+
+	for (int i = 0; i < powerUps.size(); i++)
+	{
+		powerUps[i]->setNewRndPos(player->getPos(), player->getSize(), { ball->getPos().x + ball->getRadius(), ball->getPos().y + ball->getRadius() }, ball->getRadius(), columns * bricks[0][0]->getSize().y, linePosY);
+	}
 }
 
 void Game::Input()
@@ -136,6 +169,49 @@ void Game::Update()
 	{
 		if (!pause)
 		{
+			// PowerUp activation
+			rndPowerUpActivation = GetRandomValue(0, 800);
+
+			switch (rndPowerUpActivation)
+			{
+			case 0:
+				for (int i = 0; i < powerUps.size(); i++)
+				{
+					if (powerUps[i]->getTypeOfPowerUp() == TypeOfPowerUp::AddLife)
+						powerUps[i]->setActive(true);
+				}
+				break;
+			case 200:
+				for (int i = 0; i < powerUps.size(); i++)
+				{
+					if (powerUps[i]->getTypeOfPowerUp() == TypeOfPowerUp::SubstractLife)
+						powerUps[i]->setActive(true);
+				}
+				break;
+			case 400:
+				for (int i = 0; i < powerUps.size(); i++)
+				{
+					if (powerUps[i]->getTypeOfPowerUp() == TypeOfPowerUp::MultiplyBall)
+						powerUps[i]->setActive(true);
+				}
+				break;
+			case 600:
+				for (int i = 0; i < powerUps.size(); i++)
+				{
+					if (powerUps[i]->getTypeOfPowerUp() == TypeOfPowerUp::SLowPlayerDown)
+						powerUps[i]->setActive(true);
+				}
+				break;
+			case 800:
+				for (int i = 0; i < powerUps.size(); i++)
+				{
+					powerUps[i]->setActive(true); // Activate all powerUps
+				}
+				break;
+			default:
+				break;
+			}
+
 			// Ball Movement
 			if (ball->getActive())
 				ball->move();
@@ -172,6 +248,9 @@ void Game::Update()
 				}
 			}
 
+			// Ball - PowerUp collision
+
+
 			if (player->getLives() == 0)
 			{
 				win = !win;
@@ -204,35 +283,15 @@ void Game::Draw()
 		{
 			for (int j = 0; j < columns; j++)
 			{
-				if (bricks[i][j]->getActive())
-				{
-					bricks[i][j]->Draw();
-
-					/*switch (bricks[i][j]->getColor())
-					{
-					case 0:
-						DrawRectangle(bricks[i][j]->getPos().x, bricks[i][j]->getPos().y, bricks[i][j]->getSize().x, bricks[i][j]->getSize().y, RED);
-						break;
-					case 1:
-						DrawRectangle(bricks[i][j]->getPos().x, bricks[i][j]->getPos().y, bricks[i][j]->getSize().x, bricks[i][j]->getSize().y, ORANGE);
-						break;
-					case 2:
-						DrawRectangle(bricks[i][j]->getPos().x, bricks[i][j]->getPos().y, bricks[i][j]->getSize().x, bricks[i][j]->getSize().y, BROWN);
-						break;
-					case 3:
-						DrawRectangle(bricks[i][j]->getPos().x, bricks[i][j]->getPos().y, bricks[i][j]->getSize().x, bricks[i][j]->getSize().y, YELLOW);
-						break;
-					case 4:
-						DrawRectangle(bricks[i][j]->getPos().x, bricks[i][j]->getPos().y, bricks[i][j]->getSize().x, bricks[i][j]->getSize().y, GREEN);
-						break;
-					case 5:
-						DrawRectangle(bricks[i][j]->getPos().x, bricks[i][j]->getPos().y, bricks[i][j]->getSize().x, bricks[i][j]->getSize().y, BLUE);
-						break;
-					default:
-						break;
-					}*/
-				}
+				if (bricks[i][j]->getActive())				
+					bricks[i][j]->Draw();			
 			}
+		}
+
+		for (int i = 0; i < powerUps.size(); i++)
+		{
+			if (powerUps[i]->getActive())
+				powerUps[i]->Draw();
 		}
 
 		if (!pause)
@@ -284,6 +343,8 @@ void Game::DeInit()
 			delete bricks[i][j];
 		}
 	}
+
+	powerUps.clear();
 
 	delete level;
 }

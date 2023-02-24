@@ -1,7 +1,13 @@
 #include "PowerUp.h"
 
-PowerUp::PowerUp()
+PowerUp::PowerUp(Vector2 pos, Vector2 size, bool active, TypeOfPowerUp typeOfPowerUp)
 {
+	this->pos = pos;
+	this->size = size;
+	this->active = active;
+	this->typeOfPowerUp = typeOfPowerUp;
+	
+
 	texture = { NULL };
 }
 
@@ -10,47 +16,83 @@ PowerUp::~PowerUp()
 
 }
 
-inline void PowerUp::setPos(Vector2 pos)
+void PowerUp::setPos(Vector2 pos)
 {
 	this->pos = pos;
 }
 
-inline void PowerUp::setSize(Vector2 size)
+void PowerUp::setSize(Vector2 size)
 {
 	this->size = size;
 }
 
-inline void PowerUp::setActive(bool active)
+void PowerUp::setActive(bool active)
 {
 	this->active = active;
 }
 
-inline void PowerUp::setTexture(Texture2D texture)
+void PowerUp::setTexture(Texture2D texture)
 {
 	this->texture = texture;
 }
 
-inline Vector2 PowerUp::getPos()
+void PowerUp::setTypeOfPowerUp(TypeOfPowerUp typeOfPowerUp)
+{
+	this->typeOfPowerUp = typeOfPowerUp;
+}
+
+Vector2 PowerUp::getPos()
 {
 	return pos;
 }
 
-inline Vector2 PowerUp::getSize()
+Vector2 PowerUp::getSize()
 {
 	return size;
 }
 
-inline bool PowerUp::getActive()
+bool PowerUp::getActive()
 {
 	return active;
 }
 
-inline Texture2D PowerUp::getTexture()
+Texture2D PowerUp::getTexture()
 {
 	return texture;
 }
 
-inline void PowerUp::Draw()
+TypeOfPowerUp PowerUp::getTypeOfPowerUp()
 {
+	return typeOfPowerUp;
+}
 
+void PowerUp::setNewRndPos(Vector2 playerPos, Vector2 playerSize, Vector2 ballCenter, float ballRadius, int topLine, int botLine)
+{
+	bool condition = false;
+
+	Vector2 newPos;
+	
+
+	do
+	{
+		newPos.x = GetRandomValue(1, GetScreenWidth() - 1);
+		newPos.y = GetRandomValue(topLine + size.y, botLine - size.y);
+
+		// Ball - PowerUp
+		if (CheckCollisionCircleRec(ballCenter, ballRadius, {newPos.x, newPos.y, size.x, size.y}))
+			condition = true;
+
+		// Player - PowerUp
+		if (CheckCollisionRecs({ playerPos.x, playerPos.y, playerSize.x, playerSize.y }, { newPos.x, newPos.y, size.x, size.y }))
+			condition = true;
+
+	} while (condition);
+
+	setPos({newPos.x, newPos.y});
+
+}
+
+void PowerUp::Draw()
+{
+	DrawRectangle(pos.x, pos.y, size.x, size.y, PURPLE);
 }
