@@ -192,12 +192,14 @@ void Game::Update()
 				{
 					if (powerUps[i]->getTypeOfPowerUp() == TypeOfPowerUp::MultiplyPlayerSpeed)
 						powerUps[i]->setActive(true);
+					player->setSpeed(player->getNormalSpeed());
 				}
 			case 600:
 				for (int i = 0; i < powerUps.size(); i++)
 				{
 					if (powerUps[i]->getTypeOfPowerUp() == TypeOfPowerUp::SLowPlayerDown)
 						powerUps[i]->setActive(true);
+					player->setSpeed(player->getNormalSpeed());
 				}
 				break;		
 			default:
@@ -258,9 +260,10 @@ void Game::Update()
 							player->reduceLive();
 							break;
 							case TypeOfPowerUp::MultiplyPlayerSpeed:
-							player->();
+							player->setSpeed(player->getNormalSpeed() * 2);
 							break;
 						case TypeOfPowerUp::SLowPlayerDown:
+							player->setSpeed(player->getNormalSpeed() - player->getNormalSpeed() / 10);
 							break;
 						default:
 							break;

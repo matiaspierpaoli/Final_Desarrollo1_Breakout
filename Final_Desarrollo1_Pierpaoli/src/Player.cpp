@@ -4,7 +4,8 @@ Player::Player()
 {
 	setSize(static_cast<float>(GetScreenWidth()) / 6, static_cast<float>(GetScreenHeight()) / 30);
 	setPos(static_cast<float>(GetScreenWidth()) / 2 - size.x / 2, static_cast<float>(GetScreenHeight()) - size.y - 60);
-	setSpeed(400);
+	setSpeed(500);
+	normalSpeed = speed;
 	setLives(5);
 
 	texture = { NULL };
@@ -68,6 +69,11 @@ Vector2 Player::getSize()
 int Player::getLives()
 {
 	return lives;
+}
+
+int Player::getNormalSpeed()
+{
+	return normalSpeed;
 }
 
 void Player::moveLeft()

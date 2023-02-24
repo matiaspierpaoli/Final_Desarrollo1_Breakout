@@ -7,6 +7,7 @@ class Player
 private:
 	Vector2 pos;
 	Vector2 size;
+	int normalSpeed;
 	int speed;
 	int lives;
 
@@ -28,6 +29,7 @@ public:
 	Vector2 getPos();
 	Vector2 getSize();
 	int getLives();
+	int getNormalSpeed();
 
 
 	void moveLeft();
