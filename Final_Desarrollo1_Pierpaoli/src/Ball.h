@@ -29,7 +29,7 @@ public:
 	void changeXDirection();
 
 	bool checkCollisionWithWalls(int linePosY);
-	void checkCollisionWithPlayer(Vector2 playerPos, Vector2 playerSize);
+	void checkCollisionWithPlayer(Vector2 playerPos, Vector2 playerSize, Sound ballSound);
 
 	void reset();
 };

@@ -3,6 +3,10 @@
 Game::Game(SceneManager* sceneManager)
 {
 	this->sceneManager = sceneManager;
+
+	ballSound = { NULL };
+	defeatSound = { NULL };
+	victorySound = { NULL };
 }
 
 Game::~Game()
@@ -31,6 +35,11 @@ void Game::Init()
 	win = false;
 	points = 0;
 	pause = false;
+
+	ballSound = LoadSound("../res/ballSound.mp3");
+	defeatSound = LoadSound("../res/defeatSound.mp3");
+	victorySound = LoadSound("../res/victorySound.mp3");
+
 	
 }
 
@@ -110,7 +119,8 @@ void Game::Update()
 			}
 
 			// Ball - Player collisions
-			ball->checkCollisionWithPlayer(player->getPos(), player->getSize());
+			ball->checkCollisionWithPlayer(player->getPos(), player->getSize(), ballSound);
+				
 
 			// Ball - Bricks collisions
 			for (int i = 0; i < rows; i++)
@@ -131,10 +141,16 @@ void Game::Update()
 			}
 
 			if (player->getLives() == 0)
+			{
 				win = !win;
+				PlaySound(defeatSound);
+			}
 
 			if (points >= rows * columns)
+			{
 				win = !win;
+				PlaySound(victorySound);
+			}
 		}
 	}
 }
@@ -210,6 +226,10 @@ void Game::Draw()
 
 void Game::DeInit()
 {
+	UnloadSound(ballSound);
+	UnloadSound(victorySound);
+	UnloadSound(defeatSound);
+
 	delete player;
 	delete ball;
 	

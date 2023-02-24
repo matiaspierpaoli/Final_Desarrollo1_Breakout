@@ -83,7 +83,7 @@ bool Ball::checkCollisionWithWalls(int linePosY)
 	return false;
 }
 
-void Ball::checkCollisionWithPlayer(Vector2 playerPos, Vector2 playerSize)
+void Ball::checkCollisionWithPlayer(Vector2 playerPos, Vector2 playerSize ,Sound ballSound)
 {
 	if (CheckCollisionCircleRec(pos, static_cast<float>(radius), { playerPos.x, playerPos.y, playerSize.x, playerSize.y }))
 	{
@@ -91,6 +91,8 @@ void Ball::checkCollisionWithPlayer(Vector2 playerPos, Vector2 playerSize)
 		{
 			changeYDirection();
 			speed.x = (pos.x - playerPos.x) / (playerSize.x / 2) * 500;
+
+			PlaySound(ballSound);
 		}
 	}
 }

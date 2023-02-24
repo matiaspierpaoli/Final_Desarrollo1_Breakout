@@ -31,7 +31,10 @@ private:
 	int startLinePosX = 1;	
 	int endLinePosX = GetScreenWidth() - 1;
 	int linePosY = GetScreenHeight() - 50;
-	
+
+	Sound ballSound;
+	Sound victorySound;
+	Sound defeatSound;
 
 public:
 	Game(SceneManager* sceneManager);
