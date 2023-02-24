@@ -76,7 +76,7 @@ void PowerUp::setNewRndPos(Vector2 playerPos, Vector2 playerSize, Vector2 ballCe
 	do
 	{
 		newPos.x = GetRandomValue(1, GetScreenWidth() - 1);
-		newPos.y = GetRandomValue(topLine + size.y, botLine - size.y);
+		newPos.y = GetRandomValue(topLine + size.y + 50, botLine - size.y - 50);
 
 		// Ball - PowerUp
 		if (CheckCollisionCircleRec(ballCenter, ballRadius, {newPos.x, newPos.y, size.x, size.y}))
