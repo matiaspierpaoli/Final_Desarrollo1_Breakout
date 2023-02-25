@@ -2,7 +2,7 @@
 
 Credits::Credits(SceneManager* sceneManager)
 {
-	this->sceneManager = sceneManager;
+	this->sceneManager = sceneManager; // Manager de credits = manager de app
 
 	exitBox.width = 120;
 	exitBox.height = 50;

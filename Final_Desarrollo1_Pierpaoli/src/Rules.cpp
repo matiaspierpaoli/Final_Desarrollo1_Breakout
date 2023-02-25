@@ -2,7 +2,7 @@
 
 Rules::Rules(SceneManager* sceneManager)
 {
-	this->sceneManager = sceneManager;
+	this->sceneManager = sceneManager; // Manager de rules = manager de app
 
 	exitBox.width = 120;
 	exitBox.height = 50;

@@ -2,7 +2,7 @@
 
 Menu::Menu(SceneManager* sceneManager)
 {
-	this->sceneManager = sceneManager;
+	this->sceneManager = sceneManager; // Manager de menu = manager de app
 
 	titleBox.width = 450;
 	titleBox.height = 75;

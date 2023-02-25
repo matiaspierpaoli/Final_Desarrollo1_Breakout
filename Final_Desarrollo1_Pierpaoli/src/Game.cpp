@@ -4,12 +4,12 @@ Game::Game(SceneManager* sceneManager)
 {
 	this->sceneManager = sceneManager; // manager de game = manager de app
 
-	// efectos de sonido
+	// Efectos de sonido
 	ballSound = { NULL };
 	defeatSound = { NULL };
 	victorySound = { NULL };
 
-	// texturas
+	// Texturas
 	redBrickTexture = { NULL };
 	orangeBrickTexture = { NULL };
 	yellowBrickTexture = { NULL };
@@ -28,8 +28,25 @@ Game::Game(SceneManager* sceneManager)
 	victoryScreenTexture = { NULL };
 	defeatScreenTexture = { NULL };
 
-	// random para la activacion de powerUps
+	// Random para la activacion de powerUps
 	rndPowerUpActivation = 0;
+
+	// Booleanos
+	win = false;
+	pause = false;
+
+	// Objetos
+	player = { NULL };
+	ball = { NULL };
+	level = { NULL };
+
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < columns; j++)
+		{
+			bricks[i][j] = {NULL};
+		}
+	}
 }
 
 Game::~Game()
