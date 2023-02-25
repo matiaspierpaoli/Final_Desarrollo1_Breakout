@@ -28,7 +28,6 @@ private:
 	int rndPowerUpActivation;
 
 	bool win;
-	int points;
 	bool pause;
 	
 	// Line separating game and HUD

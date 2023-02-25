@@ -10,6 +10,7 @@ private:
 	int normalSpeed;
 	int speed;
 	int lives;
+	int points;
 
 	Texture2D texture;
 
@@ -22,6 +23,7 @@ public:
 	void setSpeed(int speed);
 	void setLives(int lives);
 	void setTexture(Texture2D texture);
+	void setPoints(int points);
 
 	void reduceLive();
 	void addLife();
@@ -30,6 +32,7 @@ public:
 	Vector2 getSize();
 	int getLives();
 	int getNormalSpeed();
+	int getPoints();
 
 
 	void moveLeft();

@@ -77,7 +77,6 @@ void Game::Init()
 	}
 
 	win = false;
-	points = 0;
 	pause = false;
 
 	ballSound = LoadSound("../res/ballSound.mp3");
@@ -250,7 +249,7 @@ void Game::Update()
 						{
 							bricks[i][j]->setActive(false);
 							ball->changeYDirection();
-							points += 1;
+							player->setPoints(player->getPoints() + 1);
 						}
 					}
 				}
@@ -294,7 +293,7 @@ void Game::Update()
 				PlaySound(defeatSound);
 			}
 
-			if (points >= rows * columns)
+			if (player->getPoints() >= rows * columns)
 			{
 				win = !win;
 				PlaySound(victorySound);
@@ -336,6 +335,7 @@ void Game::Draw()
 		if (!pause)
 		{
 			DrawText(TextFormat("Lives: %4i", player->getLives()), 5, static_cast<int>(GetScreenHeight() - 40), 40, DARKGREEN);
+			DrawText(TextFormat("Points: %4i", player->getPoints()), GetScreenWidth() - 250, static_cast<int>(GetScreenHeight() - 40), 40, DARKGREEN);
 		}
 		else
 		{
@@ -345,7 +345,7 @@ void Game::Draw()
 	}
 	else
 	{
-		if (points < rows * columns)		
+		if (player->getPoints() < rows * columns)
 			DrawText(TextFormat("Game Over"), static_cast<int>(GetScreenWidth() / 2) - 100, static_cast<int>(GetScreenHeight() / 2 - 50), 40, RED);		
 		else
 			DrawText(TextFormat("Victory"), static_cast<int>(GetScreenWidth() / 2) - 100, static_cast<int>(GetScreenHeight() / 2 - 50) , 40, GREEN);

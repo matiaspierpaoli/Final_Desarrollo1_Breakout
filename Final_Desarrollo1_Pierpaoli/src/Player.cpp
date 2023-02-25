@@ -7,6 +7,7 @@ Player::Player()
 	setSpeed(500);
 	normalSpeed = speed;
 	setLives(5);
+	points = 0;
 
 	texture = { NULL };
 }
@@ -43,6 +44,11 @@ void Player::setTexture(Texture2D texture)
 	this->texture = texture;
 }
 
+void Player::setPoints(int points)
+{
+	this->points = points;
+}
+
 void Player::reduceLive()
 {
 	lives -= 1;
@@ -76,6 +82,11 @@ int Player::getNormalSpeed()
 	return normalSpeed;
 }
 
+int Player::getPoints()
+{
+	return points;
+}
+
 void Player::moveLeft()
 {
 	if (pos.x > 0)
@@ -96,3 +107,5 @@ void Player::Draw()
 {
 	DrawTexture(texture, pos.x, pos.y, WHITE);
 }
+
+
