@@ -141,9 +141,7 @@ void Game::Input()
 				if (IsKeyPressed(KEY_SPACE))
 				{
 					ball->setActive(true);
-
-					float random = GetRandomValue(-GetScreenWidth() / 2, GetScreenWidth() / 2);
-					ball->setSpeed({ random , -300 });
+					ball->setSpeed({ static_cast<float>(GetRandomValue(-GetScreenWidth() / 2, GetScreenWidth() / 2)), -300 });
 				}
 			}
 
