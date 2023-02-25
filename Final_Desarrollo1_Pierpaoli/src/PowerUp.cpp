@@ -1,14 +1,12 @@
 #include "PowerUp.h"
 
-PowerUp::PowerUp(Vector2 pos, Vector2 size, bool active, TypeOfPowerUp typeOfPowerUp)
+PowerUp::PowerUp(Vector2 pos, Vector2 size, bool active, TypeOfPowerUp typeOfPowerUp, Texture2D texture)
 {
 	this->pos = pos;
 	this->size = size;
 	this->active = active;
 	this->typeOfPowerUp = typeOfPowerUp;
-	
-
-	texture = { NULL };
+	this->texture = texture;
 }
 
 PowerUp::~PowerUp()
@@ -93,5 +91,6 @@ void PowerUp::setNewRndPos(Vector2 playerPos, Vector2 playerSize, Vector2 ballCe
 
 void PowerUp::Draw()
 {
-	DrawRectangle(pos.x, pos.y, size.x, size.y, PURPLE);
+	//DrawRectangle(pos.x, pos.y, size.x, size.y, PURPLE);
+	DrawTexture(texture, pos.x, pos.y, WHITE);
 }

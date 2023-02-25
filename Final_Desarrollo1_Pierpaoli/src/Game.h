@@ -50,6 +50,11 @@ private:
 	Texture2D skyblueBrickTexture;
 	Texture2D blueBrickTexture;
 
+	Texture2D addLifeTexture;
+	Texture2D reduceLifeTexture;
+	Texture2D addSpeedTexture;
+	Texture2D reduceSpeedTexture;
+
 public:
 	Game(SceneManager* sceneManager);
 	~Game();

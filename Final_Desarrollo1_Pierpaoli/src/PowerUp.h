@@ -22,7 +22,7 @@ private:
 	Texture2D texture;
 
 public:
-	PowerUp(Vector2 pos, Vector2 size, bool active, TypeOfPowerUp typeOfPowerUp);
+	PowerUp(Vector2 pos, Vector2 size, bool active, TypeOfPowerUp typeOfPowerUp, Texture2D texture);
 	~PowerUp();
 
 	void setPos(Vector2 pos);

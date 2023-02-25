@@ -15,6 +15,11 @@ Game::Game(SceneManager* sceneManager)
 	skyblueBrickTexture = { NULL };
 	blueBrickTexture = { NULL };
 
+	addLifeTexture = { NULL };
+	reduceLifeTexture = { NULL };
+	addSpeedTexture = { NULL };
+	reduceSpeedTexture = { NULL };
+
 	ballTexture = { NULL };
 	playerTexture = { NULL };
 
@@ -29,8 +34,14 @@ Game::~Game()
 	UnloadTexture(greenBrickTexture);
 	UnloadTexture(skyblueBrickTexture);
 	UnloadTexture(blueBrickTexture);
+
 	UnloadTexture(ballTexture);
 	UnloadTexture(playerTexture);
+
+	UnloadTexture(addLifeTexture);
+	UnloadTexture(reduceLifeTexture);
+	UnloadTexture(addSpeedTexture);
+	UnloadTexture(reduceSpeedTexture);
 }
 
 void Game::Init()
@@ -44,26 +55,26 @@ void Game::Init()
 		}
 	}
 
-	/*for (int i = 0; i < powerUps.size(); i++)
+	for (int i = 0; i < powerUps.size(); i++)
 	{
 		switch (powerUps[i]->getTypeOfPowerUp())		
 		{
 		case TypeOfPowerUp::AddLife:
-			powerUps[i]->setTexture();
+			powerUps[i]->setTexture(addLifeTexture);
 			break;
 		case TypeOfPowerUp::SubstractLife:
-			powerUps[i]->setTexture();
+			powerUps[i]->setTexture(reduceLifeTexture);
 			break;
 			case TypeOfPowerUp::MultiplyPlayerSpeed:
-			powerUps[i]->setTexture();
+			powerUps[i]->setTexture(addSpeedTexture);
 			break;
 		case TypeOfPowerUp::SLowPlayerDown:
-			powerUps[i]->setTexture();
+			powerUps[i]->setTexture(reduceSpeedTexture);
 			break;
 		default:
 			break;
 		}
-	}*/
+	}
 
 	win = false;
 	points = 0;
@@ -80,6 +91,11 @@ void Game::Init()
 	skyblueBrickTexture = LoadTexture("../res/bricks/skyblueBrick.png");
 	blueBrickTexture = LoadTexture("../res/bricks/blueBrick.png");
 
+	addLifeTexture = LoadTexture("../res/powerUps/addLife.png");
+	reduceLifeTexture = LoadTexture("../res/powerUps/reduceLife.png");
+	addSpeedTexture = LoadTexture("../res/powerUps/addSpeed.png");
+	reduceSpeedTexture = LoadTexture("../res/powerUps/reduceSpeed.png");
+
 	ballTexture = LoadTexture("../res/ball.png");
 	playerTexture = LoadTexture("../res/player.png");
 
@@ -93,13 +109,13 @@ void Game::Init()
 
 	
 	Vector2 newSize;
-	newSize.x = 5;
-	newSize.y = 5;
+	newSize.x = 36;
+	newSize.y = 36;
 
-	powerUps.push_back(new PowerUp({0,0}, { newSize }, false, TypeOfPowerUp::AddLife));
-	powerUps.push_back(new PowerUp({ 0,0 }, { newSize }, false, TypeOfPowerUp::SubstractLife));
-	powerUps.push_back(new PowerUp({ 0,0 }, { newSize }, false, TypeOfPowerUp::MultiplyPlayerSpeed));
-	powerUps.push_back(new PowerUp({ 0,0 }, { newSize }, false, TypeOfPowerUp::SLowPlayerDown));
+	powerUps.push_back(new PowerUp({0,0}, { newSize }, true, TypeOfPowerUp::AddLife, addLifeTexture));
+	powerUps.push_back(new PowerUp({ 0,0 }, { newSize }, true, TypeOfPowerUp::SubstractLife, reduceLifeTexture));
+	powerUps.push_back(new PowerUp({ 0,0 }, { newSize }, true, TypeOfPowerUp::MultiplyPlayerSpeed, addSpeedTexture));
+	powerUps.push_back(new PowerUp({ 0,0 }, { newSize }, true, TypeOfPowerUp::SLowPlayerDown, reduceSpeedTexture));
 
 	for (int i = 0; i < powerUps.size(); i++)
 	{
@@ -355,6 +371,11 @@ void Game::DeInit()
 	UnloadTexture(blueBrickTexture);
 	UnloadTexture(ballTexture);
 	UnloadTexture(playerTexture);
+
+	UnloadTexture(addLifeTexture);
+	UnloadTexture(reduceLifeTexture);
+	UnloadTexture(addSpeedTexture);
+	UnloadTexture(reduceSpeedTexture);
 
 	delete player;
 	delete ball;
