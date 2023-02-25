@@ -9,7 +9,7 @@ Credits::Credits(SceneManager* sceneManager)
 	exitBox.x = GetScreenWidth() / 2 - exitBox.width / 2;
 	exitBox.y = GetScreenHeight() - 100;
 
-	texture = LoadTexture("../res/Credits.png");
+	texture = LoadTexture("../res/screens/Credits.png");
 }
 
 Credits::~Credits()
