@@ -4,19 +4,24 @@
 
 App::App()
 {
+	// Inicializacion de pantalla mediante raylib
 	InitWindow(screenWidth, screenHeight, "Breakout by Matias Pierpaoli");
-	InitAudioDevice();
+	InitAudioDevice(); // Sistema de audio
 
-	srand(time(NULL));
+	srand(time(NULL)); // Semilla para el random
 
-	SetTargetFPS(60);
+	SetTargetFPS(60); // Frames por segundos deseados
 
+	// El manager original de cambio de pantallas
 	sceneManager = new SceneManager();
+
+	// Inicializacion de objetos tipo pantallas en memoria dinamica
 	menu = new Menu(sceneManager);
 	game = new Game(sceneManager);
 	rules = new Rules(sceneManager);
 	credits = new Credits(sceneManager);
 
+	// Musica
 	music = LoadMusicStream("../res/music.mp3");
 	SetMusicVolume(music, 0.2f);
 	music.looping = true;
@@ -24,6 +29,7 @@ App::App()
 
 App::~App()
 {
+	// Eliminacion de espacio en el heap
 	delete sceneManager;
 	delete menu;
 	delete rules;
@@ -32,6 +38,8 @@ App::~App()
 	game->DeInit();
 	delete game;
 
+
+	// Cierre de musica, sonido y ventana
 	UnloadMusicStream(music);
 	CloseWindow();
 	CloseAudioDevice();
@@ -39,10 +47,10 @@ App::~App()
 
 void App::start()
 {
-	game->Init();
-	PlayMusicStream(music);
+	game->Init(); // Inicializacion de objetos de juegos, booleanos y carga de texturas
+	PlayMusicStream(music); 
 
-	while (!WindowShouldClose() && sceneManager->getScene() != Scene::EXIT)
+	while (!WindowShouldClose() && sceneManager->getScene() != Scene::EXIT) // Loop princiapl de cierre y cambio de ventana
 	{
 		UpdateMusicStream(music);
 		switch (sceneManager->getScene())

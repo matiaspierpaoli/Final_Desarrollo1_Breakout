@@ -78,30 +78,30 @@ void Ball::changeXDirection()
 
 bool Ball::checkCollisionWithWalls(int linePosY)
 {
-	if (pos.x - radius <= 0)	
+	if (pos.x - radius <= 0) // Pared izquierda	
 		changeXDirection();
 	
-	if (pos.x + radius >= GetScreenWidth())	
+	if (pos.x + radius >= GetScreenWidth())	// Pared derecha
 		changeXDirection();
 	
-	if (pos.y - radius <= 0)	
+	if (pos.y - radius <= 0) // Pared superior	
 		changeYDirection();
 	
-	if (pos.y + radius >= linePosY)
+	if (pos.y + radius >= linePosY) // Pared inferior	
 		return true;
 	
-
 	return false;
 }
 
 void Ball::checkCollisionWithPlayer(Vector2 playerPos, Vector2 playerSize ,Sound ballSound)
 {
+	// Circle - Rec de raylib
 	if (CheckCollisionCircleRec(pos, static_cast<float>(radius), { playerPos.x, playerPos.y, playerSize.x, playerSize.y }))
 	{
 		if (speed.y > 0)
 		{
-			changeYDirection();
-			speed.x *= 1.2;
+			changeYDirection(); // Cambia la direccion en y, es decir, de abajo a arriba
+			speed.x *= 1.2; // Se multiplica de a poco la velocidad para agregar dificultad
 
 			PlaySound(ballSound);
 		}

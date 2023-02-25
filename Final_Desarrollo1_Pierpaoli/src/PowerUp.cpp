@@ -7,6 +7,9 @@ PowerUp::PowerUp(Vector2 pos, Vector2 size, bool active, TypeOfPowerUp typeOfPow
 	this->active = active;
 	this->typeOfPowerUp = typeOfPowerUp;
 	this->texture = texture;
+
+	activationCondition = false;
+	newPos = { 0,0 };
 }
 
 PowerUp::~PowerUp()
@@ -66,31 +69,25 @@ TypeOfPowerUp PowerUp::getTypeOfPowerUp()
 
 void PowerUp::setNewRndPos(Vector2 playerPos, Vector2 playerSize, Vector2 ballCenter, float ballRadius, int topLine, int botLine)
 {
-	bool condition = false;
-
-	Vector2 newPos;
-	
-	do
+	do // Sale unicamente cuando no colisiona la nueva posicion con jugador y bola
 	{
 		newPos.x = GetRandomValue(1, GetScreenWidth() - 1);
 		newPos.y = GetRandomValue(topLine + size.y + 50, botLine - size.y - 50);
 
-		// Ball - PowerUp
+		// Bola - PowerUp
 		if (CheckCollisionCircleRec(ballCenter, ballRadius, {newPos.x, newPos.y, size.x, size.y}))
-			condition = true;
+			activationCondition = true;
 
-		// Player - PowerUp
+		// Jugador - PowerUp
 		if (CheckCollisionRecs({ playerPos.x, playerPos.y, playerSize.x, playerSize.y }, { newPos.x, newPos.y, size.x, size.y }))
-			condition = true;
+			activationCondition = true;
 
-	} while (condition);
+	} while (activationCondition);
 
 	setPos({newPos.x, newPos.y});
-
 }
 
 void PowerUp::Draw()
 {
-	//DrawRectangle(pos.x, pos.y, size.x, size.y, PURPLE);
 	DrawTexture(texture, pos.x, pos.y, WHITE);
 }

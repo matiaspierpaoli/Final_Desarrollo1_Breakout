@@ -7,8 +7,8 @@ class Player
 private:
 	Vector2 pos;
 	Vector2 size;
-	int normalSpeed;
-	int speed;
+	int normalSpeed; // Velocidad original
+	int speed; // Velocidad cambiante
 	int lives;
 	int points;
 

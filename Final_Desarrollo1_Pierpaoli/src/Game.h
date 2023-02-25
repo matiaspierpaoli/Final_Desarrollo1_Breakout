@@ -12,33 +12,37 @@
 class Game
 {
 private:
-	SceneManager* sceneManager;
+
+	// Filas y columnas de ladrillos
+	static const int rows = 15; 
+	static const int columns = 6;
+
+	int rndPowerUpActivation; // Random para activar powerUps en Update()
+
+	bool win; // Condicion de victoria/derrota
+	bool pause; // Condicion de pausa
+
+	SceneManager* sceneManager; // Copia desde App
 
 	Player* player;
 	Ball* ball;
-
-	static const int rows = 15;
-	static const int columns = 6;
-
 	Brick* bricks[rows][columns];
-
 	Level* level;
 
 	std::vector<PowerUp*> powerUps;
-	int rndPowerUpActivation;
-
-	bool win;
-	bool pause;
+	
 	
 	// Line separating game and HUD
 	int startLinePosX = 1;	
 	int endLinePosX = GetScreenWidth() - 1;
 	int linePosY = GetScreenHeight() - 50;
 
+	// Efectos de sonido
 	Sound ballSound;
 	Sound victorySound;
 	Sound defeatSound;
 
+	// Texturas
 	Texture2D ballTexture;
 	Texture2D playerTexture;
 

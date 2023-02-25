@@ -2,12 +2,14 @@
 
 Game::Game(SceneManager* sceneManager)
 {
-	this->sceneManager = sceneManager;
+	this->sceneManager = sceneManager; // manager de game = manager de app
 
+	// efectos de sonido
 	ballSound = { NULL };
 	defeatSound = { NULL };
 	victorySound = { NULL };
 
+	// texturas
 	redBrickTexture = { NULL };
 	orangeBrickTexture = { NULL };
 	yellowBrickTexture = { NULL };
@@ -26,6 +28,7 @@ Game::Game(SceneManager* sceneManager)
 	victoryScreenTexture = { NULL };
 	defeatScreenTexture = { NULL };
 
+	// random para la activacion de powerUps
 	rndPowerUpActivation = 0;
 }
 
@@ -52,6 +55,8 @@ Game::~Game()
 
 void Game::Init()
 {
+	// Inicializacion de objetos, booleanos, sonidos y texturas
+	
 	win = false;
 	pause = false;
 
@@ -110,19 +115,16 @@ void Game::Init()
 	player = new Player({ static_cast<float>(GetScreenWidth()) / 6, static_cast<float>(GetScreenHeight()) / 30 }, 500, 5, playerTexture );
 	ball = new Ball({ static_cast<float>(GetScreenWidth() / 2), static_cast<float>(GetScreenHeight() / 2) }, { 0,0 }, 20, false, ballTexture);
 	level = new Level();
-	level->setMapLevel1(rows, columns, bricks);
+	level->setMapLevel1(rows, columns, bricks); // Armado de mapa (ubicacion de ladrillos)
 
-	Vector2 newSize;
-	newSize.x = 36;
-	newSize.y = 36;
-
-	powerUps.push_back(new PowerUp({0,0}, { newSize }, false, TypeOfPowerUp::AddLife, addLifeTexture));
-	powerUps.push_back(new PowerUp({ 0,0 }, { newSize }, false, TypeOfPowerUp::SubstractLife, reduceLifeTexture));
-	powerUps.push_back(new PowerUp({ 0,0 }, { newSize }, false, TypeOfPowerUp::MultiplyPlayerSpeed, addSpeedTexture));
-	powerUps.push_back(new PowerUp({ 0,0 }, { newSize }, false, TypeOfPowerUp::SLowPlayerDown, reduceSpeedTexture));
+	powerUps.push_back(new PowerUp({0,0}, { 36, 36 }, false, TypeOfPowerUp::AddLife, addLifeTexture));
+	powerUps.push_back(new PowerUp({ 0,0 }, { 36, 36 }, false, TypeOfPowerUp::SubstractLife, reduceLifeTexture));
+	powerUps.push_back(new PowerUp({ 0,0 }, { 36, 36 }, false, TypeOfPowerUp::MultiplyPlayerSpeed, addSpeedTexture));
+	powerUps.push_back(new PowerUp({ 0,0 }, { 36, 36 }, false, TypeOfPowerUp::SLowPlayerDown, reduceSpeedTexture));
 
 	for (int i = 0; i < powerUps.size(); i++)
 	{
+		// Nueva posicion sin colisionar con player y ball
 		powerUps[i]->setNewRndPos(player->getPos(), player->getSize(), { ball->getPos().x + ball->getRadius(), ball->getPos().y + ball->getRadius()}, ball->getRadius(), columns * bricks[0][0]->getSize().y, linePosY);
 	}
 }
@@ -131,21 +133,21 @@ void Game::Input()
 {
 	if (!win)
 	{
-		if (IsKeyPressed(KEY_P)) pause = !pause;
+		if (IsKeyPressed(KEY_P)) pause = !pause; // Activacion/Desactivacion de pausa
 
 		if (!pause)
 		{
 			// Activate Ball
 			if (!ball->getActive())
 			{
-				if (IsKeyPressed(KEY_SPACE))
+				if (IsKeyPressed(KEY_SPACE)) // Activacion de bola
 				{
 					ball->setActive(true);
 					ball->setSpeed({ static_cast<float>(GetRandomValue(-GetScreenWidth() / 2, GetScreenWidth() / 2)), -300 });
 				}
 			}
 
-			// Player Movement
+			// Movimiento de Jugador
 			if (IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_A))
 				player->moveLeft();
 			if (IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_D))
@@ -153,7 +155,7 @@ void Game::Input()
 		}
 		else
 		{
-			if (IsKeyPressed(KEY_M))
+			if (IsKeyPressed(KEY_M)) // Si en pausa se presiona M se vuelve al menu habiendo reseteado posiciones y booleanos
 			{
 				pause = false;
 				sceneManager->setScene(Scene::MENU);
@@ -163,14 +165,14 @@ void Game::Input()
 	}	
 	else
 	{
-		if (IsKeyPressed(KEY_M))
+		if (IsKeyPressed(KEY_M)) // Si al terminar el juego se presiona M se vuelve al menu habiendo reseteado posiciones y booleanos
 		{
 			pause = false;
 			sceneManager->setScene(Scene::MENU);
 			Reset();
 		}
 
-		if (IsKeyPressed(KEY_R))
+		if (IsKeyPressed(KEY_R)) // Si al terminar el juego se presiona R se vuelve a jugar habiendo reseteado posiciones y booleanos
 		{
 			pause = false;
 			win = false;
@@ -186,10 +188,11 @@ void Game::Update()
 	{
 		if (!pause)
 		{
-			// PowerUp activation
+			// Activacion de PowerUp
 			rndPowerUpActivation = GetRandomValue(0, 800);
 
-			switch (rndPowerUpActivation)
+			// El switch mas dudoso jaja
+			switch (rndPowerUpActivation) // 1 chance en 800 para cada powerUp (siendo 60 por segundo)
 			{
 			case 0:
 				for (int i = 0; i < powerUps.size(); i++)
@@ -224,64 +227,66 @@ void Game::Update()
 				break;
 			}
 
-			// Ball Movement
+			// Movimiento de Bola
 			if (ball->getActive())
 				ball->move();
 			else
 				ball->setSpeed({ player->getPos().x + player->getSize().x / 2, player->getPos().y - ball->getRadius() });
 
-			// Original Ball Collisions
-			// Ball - Walls
-			if (ball->checkCollisionWithWalls(linePosY)) // Only true if ball hits line below player
+			// -----------------------------------  Colisiones de Bola -------------------------------------------------------------------
+			// Bola - Bordes de pantalla
+			if (ball->checkCollisionWithWalls(linePosY)) // Unicamente entra al if si colisiona con la linea inferior a jugador
 			{
 				ball->reset();
 				player->reduceLive();
 			}
 
-			// Ball - Player
-			ball->checkCollisionWithPlayer(player->getPos(), player->getSize(), ballSound);
+			// Bola - Jugador
+			ball->checkCollisionWithPlayer(player->getPos(), player->getSize(), ballSound); 
 
-			// Ball - Bricks
+			// Bola - Ladrillos
 			for (int i = 0; i < rows; i++)
 			{
 				for (int j = 0; j < columns; j++)
 				{
-					if (bricks[i][j]->getActive())
+					if (bricks[i][j]->getActive()) // Si el ladrillo esta activo
 					{
+						// Circle-Rec de raylib
 						if (CheckCollisionCircleRec(ball->getPos(), static_cast<float>(ball->getRadius()), { bricks[i][j]->getPos().x, bricks[i][j]->getPos().y, bricks[i][j]->getSize().x, bricks[i][j]->getSize().y }))
 						{
 							bricks[i][j]->setActive(false);
-							ball->changeYDirection();
-							player->setPoints(player->getPoints() + 1);
+							ball->changeYDirection(); // Cambio de direccion en y
+							player->setPoints(player->getPoints() + 1); // Suma 1 punto
 						}
 					}
 				}
 			}
 
-			// Ball - PowerUp collision
+			// Bola - PowerUp 
 			for (int i = 0; i < powerUps.size(); i++)
 			{
 				if (powerUps[i]->getActive())
 				{
-					// Only check with initial ball
+					// Circle - Rec de raylib
 					if (CheckCollisionCircleRec({ ball->getPos().x + ball->getRadius(), ball->getPos().y + ball->getRadius() }, static_cast<float>(ball->getRadius()), { powerUps[i]->getPos().x, powerUps[i]->getPos().y, powerUps[i]->getSize().x,powerUps[i]->getSize().y }))
 					{
 						powerUps[i]->setActive(false);
+						// Nueva posicion
 						powerUps[i]->setNewRndPos(player->getPos(), player->getSize(), { ball->getPos().x + ball->getRadius(), ball->getPos().y + ball->getRadius() }, ball->getRadius(), columns * bricks[0][0]->getSize().y, linePosY);
 
 						switch (powerUps[i]->getTypeOfPowerUp())
 						{
 						case TypeOfPowerUp::AddLife:
-							player->addLife();
+							player->addLife(); // Se agrega una vida al jugador
 							break;
 						case TypeOfPowerUp::SubstractLife:
-							player->reduceLive();
+							player->reduceLive(); // Se resta una vida al jugador
 							break;
 							case TypeOfPowerUp::MultiplyPlayerSpeed:
-							player->setSpeed(player->getNormalSpeed() * 2);
+							player->setSpeed(player->getNormalSpeed() * 2); // Se multiplica la velocidad por 2 al jugador
 							break;
 						case TypeOfPowerUp::SLowPlayerDown:
-							player->setSpeed(player->getNormalSpeed() - player->getNormalSpeed() / 10);
+							player->setSpeed(player->getNormalSpeed() - player->getNormalSpeed() / 10); // Se divide la velocidad por la diferencia del total menos el 10% al jugador
 							break;
 						default:
 							break;
@@ -290,17 +295,15 @@ void Game::Update()
 				}
 			}
 
-			if (player->getLives() == 0)
+			if (player->getLives() == 0) // Si la vida del jugador llega a 0
 			{
-				win = !win;
-				//Reset();
+				win = !win;				
 				PlaySound(defeatSound);
 			}
 
-			if (player->getPoints() >= rows * columns)
+			if (player->getPoints() >= rows * columns) // Si llega a desactivar todos los ladrillos
 			{
-				win = !win;
-				//Reset();
+				win = !win;				
 				PlaySound(victorySound);
 			}
 		}
@@ -312,15 +315,12 @@ void Game::Draw()
 	BeginDrawing();
 	ClearBackground(RAYWHITE);
 
-	if (!win)
+	if (!win) // Si el juego sigue activo
 	{
-		//DrawRectangle(static_cast<int>(player->getPos().x), static_cast<int>(player->getPos().y), static_cast<int>(player->getSize().x), static_cast<int>(player->getSize().y), BLUE);
 		player->Draw();
-
-		// Original Ball
 		ball->Draw();
 
-		DrawLine(startLinePosX, linePosY, endLinePosX, linePosY, BLACK);
+		DrawLine(startLinePosX, linePosY, endLinePosX, linePosY, BLACK); // Linea inferior al jugador
 
 		for (int i = 0; i < rows; i++)
 		{
@@ -337,23 +337,23 @@ void Game::Draw()
 				powerUps[i]->Draw();
 		}
 
-		if (!pause)
-		{
-			DrawText(TextFormat("Lives: %4i", player->getLives()), 5, static_cast<int>(GetScreenHeight() - 40), 40, DARKGREEN);
-			DrawText(TextFormat("Points: %4i", player->getPoints()), GetScreenWidth() - 250, static_cast<int>(GetScreenHeight() - 40), 40, DARKGREEN);
-		}
-		else
+		// Vidas
+		DrawText(TextFormat("Lives: %4i", player->getLives()), 5, static_cast<int>(GetScreenHeight() - 40), 40, DARKGREEN);
+		// Puntos
+		DrawText(TextFormat("Points: %4i", player->getPoints()), GetScreenWidth() - 250, static_cast<int>(GetScreenHeight() - 40), 40, DARKGREEN);
+
+		if (pause) // Si pausa == true
 		{
 			DrawText(TextFormat("Press P to unpause"), static_cast<int>(GetScreenWidth() / 2) - 190, static_cast<int>(GetScreenHeight() / 2) + 20, 40, RED);
 			DrawText(TextFormat("Press M to go back to menu"), static_cast<int>(GetScreenWidth() / 2) - 250, static_cast<int>(GetScreenHeight() / 2) + 70, 40, RED);
-		}	
+		}
 	}
-	else
+	else // Si termino el juego
 	{
 		if (player->getPoints() < rows * columns)
-			DrawTexture(defeatScreenTexture, 0, 0, WHITE);
+			DrawTexture(defeatScreenTexture, 0, 0, WHITE); // Derrota
 		else
-			DrawTexture(victoryScreenTexture, 0, 0, WHITE);
+			DrawTexture(victoryScreenTexture, 0, 0, WHITE);// Victoria
 	}
 
 	EndDrawing();
@@ -361,10 +361,12 @@ void Game::Draw()
 
 void Game::DeInit()
 {
+	// Quitar efectos de sonido
 	UnloadSound(ballSound);
 	UnloadSound(victorySound);
 	UnloadSound(defeatSound);
 
+	// Quitar texturas
 	UnloadTexture(redBrickTexture);
 	UnloadTexture(orangeBrickTexture);
 	UnloadTexture(yellowBrickTexture);
@@ -373,17 +375,17 @@ void Game::DeInit()
 	UnloadTexture(blueBrickTexture);
 	UnloadTexture(ballTexture);
 	UnloadTexture(playerTexture);
-
 	UnloadTexture(addLifeTexture);
 	UnloadTexture(reduceLifeTexture);
 	UnloadTexture(addSpeedTexture);
 	UnloadTexture(reduceSpeedTexture);
-
 	UnloadTexture(victoryScreenTexture);
 	UnloadTexture(defeatScreenTexture);
 
+	// Eliminacion de espacio en el heap
 	delete player;
 	delete ball;
+	delete level;
 
 	for (int i = 0; i < rows; i++)
 	{
@@ -393,13 +395,11 @@ void Game::DeInit()
 		}
 	}
 
-	for (auto&& powerUps: powerUps)
+	for (auto&& powerUps: powerUps) // Eliminacion de vector en for automactico
 	{
 		delete powerUps;
 	}
 	powerUps.clear();
-
-	delete level;
 }
 
 void Game::Reset()

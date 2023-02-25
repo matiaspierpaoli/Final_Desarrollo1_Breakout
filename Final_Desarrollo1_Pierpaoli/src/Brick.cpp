@@ -51,7 +51,6 @@ bool Brick::getActive()
 
 void Brick::Draw()
 {
-	//DrawRectangle(pos.x, pos.y, size.x, size.y, WHITE);
 	DrawTexture(texture, pos.x, pos.y, WHITE);
 }
 
