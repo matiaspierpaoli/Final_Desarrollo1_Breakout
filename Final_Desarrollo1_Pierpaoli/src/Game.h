@@ -66,4 +66,6 @@ public:
 	void Draw();
 	void DeInit();
 
+	void Reset();
+
 };

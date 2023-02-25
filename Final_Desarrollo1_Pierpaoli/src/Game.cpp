@@ -116,10 +116,10 @@ void Game::Init()
 	newSize.x = 36;
 	newSize.y = 36;
 
-	powerUps.push_back(new PowerUp({0,0}, { newSize }, true, TypeOfPowerUp::AddLife, addLifeTexture));
-	powerUps.push_back(new PowerUp({ 0,0 }, { newSize }, true, TypeOfPowerUp::SubstractLife, reduceLifeTexture));
-	powerUps.push_back(new PowerUp({ 0,0 }, { newSize }, true, TypeOfPowerUp::MultiplyPlayerSpeed, addSpeedTexture));
-	powerUps.push_back(new PowerUp({ 0,0 }, { newSize }, true, TypeOfPowerUp::SLowPlayerDown, reduceSpeedTexture));
+	powerUps.push_back(new PowerUp({0,0}, { newSize }, false, TypeOfPowerUp::AddLife, addLifeTexture));
+	powerUps.push_back(new PowerUp({ 0,0 }, { newSize }, false, TypeOfPowerUp::SubstractLife, reduceLifeTexture));
+	powerUps.push_back(new PowerUp({ 0,0 }, { newSize }, false, TypeOfPowerUp::MultiplyPlayerSpeed, addSpeedTexture));
+	powerUps.push_back(new PowerUp({ 0,0 }, { newSize }, false, TypeOfPowerUp::SLowPlayerDown, reduceSpeedTexture));
 
 	for (int i = 0; i < powerUps.size(); i++)
 	{
@@ -157,7 +157,7 @@ void Game::Input()
 			{
 				pause = false;
 				sceneManager->setScene(Scene::MENU);
-				Init();
+				Reset();
 			}
 		}	
 	}	
@@ -167,14 +167,14 @@ void Game::Input()
 		{
 			pause = false;
 			sceneManager->setScene(Scene::MENU);
-			Init();
+			Reset();
 		}
 
 		if (IsKeyPressed(KEY_R))
 		{
 			pause = false;
 			win = false;
-			Init();
+			Reset();
 		}
 	}
 	
@@ -293,12 +293,14 @@ void Game::Update()
 			if (player->getLives() == 0)
 			{
 				win = !win;
+				//Reset();
 				PlaySound(defeatSound);
 			}
 
 			if (player->getPoints() >= rows * columns)
 			{
 				win = !win;
+				//Reset();
 				PlaySound(victorySound);
 			}
 		}
@@ -391,7 +393,33 @@ void Game::DeInit()
 		}
 	}
 
+	for (auto&& powerUps: powerUps)
+	{
+		delete powerUps;
+	}
 	powerUps.clear();
 
 	delete level;
+}
+
+void Game::Reset()
+{
+	player->Reset();
+	ball->reset();
+
+	win = false;
+	pause = false;
+
+	for (int i = 0; i < powerUps.size(); i++)
+	{
+		powerUps[i]->setActive(false);
+	}
+
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < columns; j++)
+		{
+			bricks[i][j]->setActive(true);
+		}
+	}
 }

@@ -87,6 +87,14 @@ int Player::getPoints()
 	return points;
 }
 
+void Player::Reset()
+{
+	lives = 5;
+	points = 0;
+	speed = normalSpeed;
+	setPos(static_cast<float>(GetScreenWidth()) / 2 - size.x / 2, static_cast<float>(GetScreenHeight()) - size.y - 60);
+}
+
 void Player::moveLeft()
 {
 	if (pos.x > 0)

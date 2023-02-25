@@ -34,6 +34,7 @@ public:
 	int getNormalSpeed();
 	int getPoints();
 
+	void Reset();
 
 	void moveLeft();
 	void moveRight();
