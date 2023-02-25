@@ -17,7 +17,7 @@ private:
 	Vector2 size;
 	bool active;
 	TypeOfPowerUp typeOfPowerUp;
-	
+
 	bool activationCondition;
 	Vector2 newPos;
 
@@ -43,3 +43,4 @@ public:
 
 	void Draw();
 };
+

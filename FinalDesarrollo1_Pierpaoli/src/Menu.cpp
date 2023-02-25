@@ -29,7 +29,7 @@ Menu::Menu(SceneManager* sceneManager)
 	exitBox.x = GetScreenWidth() / 2 - exitBox.width / 2;
 	exitBox.y = GetScreenHeight() - 100;
 
-	texture = LoadTexture("../res/screens/MainMenu.png");
+	texture = LoadTexture("res/screens/MainMenu.png");
 }
 
 Menu::~Menu()

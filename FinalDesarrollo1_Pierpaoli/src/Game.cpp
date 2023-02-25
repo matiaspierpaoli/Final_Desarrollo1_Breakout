@@ -44,7 +44,7 @@ Game::Game(SceneManager* sceneManager)
 	{
 		for (int j = 0; j < columns; j++)
 		{
-			bricks[i][j] = {NULL};
+			bricks[i][j] = { NULL };
 		}
 	}
 }
@@ -73,31 +73,31 @@ Game::~Game()
 void Game::Init()
 {
 	// Inicializacion de objetos, booleanos, sonidos y texturas
-	
+
 	win = false;
 	pause = false;
 
-	ballSound = LoadSound("../res/ballSound.mp3");
-	defeatSound = LoadSound("../res/defeatSound.mp3");
-	victorySound = LoadSound("../res/victorySound.mp3");
+	ballSound = LoadSound("res/ballSound.mp3");
+	defeatSound = LoadSound("res/defeatSound.mp3");
+	victorySound = LoadSound("res/victorySound.mp3");
 
-	redBrickTexture = LoadTexture("../res/bricks/redBrick.png");
-	orangeBrickTexture = LoadTexture("../res/bricks/orangeBrick.png");
-	yellowBrickTexture = LoadTexture("../res/bricks/yellowBrick.png");
-	greenBrickTexture = LoadTexture("../res/bricks/greenBrick.png");
-	skyblueBrickTexture = LoadTexture("../res/bricks/skyblueBrick.png");
-	blueBrickTexture = LoadTexture("../res/bricks/blueBrick.png");
+	redBrickTexture = LoadTexture("res/bricks/redBrick.png");
+	orangeBrickTexture = LoadTexture("res/bricks/orangeBrick.png");
+	yellowBrickTexture = LoadTexture("res/bricks/yellowBrick.png");
+	greenBrickTexture = LoadTexture("res/bricks/greenBrick.png");
+	skyblueBrickTexture = LoadTexture("res/bricks/skyblueBrick.png");
+	blueBrickTexture = LoadTexture("res/bricks/blueBrick.png");
 
-	addLifeTexture = LoadTexture("../res/powerUps/addLife.png");
-	reduceLifeTexture = LoadTexture("../res/powerUps/reduceLife.png");
-	addSpeedTexture = LoadTexture("../res/powerUps/addSpeed.png");
-	reduceSpeedTexture = LoadTexture("../res/powerUps/reduceSpeed.png");
+	addLifeTexture = LoadTexture("res/powerUps/addLife.png");
+	reduceLifeTexture = LoadTexture("res/powerUps/reduceLife.png");
+	addSpeedTexture = LoadTexture("res/powerUps/addSpeed.png");
+	reduceSpeedTexture = LoadTexture("res/powerUps/reduceSpeed.png");
 
-	ballTexture = LoadTexture("../res/ball.png");
-	playerTexture = LoadTexture("../res/player.png");
+	ballTexture = LoadTexture("res/ball.png");
+	playerTexture = LoadTexture("res/player.png");
 
-	victoryScreenTexture = LoadTexture("../res/screens/victoryScreen.png");
-	defeatScreenTexture = LoadTexture("../res/screens/defeatScreen.png");
+	victoryScreenTexture = LoadTexture("res/screens/victoryScreen.png");
+	defeatScreenTexture = LoadTexture("res/screens/defeatScreen.png");
 
 	for (int i = 0; i < rows; i++)
 	{
@@ -129,12 +129,12 @@ void Game::Init()
 		}
 	}
 
-	player = new Player({ static_cast<float>(GetScreenWidth()) / 6, static_cast<float>(GetScreenHeight()) / 30 }, 500, 5, playerTexture );
+	player = new Player({ static_cast<float>(GetScreenWidth()) / 6, static_cast<float>(GetScreenHeight()) / 30 }, 500, 5, playerTexture);
 	ball = new Ball({ static_cast<float>(GetScreenWidth() / 2), static_cast<float>(GetScreenHeight() / 2) }, { 0,0 }, 20, false, ballTexture);
 	level = new Level();
 	level->setMapLevel1(rows, columns, bricks); // Armado de mapa (ubicacion de ladrillos)
 
-	powerUps.push_back(new PowerUp({0,0}, { 36, 36 }, false, TypeOfPowerUp::AddLife, addLifeTexture));
+	powerUps.push_back(new PowerUp({ 0,0 }, { 36, 36 }, false, TypeOfPowerUp::AddLife, addLifeTexture));
 	powerUps.push_back(new PowerUp({ 0,0 }, { 36, 36 }, false, TypeOfPowerUp::SubstractLife, reduceLifeTexture));
 	powerUps.push_back(new PowerUp({ 0,0 }, { 36, 36 }, false, TypeOfPowerUp::MultiplyPlayerSpeed, addSpeedTexture));
 	powerUps.push_back(new PowerUp({ 0,0 }, { 36, 36 }, false, TypeOfPowerUp::SLowPlayerDown, reduceSpeedTexture));
@@ -142,7 +142,7 @@ void Game::Init()
 	for (int i = 0; i < powerUps.size(); i++)
 	{
 		// Nueva posicion sin colisionar con player y ball
-		powerUps[i]->setNewRndPos(player->getPos(), player->getSize(), { ball->getPos().x + ball->getRadius(), ball->getPos().y + ball->getRadius()}, ball->getRadius(), columns * bricks[0][0]->getSize().y, linePosY);
+		powerUps[i]->setNewRndPos(player->getPos(), player->getSize(), { ball->getPos().x + ball->getRadius(), ball->getPos().y + ball->getRadius() }, ball->getRadius(), columns * bricks[0][0]->getSize().y, linePosY);
 	}
 }
 
@@ -178,8 +178,8 @@ void Game::Input()
 				sceneManager->setScene(Scene::MENU);
 				Reset();
 			}
-		}	
-	}	
+		}
+	}
 	else
 	{
 		if (IsKeyPressed(KEY_M)) // Si al terminar el juego se presiona M se vuelve al menu habiendo reseteado posiciones y booleanos
@@ -196,7 +196,7 @@ void Game::Input()
 			Reset();
 		}
 	}
-	
+
 }
 
 void Game::Update()
@@ -239,7 +239,7 @@ void Game::Update()
 						powerUps[i]->setActive(true);
 					player->setSpeed(player->getNormalSpeed());
 				}
-				break;		
+				break;
 			default:
 				break;
 			}
@@ -259,7 +259,7 @@ void Game::Update()
 			}
 
 			// Bola - Jugador
-			ball->checkCollisionWithPlayer(player->getPos(), player->getSize(), ballSound); 
+			ball->checkCollisionWithPlayer(player->getPos(), player->getSize(), ballSound);
 
 			// Bola - Ladrillos
 			for (int i = 0; i < rows; i++)
@@ -299,7 +299,7 @@ void Game::Update()
 						case TypeOfPowerUp::SubstractLife:
 							player->reduceLive(); // Se resta una vida al jugador
 							break;
-							case TypeOfPowerUp::MultiplyPlayerSpeed:
+						case TypeOfPowerUp::MultiplyPlayerSpeed:
 							player->setSpeed(player->getNormalSpeed() * 2); // Se multiplica la velocidad por 2 al jugador
 							break;
 						case TypeOfPowerUp::SLowPlayerDown:
@@ -314,13 +314,13 @@ void Game::Update()
 
 			if (player->getLives() == 0) // Si la vida del jugador llega a 0
 			{
-				win = !win;				
+				win = !win;
 				PlaySound(defeatSound);
 			}
 
 			if (player->getPoints() >= rows * columns) // Si llega a desactivar todos los ladrillos
 			{
-				win = !win;				
+				win = !win;
 				PlaySound(victorySound);
 			}
 		}
@@ -343,8 +343,8 @@ void Game::Draw()
 		{
 			for (int j = 0; j < columns; j++)
 			{
-				if (bricks[i][j]->getActive())				
-					bricks[i][j]->Draw();			
+				if (bricks[i][j]->getActive())
+					bricks[i][j]->Draw();
 			}
 		}
 
@@ -412,7 +412,7 @@ void Game::DeInit()
 		}
 	}
 
-	for (auto&& powerUps: powerUps) // Eliminacion de vector en for automactico
+	for (auto&& powerUps : powerUps) // Eliminacion de vector en for automactico
 	{
 		delete powerUps;
 	}

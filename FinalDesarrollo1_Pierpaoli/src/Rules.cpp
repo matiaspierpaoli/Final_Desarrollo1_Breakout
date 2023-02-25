@@ -1,28 +1,28 @@
-#include "Credits.h"
+#include "Rules.h"
 
-Credits::Credits(SceneManager* sceneManager)
+Rules::Rules(SceneManager* sceneManager)
 {
-	this->sceneManager = sceneManager; // Manager de credits = manager de app
+	this->sceneManager = sceneManager; // Manager de rules = manager de app
 
 	exitBox.width = 120;
 	exitBox.height = 50;
 	exitBox.x = GetScreenWidth() / 2 - exitBox.width / 2;
 	exitBox.y = GetScreenHeight() - 100;
 
-	texture = LoadTexture("../res/screens/Credits.png");
+	texture = LoadTexture("res/screens/Rules.png");
 }
 
-Credits::~Credits()
+Rules::~Rules()
 {
 	UnloadTexture(texture);
 }
 
-void Credits::Update()
+void Rules::Update()
 {
 	if (CheckCollisionPointRec(GetMousePosition(), exitBox) && IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) sceneManager->setScene(Scene::MENU);
 }
 
-void Credits::Draw()
+void Rules::Draw()
 {
 	BeginDrawing();
 	DrawTexture(texture, 0, 0, WHITE);

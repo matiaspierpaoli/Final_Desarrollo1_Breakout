@@ -75,7 +75,7 @@ void PowerUp::setNewRndPos(Vector2 playerPos, Vector2 playerSize, Vector2 ballCe
 		newPos.y = GetRandomValue(topLine + size.y + 50, botLine - size.y - 50);
 
 		// Bola - PowerUp
-		if (CheckCollisionCircleRec(ballCenter, ballRadius, {newPos.x, newPos.y, size.x, size.y}))
+		if (CheckCollisionCircleRec(ballCenter, ballRadius, { newPos.x, newPos.y, size.x, size.y }))
 			activationCondition = true;
 
 		// Jugador - PowerUp
@@ -84,7 +84,7 @@ void PowerUp::setNewRndPos(Vector2 playerPos, Vector2 playerSize, Vector2 ballCe
 
 	} while (activationCondition);
 
-	setPos({newPos.x, newPos.y});
+	setPos({ newPos.x, newPos.y });
 }
 
 void PowerUp::Draw()

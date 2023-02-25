@@ -14,7 +14,7 @@ class Game
 private:
 
 	// Filas y columnas de ladrillos
-	static const int rows = 15; 
+	static const int rows = 15;
 	static const int columns = 6;
 
 	int rndPowerUpActivation; // Random para activar powerUps en Update()
@@ -30,10 +30,10 @@ private:
 	Level* level;
 
 	std::vector<PowerUp*> powerUps;
-	
-	
+
+
 	// Line separating game and HUD
-	int startLinePosX = 1;	
+	int startLinePosX = 1;
 	int endLinePosX = GetScreenWidth() - 1;
 	int linePosY = GetScreenHeight() - 50;
 
@@ -73,3 +73,4 @@ public:
 	void Reset();
 
 };
+

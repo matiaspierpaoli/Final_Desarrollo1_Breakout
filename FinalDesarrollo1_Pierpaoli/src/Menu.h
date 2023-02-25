@@ -14,12 +14,12 @@ private:
 	Rectangle exitBox;
 
 	Texture2D texture;
-	
+
 
 public:
 	Menu(SceneManager* sceneManager);
 	~Menu();
 	void Draw();
 	void Update();
-	
+
 };

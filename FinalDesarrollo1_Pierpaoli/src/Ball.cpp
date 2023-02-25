@@ -61,7 +61,7 @@ Texture2D Ball::getTexture()
 }
 
 void Ball::move()
-{	
+{
 	pos.x += speed.x * GetFrameTime();
 	pos.y += speed.y * GetFrameTime();
 }
@@ -80,20 +80,20 @@ bool Ball::checkCollisionWithWalls(int linePosY)
 {
 	if (pos.x - radius <= 0) // Pared izquierda	
 		changeXDirection();
-	
+
 	if (pos.x + radius >= GetScreenWidth())	// Pared derecha
 		changeXDirection();
-	
+
 	if (pos.y - radius <= 0) // Pared superior	
 		changeYDirection();
-	
+
 	if (pos.y + radius >= linePosY) // Pared inferior	
 		return true;
-	
+
 	return false;
 }
 
-void Ball::checkCollisionWithPlayer(Vector2 playerPos, Vector2 playerSize ,Sound ballSound)
+void Ball::checkCollisionWithPlayer(Vector2 playerPos, Vector2 playerSize, Sound ballSound)
 {
 	// Circle - Rec de raylib
 	if (CheckCollisionCircleRec(pos, static_cast<float>(radius), { playerPos.x, playerPos.y, playerSize.x, playerSize.y }))

@@ -2,7 +2,7 @@
 #include "raylib.h"
 
 #include "SceneManager.h"
-class Rules
+class Credits
 {
 private:
 	SceneManager* sceneManager;
@@ -11,8 +11,10 @@ private:
 
 	Rectangle exitBox;
 public:
-	Rules(SceneManager* sceneManager);
-	~Rules();
+	Credits(SceneManager* sceneManager);
+	~Credits();
 	void Draw();
 	void Update();
+
 };
+

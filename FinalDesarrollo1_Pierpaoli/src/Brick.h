@@ -14,7 +14,7 @@ private:
 public:
 	Brick(Vector2 pos, Vector2 size, bool active, Texture2D texture);
 	~Brick();
-	
+
 	void setPos(int x, int y);
 	void setSize(int x, int y);
 	void setActive(bool active);
@@ -26,5 +26,6 @@ public:
 
 	void Draw();
 };
+
 
 

@@ -1,6 +1,6 @@
 #pragma once
 
-enum class Scene { MENU, GAMEPLAY, RULES, CREDITS, EXIT};
+enum class Scene { MENU, GAMEPLAY, RULES, CREDITS, EXIT };
 
 class SceneManager
 {
@@ -12,3 +12,4 @@ public:
 	Scene getScene();
 	void setScene(Scene scene);
 };
+

@@ -14,7 +14,7 @@ Player::Player(Vector2 size, int normalSpeed, int lives, Texture2D texture)
 
 Player::~Player()
 {
-	
+
 }
 
 void Player::setPos(int x, int y)
