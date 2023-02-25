@@ -15,7 +15,7 @@ private:
 	Texture2D texture;
 
 public:
-	Player();
+	Player(Vector2 size, int normalSpeed, int lives, Texture2D texture);
 	~Player();
 
 	void setPos(int x, int y);

@@ -1,9 +1,11 @@
 #include "Brick.h"
 
-Brick::Brick()
+Brick::Brick(Vector2 pos, Vector2 size, bool active, Texture2D texture)
 {
-	active = true;
-	texture = { NULL };
+	this->pos = pos;
+	this->size = size;
+	this->active = active;
+	this->texture = texture;
 }
 
 Brick::~Brick()
@@ -22,11 +24,6 @@ void Brick::setSize(int x, int y)
 	this->size.y = y;
 }
 
-void Brick::setColor(int color)
-{
-	this->color = color;
-}
-
 void Brick::setActive(bool active)
 {
 	this->active = active;
@@ -42,11 +39,6 @@ Vector2 Brick::getPos()
 	return pos;
 }
 
-int Brick::getColor()
-{
-	return color;
-}
-
 Vector2 Brick::getSize()
 {
 	return size;
@@ -59,7 +51,7 @@ bool Brick::getActive()
 
 void Brick::Draw()
 {
-	DrawRectangle(pos.x, pos.y, size.x, size.y, WHITE);
+	//DrawRectangle(pos.x, pos.y, size.x, size.y, WHITE);
 	DrawTexture(texture, pos.x, pos.y, WHITE);
 }
 

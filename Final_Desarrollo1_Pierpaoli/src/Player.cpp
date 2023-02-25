@@ -1,15 +1,15 @@
 #include "Player.h"
 
-Player::Player()
+Player::Player(Vector2 size, int normalSpeed, int lives, Texture2D texture)
 {
-	setSize(static_cast<float>(GetScreenWidth()) / 6, static_cast<float>(GetScreenHeight()) / 30);
-	setPos(static_cast<float>(GetScreenWidth()) / 2 - size.x / 2, static_cast<float>(GetScreenHeight()) - size.y - 60);
-	setSpeed(500);
-	normalSpeed = speed;
-	setLives(5);
+	this->size = size;
+	this->normalSpeed = normalSpeed;
+	speed = normalSpeed;
+	this->lives = lives;
+	this->texture = texture;
 	points = 0;
 
-	texture = { NULL };
+	setPos(static_cast<float>(GetScreenWidth()) / 2 - size.x / 2, static_cast<float>(GetScreenHeight()) - size.y - 60);
 }
 
 Player::~Player()

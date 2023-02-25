@@ -46,36 +46,6 @@ Game::~Game()
 
 void Game::Init()
 {
-	for (int i = 0; i < rows; i++)
-	{
-		for (int j = 0; j < columns; j++)
-		{
-			bricks[i][j] = new Brick();
-			bricks[i][j]->setSize(GetScreenWidth() / rows, GetScreenHeight() / 20);
-		}
-	}
-
-	for (int i = 0; i < powerUps.size(); i++)
-	{
-		switch (powerUps[i]->getTypeOfPowerUp())		
-		{
-		case TypeOfPowerUp::AddLife:
-			powerUps[i]->setTexture(addLifeTexture);
-			break;
-		case TypeOfPowerUp::SubstractLife:
-			powerUps[i]->setTexture(reduceLifeTexture);
-			break;
-			case TypeOfPowerUp::MultiplyPlayerSpeed:
-			powerUps[i]->setTexture(addSpeedTexture);
-			break;
-		case TypeOfPowerUp::SLowPlayerDown:
-			powerUps[i]->setTexture(reduceSpeedTexture);
-			break;
-		default:
-			break;
-		}
-	}
-
 	win = false;
 	pause = false;
 
@@ -98,15 +68,41 @@ void Game::Init()
 	ballTexture = LoadTexture("../res/ball.png");
 	playerTexture = LoadTexture("../res/player.png");
 
-	player = new Player();
-	player->setTexture(playerTexture);
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < columns; j++)
+		{
+			switch (j)
+			{
+			case 0:
+				bricks[i][j] = new Brick({ 0,0 }, { static_cast<float>(GetScreenWidth() / rows), static_cast<float>(GetScreenHeight() / 20) }, true, redBrickTexture);
+				break;
+			case 1:
+				bricks[i][j] = new Brick({ 0,0 }, { static_cast<float>(GetScreenWidth() / rows), static_cast<float>(GetScreenHeight() / 20) }, true, orangeBrickTexture);
+				break;
+			case 2:
+				bricks[i][j] = new Brick({ 0,0 }, { static_cast<float>(GetScreenWidth() / rows), static_cast<float>(GetScreenHeight() / 20) }, true, yellowBrickTexture);
+				break;
+			case 3:
+				bricks[i][j] = new Brick({ 0,0 }, { static_cast<float>(GetScreenWidth() / rows), static_cast<float>(GetScreenHeight() / 20) }, true, greenBrickTexture);
+				break;
+			case 4:
+				bricks[i][j] = new Brick({ 0,0 }, { static_cast<float>(GetScreenWidth() / rows), static_cast<float>(GetScreenHeight() / 20) }, true, skyblueBrickTexture);
+				break;
+			case 5:
+				bricks[i][j] = new Brick({ 0,0 }, { static_cast<float>(GetScreenWidth() / rows), static_cast<float>(GetScreenHeight() / 20) }, true, blueBrickTexture);
+				break;
+			default:
+				break;
+			}
+		}
+	}
 
-	level = new Level();
-	level->setMapLevel1(rows, columns, bricks, redBrickTexture, orangeBrickTexture, yellowBrickTexture, greenBrickTexture, skyblueBrickTexture, blueBrickTexture);
-
+	player = new Player({ static_cast<float>(GetScreenWidth()) / 6, static_cast<float>(GetScreenHeight()) / 30 }, 500, 5, playerTexture );
 	ball = new Ball({ static_cast<float>(GetScreenWidth() / 2), static_cast<float>(GetScreenHeight() / 2) }, { 0,0 }, 20, false, ballTexture);
+	level = new Level();
+	level->setMapLevel1(rows, columns, bricks);
 
-	
 	Vector2 newSize;
 	newSize.x = 36;
 	newSize.y = 36;
