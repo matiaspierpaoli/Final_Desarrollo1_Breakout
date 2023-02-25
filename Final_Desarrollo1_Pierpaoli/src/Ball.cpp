@@ -101,7 +101,7 @@ void Ball::checkCollisionWithPlayer(Vector2 playerPos, Vector2 playerSize ,Sound
 		if (speed.y > 0)
 		{
 			changeYDirection();
-			speed.x = (pos.x - playerPos.x) / (playerSize.x / 2) * 500;
+			speed.x += 1;
 
 			PlaySound(ballSound);
 		}
