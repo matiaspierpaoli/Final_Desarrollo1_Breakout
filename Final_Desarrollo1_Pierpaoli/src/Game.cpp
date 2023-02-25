@@ -23,6 +23,9 @@ Game::Game(SceneManager* sceneManager)
 	ballTexture = { NULL };
 	playerTexture = { NULL };
 
+	victoryScreenTexture = { NULL };
+	defeatScreenTexture = { NULL };
+
 	rndPowerUpActivation = 0;
 }
 
@@ -42,6 +45,9 @@ Game::~Game()
 	UnloadTexture(reduceLifeTexture);
 	UnloadTexture(addSpeedTexture);
 	UnloadTexture(reduceSpeedTexture);
+
+	UnloadTexture(victoryScreenTexture);
+	UnloadTexture(defeatScreenTexture);
 }
 
 void Game::Init()
@@ -67,6 +73,9 @@ void Game::Init()
 
 	ballTexture = LoadTexture("../res/ball.png");
 	playerTexture = LoadTexture("../res/player.png");
+
+	victoryScreenTexture = LoadTexture("../res/screens/victoryScreen.png");
+	defeatScreenTexture = LoadTexture("../res/screens/defeatScreen.png");
 
 	for (int i = 0; i < rows; i++)
 	{
@@ -342,12 +351,9 @@ void Game::Draw()
 	else
 	{
 		if (player->getPoints() < rows * columns)
-			DrawText(TextFormat("Game Over"), static_cast<int>(GetScreenWidth() / 2) - 100, static_cast<int>(GetScreenHeight() / 2 - 50), 40, RED);		
+			DrawTexture(defeatScreenTexture, 0, 0, WHITE);
 		else
-			DrawText(TextFormat("Victory"), static_cast<int>(GetScreenWidth() / 2) - 100, static_cast<int>(GetScreenHeight() / 2 - 50) , 40, GREEN);
-
-		DrawText(TextFormat("Press R to replay"), static_cast<int>(GetScreenWidth() / 2) - 150, static_cast<int>(GetScreenHeight() / 2) + 20 , 40, RED);
-		DrawText(TextFormat("Press M to go back to menu"), static_cast<int>(GetScreenWidth() / 2) - 250, static_cast<int>(GetScreenHeight() / 2) + 70, 40, RED);
+			DrawTexture(victoryScreenTexture, 0, 0, WHITE);
 	}
 
 	EndDrawing();
@@ -372,6 +378,9 @@ void Game::DeInit()
 	UnloadTexture(reduceLifeTexture);
 	UnloadTexture(addSpeedTexture);
 	UnloadTexture(reduceSpeedTexture);
+
+	UnloadTexture(victoryScreenTexture);
+	UnloadTexture(defeatScreenTexture);
 
 	delete player;
 	delete ball;

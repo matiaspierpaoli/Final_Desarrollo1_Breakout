@@ -9,7 +9,7 @@ Rules::Rules(SceneManager* sceneManager)
 	exitBox.x = GetScreenWidth() / 2 - exitBox.width / 2;
 	exitBox.y = GetScreenHeight() - 100;
 
-	texture = LoadTexture("../res/Rules.png");
+	texture = LoadTexture("../res/screens/Rules.png");
 }
 
 Rules::~Rules()

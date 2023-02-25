@@ -54,6 +54,9 @@ private:
 	Texture2D addSpeedTexture;
 	Texture2D reduceSpeedTexture;
 
+	Texture2D victoryScreenTexture;
+	Texture2D defeatScreenTexture;
+
 public:
 	Game(SceneManager* sceneManager);
 	~Game();
