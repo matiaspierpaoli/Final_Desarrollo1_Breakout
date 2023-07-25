@@ -31,6 +31,7 @@
     <ClCompile Include="src\PowerUp.cpp" />
     <ClCompile Include="src\Rules.cpp" />
     <ClCompile Include="src\ScreenManager.cpp" />
+    <ClCompile Include="src\URLOpener.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\App.h" />
@@ -42,6 +43,7 @@
     <ClInclude Include="src\Menu.h" />
     <ClInclude Include="src\Player.h" />
     <ClInclude Include="src\PowerUp.h" />
+    <ClInclude Include="src\URLOpener.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
