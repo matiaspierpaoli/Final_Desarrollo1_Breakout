@@ -25,6 +25,8 @@ App::App()
 	music = LoadMusicStream("res/music.mp3");
 	SetMusicVolume(music, 0.2f);
 	music.looping = true;
+
+	shouldExit = false;
 }
 
 App::~App()
@@ -50,7 +52,7 @@ void App::start()
 	game->Init(); // Inicializacion de objetos de juegos, booleanos y carga de texturas
 	PlayMusicStream(music);
 
-	while (!WindowShouldClose() && sceneManager->getScene() != Scene::EXIT) // Loop princiapl de cierre y cambio de ventana
+	while (!shouldExit && sceneManager->getScene() != Scene::EXIT) // Loop princiapl de cierre y cambio de ventana
 	{
 		UpdateMusicStream(music);
 		switch (sceneManager->getScene())
@@ -72,7 +74,8 @@ void App::start()
 			credits->Update();
 			credits->Draw();
 			break;
-		case Scene::EXIT:
+		case Scene::EXIT:	
+			shouldExit = true;
 			break;
 		default:
 			break;

@@ -17,6 +17,8 @@ private:
 	Credits* credits;
 	Music music;
 
+	bool shouldExit;
+
 public:
 	App();
 	~App();
