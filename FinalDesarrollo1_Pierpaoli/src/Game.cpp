@@ -42,6 +42,8 @@ Game::Game(SceneManager* sceneManager)
 	timeMultiplier = 1.0;
 	penaltyDivisionFactor = 100.0f;
 
+	highscore = LoadHighscore();
+
 	// Objetos
 	player = { NULL };
 	ball = { NULL };
@@ -385,11 +387,13 @@ void Game::Draw()
 		{
 			DrawTexture(defeatScreenTexture, 0, 0, WHITE); // Derrota
 			DrawText(TextFormat("Points: %4i", player->getPoints()), static_cast<int>(GetScreenWidth() / 2 - 100), static_cast<int>(GetScreenHeight() / 2 - 40), 40, WHITE);
+			DrawText(TextFormat("Highscore: %4i", highscore), static_cast<int>(GetScreenWidth() / 2 - 150), static_cast<int>(GetScreenHeight() / 2 - 10), 40, WHITE);
 		}
 		else
 		{
 			DrawTexture(victoryScreenTexture, 0, 0, WHITE); // Victoria
 			DrawText(TextFormat("Points: %4i", player->getPoints()), static_cast<int>(GetScreenWidth() / 2 - 100), static_cast<int>(GetScreenHeight() / 2 - 40), 40, BLACK);
+			DrawText(TextFormat("Points: %4i", highscore), static_cast<int>(GetScreenWidth() / 2 - 150), static_cast<int>(GetScreenHeight() / 2 - 10), 40, BLACK);
 
 		}
 
@@ -461,6 +465,34 @@ void Game::CalculateScore()
 		finalMultiplier *= player->getLives();
 
 	player->setPoints(baseScore * finalMultiplier);
+
+	if (player->getPoints() > highscore)
+	{
+		highscore = player->getPoints();
+		SaveHighscore(highscore);
+	}
+}
+
+void Game::SaveHighscore(int highscore)
+{
+	std::ofstream outputFile("./highscore.bin", std::ios::binary);
+	if (outputFile.is_open())
+	{
+		outputFile.write(reinterpret_cast<const char*>(&highscore), sizeof(highscore));
+		outputFile.close();
+	}
+}
+
+int Game::LoadHighscore()
+{
+	int highscore = 0;
+	std::ifstream inputFile("./highscore.bin", std::ios::binary);
+	if (inputFile.is_open())
+	{
+		inputFile.read(reinterpret_cast<char*>(&highscore), sizeof(highscore));
+		inputFile.close();
+	}
+	return highscore;
 }
 
 void Game::Reset()

@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <fstream>
 
 #include "Player.h"
 #include "Ball.h"
@@ -31,6 +32,7 @@ private:
 	double timeMultiplier;
 	const double maxAllowedTime = 120.0;
 	float penaltyDivisionFactor; // Cuan mayor el numero del divisor menor la penitencia
+	int highscore;
 
 	SceneManager* sceneManager; // Copia desde App
 
@@ -80,6 +82,9 @@ public:
 	void Draw();
 	void DeInit();
 	void CalculateScore();
+	void SaveHighscore(int highscore);
+	int LoadHighscore();
+
 
 	void Reset();
 
