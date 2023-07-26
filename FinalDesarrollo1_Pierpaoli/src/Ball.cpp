@@ -101,7 +101,30 @@ void Ball::checkCollisionWithPlayer(Vector2 playerPos, Vector2 playerSize, Sound
 		if (speed.y > 0)
 		{
 			changeYDirection(); // Cambia la direccion en y, es decir, de abajo a arriba
-			speed.x *= 1.2; // Se multiplica de a poco la velocidad para agregar dificultad
+			
+			// Calcular el punto de colision
+			float ballCollisionX = pos.x - (playerPos.x + playerSize.x / 2);
+
+			// Modificar la velocidad en x de la bola en base al punto de colision
+			if (ballCollisionX < 0)
+			{
+				// Al golpear en la zona izquierda de la plataforma se niega la velocidad en x
+				if (speed.x > 0)
+					speed.x = -speed.x; 
+				
+			}
+			else if (ballCollisionX > 0)
+			{
+				// Al golpear en la zona derecha de la plataforma la velocidad en x se mantiene
+				if (speed.x < 0)
+					speed.x = -speed.x;
+			}
+			else
+			{
+				// Al golpear en el medio de la plataforma la velocidad en x se mantiene				
+			}
+			
+			speed.x *= 1.1; // Se multiplica de a poco la velocidad para agregar dificultad
 
 			PlaySound(ballSound);
 		}
