@@ -22,6 +22,16 @@ private:
 	bool win; // Condicion de victoria/derrota
 	bool pause; // Condicion de pausa
 
+	// Contador custom
+	float currentTime;
+	float timer;
+
+	// Score management
+	int baseScore;
+	double timeMultiplier;
+	const double maxAllowedTime = 120.0;
+	float penaltyDivisionFactor; // Cuan mayor el numero del divisor menor la penitencia
+
 	SceneManager* sceneManager; // Copia desde App
 
 	Player* player;
@@ -69,6 +79,7 @@ public:
 	void Update();
 	void Draw();
 	void DeInit();
+	void CalculateScore();
 
 	void Reset();
 

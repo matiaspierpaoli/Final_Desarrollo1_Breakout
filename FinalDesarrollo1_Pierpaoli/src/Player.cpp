@@ -8,6 +8,7 @@ Player::Player(Vector2 size, int normalSpeed, int lives, Texture2D texture)
 	this->lives = lives;
 	this->texture = texture;
 	points = 0;
+	currentBricksDestroyed = 0;
 
 	setPos(static_cast<float>(GetScreenWidth()) / 2 - size.x / 2, static_cast<float>(GetScreenHeight()) - size.y - 60);
 }
@@ -49,6 +50,11 @@ void Player::setPoints(int points)
 	this->points = points;
 }
 
+void Player::setCurrentBricksDestroyed(int currentBricksDestroyed)
+{
+	this->currentBricksDestroyed = currentBricksDestroyed;
+}
+
 void Player::reduceLive()
 {
 	lives -= 1;
@@ -87,10 +93,16 @@ int Player::getPoints()
 	return points;
 }
 
+int Player::getCurrentBricksDestroyed()
+{
+	return currentBricksDestroyed;
+}
+
 void Player::Reset()
 {
 	lives = 5;
 	points = 0;
+	currentBricksDestroyed = 0;
 	speed = normalSpeed;
 	setPos(static_cast<float>(GetScreenWidth()) / 2 - size.x / 2, static_cast<float>(GetScreenHeight()) - size.y - 60);
 }

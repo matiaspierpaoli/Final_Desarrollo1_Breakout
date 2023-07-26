@@ -35,6 +35,13 @@ Game::Game(SceneManager* sceneManager)
 	win = false;
 	pause = false;
 
+	currentTime = 0;
+	timer = 0.0f;
+
+	baseScore = 1;
+	timeMultiplier = 1.0;
+	penaltyDivisionFactor = 100.0f;
+
 	// Objetos
 	player = { NULL };
 	ball = { NULL };
@@ -204,7 +211,14 @@ void Game::Update()
 	if (!win)
 	{
 		if (!pause)
-		{
+		{					
+ 			timer += GetFrameTime();
+			if (timer >= 1.0f)
+			{
+				currentTime += static_cast<int>(timer);
+				timer = 0;
+			}
+			
 			// Activacion de PowerUp
 			rndPowerUpActivation = GetRandomValue(0, 800);
 
@@ -273,7 +287,7 @@ void Game::Update()
 						{
 							bricks[i][j]->setActive(false);
 							ball->changeYDirection(); // Cambio de direccion en y
-							player->setPoints(player->getPoints() + 1); // Suma 1 punto
+							player->setCurrentBricksDestroyed(player->getCurrentBricksDestroyed() + 1); // 1 ladrillo destruido
 						}
 					}
 				}
@@ -318,7 +332,7 @@ void Game::Update()
 				PlaySound(defeatSound);
 			}
 
-			if (player->getPoints() >= rows * columns) // Si llega a desactivar todos los ladrillos
+			if (player->getCurrentBricksDestroyed() >= rows * columns) // Si llega a desactivar todos los ladrillos
 			{
 				win = !win;
 				PlaySound(victorySound);
@@ -356,8 +370,8 @@ void Game::Draw()
 
 		// Vidas
 		DrawText(TextFormat("Lives: %4i", player->getLives()), 5, static_cast<int>(GetScreenHeight() - 40), 40, DARKGREEN);
-		// Puntos
-		DrawText(TextFormat("Points: %4i", player->getPoints()), GetScreenWidth() - 250, static_cast<int>(GetScreenHeight() - 40), 40, DARKGREEN);
+		// Tiempo Actual
+		DrawText(TextFormat("Time: %4i", static_cast<int>(currentTime)), static_cast<int>(GetScreenWidth() - 250), static_cast<int>(GetScreenHeight() - 40), 40, DARKGREEN);
 
 		if (pause) // Si pausa == true
 		{
@@ -367,10 +381,19 @@ void Game::Draw()
 	}
 	else // Si termino el juego
 	{
-		if (player->getPoints() < rows * columns)
+		if (player->getCurrentBricksDestroyed() < rows * columns)
+		{
 			DrawTexture(defeatScreenTexture, 0, 0, WHITE); // Derrota
+			DrawText(TextFormat("Points: %4i", player->getPoints()), static_cast<int>(GetScreenWidth() / 2 - 100), static_cast<int>(GetScreenHeight() / 2 - 40), 40, WHITE);
+		}
 		else
-			DrawTexture(victoryScreenTexture, 0, 0, WHITE);// Victoria
+		{
+			DrawTexture(victoryScreenTexture, 0, 0, WHITE); // Victoria
+			DrawText(TextFormat("Points: %4i", player->getPoints()), static_cast<int>(GetScreenWidth() / 2 - 100), static_cast<int>(GetScreenHeight() / 2 - 40), 40, BLACK);
+
+		}
+
+		CalculateScore();
 	}
 
 	EndDrawing();
@@ -419,6 +442,27 @@ void Game::DeInit()
 	powerUps.clear();
 }
 
+void Game::CalculateScore()
+{
+	if (currentTime > maxAllowedTime) // Penitencia en caso de pasar el limite de tiempo promedio
+	{
+		timeMultiplier -= (currentTime - maxAllowedTime) / penaltyDivisionFactor;
+	}
+	else // Tardo menos tiempo que el promedio por lo que la recompensa de puntos es positiva
+	{
+		timeMultiplier = maxAllowedTime / currentTime;
+	}
+
+	timeMultiplier = fmax(timeMultiplier, 0.0); // Si toma un tiempo largisimo, el multipicador no sera menor que 0
+	
+	double finalMultiplier = timeMultiplier * player->getCurrentBricksDestroyed();
+	
+	if (player->getLives() > 0)
+		finalMultiplier *= player->getLives();
+
+	player->setPoints(baseScore * finalMultiplier);
+}
+
 void Game::Reset()
 {
 	player->Reset();
@@ -426,6 +470,11 @@ void Game::Reset()
 
 	win = false;
 	pause = false;
+
+	currentTime = 0;
+	timer = 0.0f;
+
+	timeMultiplier = 1.0;
 
 	for (int i = 0; i < powerUps.size(); i++)
 	{

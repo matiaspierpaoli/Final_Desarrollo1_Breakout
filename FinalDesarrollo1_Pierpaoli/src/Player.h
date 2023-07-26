@@ -11,6 +11,7 @@ private:
 	int speed; // Velocidad cambiante
 	int lives;
 	int points;
+	int currentBricksDestroyed;
 
 	Texture2D texture;
 
@@ -24,6 +25,7 @@ public:
 	void setLives(int lives);
 	void setTexture(Texture2D texture);
 	void setPoints(int points);
+	void setCurrentBricksDestroyed(int currentBricksDestroyed);
 
 	void reduceLive();
 	void addLife();
@@ -33,6 +35,7 @@ public:
 	int getLives();
 	int getNormalSpeed();
 	int getPoints();
+	int getCurrentBricksDestroyed();
 
 	void Reset();
 
