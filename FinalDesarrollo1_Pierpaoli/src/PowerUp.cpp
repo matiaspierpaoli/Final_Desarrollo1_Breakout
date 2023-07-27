@@ -71,7 +71,9 @@ void PowerUp::setNewRndPos(Vector2 playerPos, Vector2 playerSize, Vector2 ballCe
 {
 	do // Sale unicamente cuando no colisiona la nueva posicion con jugador y bola
 	{
-		newPos.x = GetRandomValue(1, GetScreenWidth() - 1);
+		activationCondition = false;
+
+		newPos.x = GetRandomValue(1, GetScreenWidth() - 32);
 		newPos.y = GetRandomValue(topLine + size.y + 50, botLine - size.y - 50);
 
 		// Bola - PowerUp

@@ -34,6 +34,8 @@ private:
 	// Score management
 	int baseScore;
 	double timeMultiplier;
+	float timeBonusFactor;
+	float maxTimeMultiplier;
 	const double maxAllowedTime = 120.0;
 	float penaltyDivisionFactor; // Cuan mayor el numero del divisor menor la penitencia
 	int highscore;

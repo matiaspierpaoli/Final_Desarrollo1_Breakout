@@ -47,6 +47,8 @@ Game::Game(SceneManager* sceneManager, Music musicRef)
 	baseScore = 1;
 	timeMultiplier = 1.0;
 	penaltyDivisionFactor = 100.0f;
+	timeBonusFactor = 0.5;
+	maxTimeMultiplier = 2.0;
 
 	highscore = LoadHighscore();
 
@@ -415,7 +417,7 @@ void Game::Draw()
 		{
 			DrawTexture(victoryScreenTexture, 0, 0, WHITE); // Victoria
 			DrawText(TextFormat("Points: %4i", player->getPoints()), static_cast<int>(GetScreenWidth() / 2 - 100), static_cast<int>(GetScreenHeight() / 2 - 40), 40, BLACK);
-			DrawText(TextFormat("Points: %4i", highscore), static_cast<int>(GetScreenWidth() / 2 - 150), static_cast<int>(GetScreenHeight() / 2 - 10), 40, BLACK);
+			DrawText(TextFormat("Highscore: %4i", highscore), static_cast<int>(GetScreenWidth() / 2 - 150), static_cast<int>(GetScreenHeight() / 2 - 10), 40, BLACK);
 
 		}
 
@@ -470,16 +472,9 @@ void Game::DeInit()
 
 void Game::CalculateScore()
 {
-	if (currentTime > maxAllowedTime) // Penitencia en caso de pasar el limite de tiempo promedio
-	{
-		timeMultiplier -= (currentTime - maxAllowedTime) / penaltyDivisionFactor;
-	}
-	else // Tardo menos tiempo que el promedio por lo que la recompensa de puntos es positiva
-	{
-		timeMultiplier = maxAllowedTime / currentTime;
-	}
-
-	timeMultiplier = fmax(timeMultiplier, 0.0); // Si toma un tiempo largisimo, el multipicador no sera menor que 0
+	double timeMultiplier = maxAllowedTime / currentTime;
+	timeMultiplier += (1.0 - timeMultiplier) * timeBonusFactor;
+	timeMultiplier = fmin(timeMultiplier, maxTimeMultiplier);
 	
 	double finalMultiplier = timeMultiplier * player->getCurrentBricksDestroyed();
 	
