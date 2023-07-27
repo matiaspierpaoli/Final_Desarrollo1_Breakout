@@ -1,7 +1,7 @@
 #pragma once
 #include "raylib.h"
-
 #include "SceneManager.h"
+
 class Menu
 {
 private:
@@ -15,11 +15,9 @@ private:
 
 	Texture2D texture;
 
-
 public:
 	Menu(SceneManager* sceneManager);
 	~Menu();
 	void Draw();
 	void Update();
-
 };

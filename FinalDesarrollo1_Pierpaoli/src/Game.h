@@ -7,13 +7,11 @@
 #include "Brick.h"
 #include "Level.h"
 #include "PowerUp.h"
-
 #include "SceneManager.h"
 
 class Game
 {
 private:
-
 	// Filas y columnas de ladrillos
 	static const int rows = 15;
 	static const int columns = 6;
@@ -81,6 +79,11 @@ private:
 
 	Music musicRef;
 
+	void Reset();
+	void CalculateScore();
+	void SaveHighscore(int highscore);
+	int LoadHighscore();
+
 public:
 	Game(SceneManager* sceneManager, Music musicRef);
 	~Game();
@@ -89,11 +92,4 @@ public:
 	void Update();
 	void Draw();
 	void DeInit();
-	void CalculateScore();
-	void SaveHighscore(int highscore);
-	int LoadHighscore();
-
-
-	void Reset();
-
 };

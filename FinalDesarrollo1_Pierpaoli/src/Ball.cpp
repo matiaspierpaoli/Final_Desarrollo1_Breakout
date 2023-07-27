@@ -143,5 +143,3 @@ void Ball::Draw()
 {
 	DrawTexture(texture, pos.x - 16, pos.y - 16, WHITE);
 }
-
-

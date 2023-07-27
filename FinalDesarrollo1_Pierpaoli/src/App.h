@@ -8,7 +8,6 @@
 
 class App
 {
-
 private:
 	SceneManager* sceneManager;
 	Menu* menu;

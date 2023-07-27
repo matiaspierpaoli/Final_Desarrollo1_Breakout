@@ -1,7 +1,7 @@
 #pragma once
 #include "raylib.h"
-
 #include "SceneManager.h"
+
 class Rules
 {
 private:
@@ -16,4 +16,3 @@ public:
 	void Draw();
 	void Update();
 };
-

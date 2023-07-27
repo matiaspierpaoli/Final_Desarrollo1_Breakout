@@ -1,9 +1,8 @@
 #pragma once
-//#include <Windows.h>
 #include "raylib.h"
 #include "URLOpener.h"
-
 #include "SceneManager.h"
+
 class Credits
 {
 private:
@@ -20,6 +19,4 @@ public:
 	~Credits();
 	void Draw();
 	void Update();
-
 };
-

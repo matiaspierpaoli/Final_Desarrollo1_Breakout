@@ -10,6 +10,7 @@ Brick::Brick(Vector2 pos, Vector2 size, bool active, Texture2D texture)
 
 Brick::~Brick()
 {
+
 }
 
 void Brick::setPos(int x, int y)
@@ -53,4 +54,3 @@ void Brick::Draw()
 {
 	DrawTexture(texture, pos.x, pos.y, WHITE);
 }
-

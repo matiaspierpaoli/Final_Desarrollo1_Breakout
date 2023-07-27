@@ -1,5 +1,4 @@
 #pragma once
-
 #include "raylib.h"
 
 class Ball
@@ -39,5 +38,3 @@ public:
 
 	void Draw();
 };
-
-

@@ -1,5 +1,4 @@
 #pragma once
-
 #include "raylib.h"
 
 enum class TypeOfPowerUp
@@ -43,4 +42,3 @@ public:
 
 	void Draw();
 };
-

@@ -1,5 +1,4 @@
 #pragma once
-
 #include "raylib.h"
 
 class Brick
@@ -26,6 +25,3 @@ public:
 
 	void Draw();
 };
-
-
-
