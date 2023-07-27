@@ -204,7 +204,7 @@ void Game::Input()
 			pause = false;
 			sceneManager->setScene(Scene::MENU);
 			Reset();
-			//SetMusicVolume(musicPtr, 0.2f);
+			SetMusicVolume(musicRef, 0.2f);
 		}
 
 		if (IsKeyPressed(KEY_R)) // Si al terminar el juego se presiona R se vuelve a jugar habiendo reseteado posiciones y booleanos
@@ -212,7 +212,7 @@ void Game::Input()
 			pause = false;
 			win = false;
 			Reset();
-			//SetMusicVolume(musicPtr, 0.2f);
+			SetMusicVolume(musicRef, 0.2f);
 		}
 	}
 
