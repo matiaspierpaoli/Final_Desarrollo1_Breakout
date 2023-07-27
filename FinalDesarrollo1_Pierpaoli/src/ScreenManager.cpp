@@ -1,21 +1,24 @@
 #include "SceneManager.h"
 
-SceneManager::SceneManager()
+namespace BreakoutGame
 {
-	scene = Scene::MENU;
-}
+	SceneManager::SceneManager()
+	{
+		scene = Scene::MENU;
+	}
 
-SceneManager::~SceneManager()
-{
+	SceneManager::~SceneManager()
+	{
 
-}
+	}
 
-Scene SceneManager::getScene()
-{
-	return scene;
-}
+	Scene SceneManager::getScene()
+	{
+		return scene;
+	}
 
-void SceneManager::setScene(Scene scene)
-{
-	this->scene = scene;
+	void SceneManager::setScene(Scene scene)
+	{
+		this->scene = scene;
+	}
 }

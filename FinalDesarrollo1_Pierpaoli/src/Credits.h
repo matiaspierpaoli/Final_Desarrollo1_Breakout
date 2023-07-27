@@ -3,20 +3,23 @@
 #include "URLOpener.h"
 #include "SceneManager.h"
 
-class Credits
+namespace BreakoutGame
 {
-private:
-	SceneManager* sceneManager;
-	URLOpener urlOpener;
+	class Credits
+	{
+	private:
+		SceneManager* sceneManager;
+		URLOpener urlOpener;
 
-	Texture2D texture;
-	Rectangle exitBox;
-	Rectangle musicURLBox;
+		Texture2D texture;
+		Rectangle exitBox;
+		Rectangle musicURLBox;
 
-	std::string musicVideoURL;
-public:
-	Credits(SceneManager* sceneManager);
-	~Credits();
-	void Draw();
-	void Update();
-};
+		std::string musicVideoURL;
+	public:
+		Credits(SceneManager* sceneManager);
+		~Credits();
+		void Draw();
+		void Update();
+	};
+}

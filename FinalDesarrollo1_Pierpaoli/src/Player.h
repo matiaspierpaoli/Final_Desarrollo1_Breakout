@@ -1,45 +1,48 @@
 #pragma once
 #include "raylib.h"
 
-class Player
+namespace BreakoutGame
 {
-private:
-	Vector2 pos;
-	Vector2 size;
-	int normalSpeed; // Velocidad original
-	int speed; // Velocidad cambiante
-	int lives;
-	int points;
-	int currentBricksDestroyed;
+	class Player
+	{
+	private:
+		Vector2 pos;
+		Vector2 size;
+		int normalSpeed; // Velocidad original
+		int speed; // Velocidad cambiante
+		int lives;
+		int points;
+		int currentBricksDestroyed;
 
-	Texture2D texture;
+		Texture2D texture;
 
-public:
-	Player(Vector2 size, int normalSpeed, int lives, Texture2D texture);
-	~Player();
+	public:
+		Player(Vector2 size, int normalSpeed, int lives, Texture2D texture);
+		~Player();
 
-	void setPos(int x, int y);
-	void setSize(int x, int y);
-	void setSpeed(int speed);
-	void setLives(int lives);
-	void setTexture(Texture2D texture);
-	void setPoints(int points);
-	void setCurrentBricksDestroyed(int currentBricksDestroyed);
+		void setPos(int x, int y);
+		void setSize(int x, int y);
+		void setSpeed(int speed);
+		void setLives(int lives);
+		void setTexture(Texture2D texture);
+		void setPoints(int points);
+		void setCurrentBricksDestroyed(int currentBricksDestroyed);
 
-	void reduceLive();
-	void addLife();
+		void reduceLive();
+		void addLife();
 
-	Vector2 getPos();
-	Vector2 getSize();
-	int getLives();
-	int getNormalSpeed();
-	int getPoints();
-	int getCurrentBricksDestroyed();
+		Vector2 getPos();
+		Vector2 getSize();
+		int getLives();
+		int getNormalSpeed();
+		int getPoints();
+		int getCurrentBricksDestroyed();
 
-	void Reset();
+		void Reset();
 
-	void moveLeft();
-	void moveRight();
+		void moveLeft();
+		void moveRight();
 
-	void Draw();
-};
+		void Draw();
+	};
+}

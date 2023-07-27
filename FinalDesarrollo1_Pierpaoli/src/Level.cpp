@@ -1,25 +1,28 @@
 #include "Level.h"
 
-Level::Level()
+namespace BreakoutGame
 {
-
-}
-
-Level::~Level()
-{
-
-}
-
-void Level::setMapLevel1(int rows, int columns, Brick* bricks[][6])
-{
-	for (int i = 0; i < rows; i++)
+	Level::Level()
 	{
-		for (int j = 0; j < columns; j++)
+
+	}
+
+	Level::~Level()
+	{
+
+	}
+
+	void Level::setMapLevel1(int rows, int columns, Brick* bricks[][6])
+	{
+		for (int i = 0; i < rows; i++)
 		{
-			// Como indica el doble for se ubican primero abajo del anterior 
-			bricks[i][j]->setPos(i * bricks[i][j]->getSize().x,
-				j * bricks[i][j]->getSize().y);
+			for (int j = 0; j < columns; j++)
+			{
+				// Como indica el doble for se ubican primero abajo del anterior 
+				bricks[i][j]->setPos(i * bricks[i][j]->getSize().x,
+					j * bricks[i][j]->getSize().y);
+			}
+			// Y luego a la derecha
 		}
-		// Y luego a la derecha
 	}
 }

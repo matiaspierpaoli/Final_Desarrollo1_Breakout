@@ -2,17 +2,20 @@
 #include "raylib.h"
 #include "SceneManager.h"
 
-class Rules
+namespace BreakoutGame
 {
-private:
-	SceneManager* sceneManager;
+	class Rules
+	{
+	private:
+		SceneManager* sceneManager;
 
-	Texture2D texture;
+		Texture2D texture;
 
-	Rectangle exitBox;
-public:
-	Rules(SceneManager* sceneManager);
-	~Rules();
-	void Draw();
-	void Update();
-};
+		Rectangle exitBox;
+	public:
+		Rules(SceneManager* sceneManager);
+		~Rules();
+		void Draw();
+		void Update();
+	};
+}

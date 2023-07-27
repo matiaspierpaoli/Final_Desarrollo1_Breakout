@@ -6,20 +6,23 @@
 #include "Game.h"
 #include "Credits.h"
 
-class App
+namespace BreakoutGame
 {
-private:
-	SceneManager* sceneManager;
-	Menu* menu;
-	Rules* rules;
-	Game* game;
-	Credits* credits;
+	class App
+	{
+	private:
+		SceneManager* sceneManager;
+		Menu* menu;
+		Rules* rules;
+		Game* game;
+		Credits* credits;
 
-	bool shouldExit;
+		bool shouldExit;
 
-public:
-	App();
-	~App();
-	void start();
-	Music music;
-};
+	public:
+		App();
+		~App();
+		void start();
+		Music music;
+	};
+}

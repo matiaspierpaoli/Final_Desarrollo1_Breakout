@@ -43,6 +43,7 @@
     <ClInclude Include="src\Menu.h" />
     <ClInclude Include="src\Player.h" />
     <ClInclude Include="src\PowerUp.h" />
+    <ClInclude Include="src\SceneManager.h" />
     <ClInclude Include="src\URLOpener.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

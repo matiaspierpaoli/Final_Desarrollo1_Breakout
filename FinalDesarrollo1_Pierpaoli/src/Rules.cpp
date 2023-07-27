@@ -1,30 +1,33 @@
 #include "Rules.h"
 
-Rules::Rules(SceneManager* sceneManager)
+namespace BreakoutGame
 {
-	this->sceneManager = sceneManager; // Manager de rules = manager de app
+	Rules::Rules(SceneManager* sceneManager)
+	{
+		this->sceneManager = sceneManager; // Manager de rules = manager de app
 
-	exitBox.width = 120;
-	exitBox.height = 50;
-	exitBox.x = GetScreenWidth() / 2 - exitBox.width / 2;
-	exitBox.y = GetScreenHeight() - 100;
+		exitBox.width = 120;
+		exitBox.height = 50;
+		exitBox.x = GetScreenWidth() / 2 - exitBox.width / 2;
+		exitBox.y = GetScreenHeight() - 100;
 
-	texture = LoadTexture("res/screens/Rules.png");
-}
+		texture = LoadTexture("res/screens/Rules.png");
+	}
 
-Rules::~Rules()
-{
-	UnloadTexture(texture);
-}
+	Rules::~Rules()
+	{
+		UnloadTexture(texture);
+	}
 
-void Rules::Update()
-{
-	if (CheckCollisionPointRec(GetMousePosition(), exitBox) && IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) sceneManager->setScene(Scene::MENU);
-}
+	void Rules::Update()
+	{
+		if (CheckCollisionPointRec(GetMousePosition(), exitBox) && IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) sceneManager->setScene(Scene::MENU);
+	}
 
-void Rules::Draw()
-{
-	BeginDrawing();
-	DrawTexture(texture, 0, 0, WHITE);
-	EndDrawing();
+	void Rules::Draw()
+	{
+		BeginDrawing();
+		DrawTexture(texture, 0, 0, WHITE);
+		EndDrawing();
+	}
 }

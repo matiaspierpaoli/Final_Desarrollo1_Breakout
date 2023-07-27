@@ -1,11 +1,14 @@
 #pragma once
 #include "Brick.h"
 
-class Level
+namespace BreakoutGame
 {
-public:
-	Level();
-	~Level();
+	class Level
+	{
+	public:
+		Level();
+		~Level();
 
-	void setMapLevel1(int rows, int columns, Brick* bricks[][6]);
-};
+		void setMapLevel1(int rows, int columns, Brick* bricks[][6]);
+	};
+}

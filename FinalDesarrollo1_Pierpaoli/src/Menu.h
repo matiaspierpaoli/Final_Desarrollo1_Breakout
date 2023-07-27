@@ -2,22 +2,25 @@
 #include "raylib.h"
 #include "SceneManager.h"
 
-class Menu
+namespace BreakoutGame
 {
-private:
-	SceneManager* sceneManager;
+	class Menu
+	{
+	private:
+		SceneManager* sceneManager;
 
-	Rectangle titleBox;
-	Rectangle playBox;
-	Rectangle rulesBox;
-	Rectangle creditsBox;
-	Rectangle exitBox;
+		Rectangle titleBox;
+		Rectangle playBox;
+		Rectangle rulesBox;
+		Rectangle creditsBox;
+		Rectangle exitBox;
 
-	Texture2D texture;
+		Texture2D texture;
 
-public:
-	Menu(SceneManager* sceneManager);
-	~Menu();
-	void Draw();
-	void Update();
-};
+	public:
+		Menu(SceneManager* sceneManager);
+		~Menu();
+		void Draw();
+		void Update();
+	};
+}

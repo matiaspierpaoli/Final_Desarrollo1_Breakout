@@ -2,8 +2,11 @@
 #include <cstdlib>
 #include <string>
 
-class URLOpener
+namespace BreakoutGame
 {
-public:
-	void OpenURL(std::string url);
-};
+	class URLOpener
+	{
+	public:
+		void OpenURL(std::string url);
+	};
+}
