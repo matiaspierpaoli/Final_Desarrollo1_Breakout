@@ -15,16 +15,17 @@ App::App()
 	// El manager original de cambio de pantallas
 	sceneManager = new SceneManager();
 
-	// Inicializacion de objetos tipo pantallas en memoria dinamica
-	menu = new Menu(sceneManager);
-	game = new Game(sceneManager);
-	rules = new Rules(sceneManager);
-	credits = new Credits(sceneManager);
-
 	// Musica
 	music = LoadMusicStream("res/music.mp3");
 	SetMusicVolume(music, 0.2f);
 	music.looping = true;
+
+	// Inicializacion de objetos tipo pantallas en memoria dinamica
+	menu = new Menu(sceneManager);
+	game = new Game(sceneManager, music);
+	rules = new Rules(sceneManager);
+	credits = new Credits(sceneManager);
+
 
 	shouldExit = false;
 }

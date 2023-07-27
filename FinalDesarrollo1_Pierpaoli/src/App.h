@@ -15,7 +15,6 @@ private:
 	Rules* rules;
 	Game* game;
 	Credits* credits;
-	Music music;
 
 	bool shouldExit;
 
@@ -23,4 +22,5 @@ public:
 	App();
 	~App();
 	void start();
+	Music music;
 };

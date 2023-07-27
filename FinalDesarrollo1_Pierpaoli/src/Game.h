@@ -22,6 +22,10 @@ private:
 
 	bool win; // Condicion de victoria/derrota
 	bool pause; // Condicion de pausa
+	bool isMusicMuted;
+
+	float muteStartTime;
+	float musicMuteDuration;
 
 	// Contador custom
 	float currentTime;
@@ -73,8 +77,10 @@ private:
 	Texture2D victoryScreenTexture;
 	Texture2D defeatScreenTexture;
 
+	Music musicRef;
+
 public:
-	Game(SceneManager* sceneManager);
+	Game(SceneManager* sceneManager, Music musicRef);
 	~Game();
 	void Init();
 	void Input();
@@ -89,4 +95,3 @@ public:
 	void Reset();
 
 };
-

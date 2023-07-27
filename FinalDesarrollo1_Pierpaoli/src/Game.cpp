@@ -1,8 +1,9 @@
 #include "Game.h"
 
-Game::Game(SceneManager* sceneManager)
+Game::Game(SceneManager* sceneManager, Music musicRef)
 {
 	this->sceneManager = sceneManager; // manager de game = manager de app
+	this->musicRef = musicRef;
 
 	// Efectos de sonido
 	ballSound = { NULL };
@@ -28,12 +29,17 @@ Game::Game(SceneManager* sceneManager)
 	victoryScreenTexture = { NULL };
 	defeatScreenTexture = { NULL };
 
+
 	// Random para la activacion de powerUps
 	rndPowerUpActivation = 0;
 
 	// Booleanos
 	win = false;
 	pause = false;
+	isMusicMuted = false;
+
+	muteStartTime = 0;
+	musicMuteDuration = 3;
 
 	currentTime = 0;
 	timer = 0.0f;
@@ -196,6 +202,7 @@ void Game::Input()
 			pause = false;
 			sceneManager->setScene(Scene::MENU);
 			Reset();
+			//SetMusicVolume(musicPtr, 0.2f);
 		}
 
 		if (IsKeyPressed(KEY_R)) // Si al terminar el juego se presiona R se vuelve a jugar habiendo reseteado posiciones y booleanos
@@ -203,6 +210,7 @@ void Game::Input()
 			pause = false;
 			win = false;
 			Reset();
+			//SetMusicVolume(musicPtr, 0.2f);
 		}
 	}
 
@@ -330,15 +338,29 @@ void Game::Update()
 
 			if (player->getLives() == 0) // Si la vida del jugador llega a 0
 			{
+				SetMusicVolume(musicRef, 0.0f);
 				win = !win;
 				PlaySound(defeatSound);
+				isMusicMuted = true;
+				muteStartTime = GetTime();
 			}
 
 			if (player->getCurrentBricksDestroyed() >= rows * columns) // Si llega a desactivar todos los ladrillos
 			{
+				SetMusicVolume(musicRef, 0.0f);
 				win = !win;
 				PlaySound(victorySound);
+				isMusicMuted = true;
+				muteStartTime = GetTime();
 			}
+		}
+	}
+	else
+	{
+		if (isMusicMuted && (GetTime() - muteStartTime) >= musicMuteDuration) // Se retoma luego de una duracion definida la musica
+		{
+			isMusicMuted = false;
+			SetMusicVolume(musicRef, 0.2f); // Restore the music volume
 		}
 	}
 }
