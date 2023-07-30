@@ -52,7 +52,7 @@ namespace BreakoutGame
 		Level* level;
 
 		std::vector<PowerUp*> powerUps;
-
+		float powerUpSize;
 
 		// Line separating game and HUD
 		int startLinePosX = 1;
@@ -84,6 +84,7 @@ namespace BreakoutGame
 		Texture2D defeatScreenTexture;
 
 		Music musicRef;
+		float defaultMusicVolume;
 
 		void Reset();
 		void CalculateScore();

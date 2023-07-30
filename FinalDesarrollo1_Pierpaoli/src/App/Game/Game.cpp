@@ -67,6 +67,8 @@ namespace BreakoutGame
 				bricks[i][j] = { NULL };
 			}
 		}
+
+		defaultMusicVolume = 0.2f;
 	}
 
 	Game::~Game()
@@ -154,10 +156,11 @@ namespace BreakoutGame
 		level = new Level();
 		level->setMapLevel1(rows, columns, bricks); // Armado de mapa (ubicacion de ladrillos)
 
-		powerUps.push_back(new PowerUp({ 0,0 }, { 36, 36 }, false, TypeOfPowerUp::AddLife, addLifeTexture));
-		powerUps.push_back(new PowerUp({ 0,0 }, { 36, 36 }, false, TypeOfPowerUp::SubstractLife, reduceLifeTexture));
-		powerUps.push_back(new PowerUp({ 0,0 }, { 36, 36 }, false, TypeOfPowerUp::MultiplyPlayerSpeed, addSpeedTexture));
-		powerUps.push_back(new PowerUp({ 0,0 }, { 36, 36 }, false, TypeOfPowerUp::SLowPlayerDown, reduceSpeedTexture));
+		powerUpSize = 36.0f;
+		powerUps.push_back(new PowerUp({ 0,0 }, { powerUpSize, powerUpSize }, false, TypeOfPowerUp::AddLife, addLifeTexture));
+		powerUps.push_back(new PowerUp({ 0,0 }, { powerUpSize, powerUpSize }, false, TypeOfPowerUp::SubstractLife, reduceLifeTexture));
+		powerUps.push_back(new PowerUp({ 0,0 }, { powerUpSize, powerUpSize }, false, TypeOfPowerUp::MultiplyPlayerSpeed, addSpeedTexture));
+		powerUps.push_back(new PowerUp({ 0,0 }, { powerUpSize, powerUpSize }, false, TypeOfPowerUp::SLowPlayerDown, reduceSpeedTexture));
 
 		for (std::size_t i = 0; i < powerUps.size(); i++)
 		{
@@ -207,7 +210,7 @@ namespace BreakoutGame
 				pause = false;
 				sceneManager->setScene(Scene::MENU);
 				Reset();
-				SetMusicVolume(musicRef, 0.2f);
+				SetMusicVolume(musicRef, defaultMusicVolume);
 			}
 
 			if (IsKeyPressed(KEY_R)) // Si al terminar el juego se presiona R se vuelve a jugar habiendo reseteado posiciones y booleanos
@@ -215,7 +218,7 @@ namespace BreakoutGame
 				pause = false;
 				win = false;
 				Reset();
-				SetMusicVolume(musicRef, 0.2f);
+				SetMusicVolume(musicRef, defaultMusicVolume);
 			}
 		}
 
@@ -334,7 +337,7 @@ namespace BreakoutGame
 			if (isMusicMuted && (GetTime() - muteStartTime) >= musicMuteDuration) // Se retoma luego de una duracion definida la musica
 			{
 				isMusicMuted = false;
-				SetMusicVolume(musicRef, 0.2f); // Restore the music volume
+				SetMusicVolume(musicRef, defaultMusicVolume); // Restore the music volume
 			}
 		}
 	}

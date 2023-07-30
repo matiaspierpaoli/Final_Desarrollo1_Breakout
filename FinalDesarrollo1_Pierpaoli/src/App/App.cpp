@@ -11,8 +11,6 @@ namespace BreakoutGame
 
 		srand(static_cast<unsigned int>(time(nullptr))); // Semilla para el random
 
-		//SetTargetFPS(60); // Frames por segundos deseados
-
 		// El manager original de cambio de pantallas
 		sceneManager = new SceneManager();
 
@@ -27,7 +25,6 @@ namespace BreakoutGame
 		rules = new Rules(sceneManager);
 		credits = new Credits(sceneManager);
 
-
 		shouldExit = false;
 	}
 
@@ -41,7 +38,6 @@ namespace BreakoutGame
 
 		game->DeInit();
 		delete game;
-
 
 		// Cierre de musica, sonido y ventana
 		UnloadMusicStream(music);
