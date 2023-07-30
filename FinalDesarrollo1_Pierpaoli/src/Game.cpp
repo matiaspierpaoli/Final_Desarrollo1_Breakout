@@ -158,10 +158,10 @@ namespace BreakoutGame
 		powerUps.push_back(new PowerUp({ 0,0 }, { 36, 36 }, false, TypeOfPowerUp::MultiplyPlayerSpeed, addSpeedTexture));
 		powerUps.push_back(new PowerUp({ 0,0 }, { 36, 36 }, false, TypeOfPowerUp::SLowPlayerDown, reduceSpeedTexture));
 
-		for (int i = 0; i < powerUps.size(); i++)
+		for (std::size_t i = 0; i < powerUps.size(); i++)
 		{
 			// Nueva posicion sin colisionar con player y ball
-			powerUps[i]->setNewRndPos(player->getPos(), player->getSize(), { ball->getPos().x + ball->getRadius(), ball->getPos().y + ball->getRadius() }, ball->getRadius(), columns * bricks[0][0]->getSize().y, linePosY);
+			powerUps[i]->setNewRndPos(player->getPos(), player->getSize(), { ball->getPos().x + ball->getRadius(), ball->getPos().y + ball->getRadius() }, static_cast<float>(ball->getRadius()), static_cast<int>(columns * bricks[0][0]->getSize().y), linePosY);
 		}
 	}
 
@@ -240,28 +240,28 @@ namespace BreakoutGame
 				switch (rndPowerUpActivation) // 1 chance en 800 para cada powerUp (siendo 60 por segundo)
 				{
 				case 0:
-					for (int i = 0; i < powerUps.size(); i++)
+					for (std::size_t i = 0; i < powerUps.size(); i++)
 					{
 						if (powerUps[i]->getTypeOfPowerUp() == TypeOfPowerUp::AddLife)
 							powerUps[i]->setActive(true);
 					}
 					break;
 				case 200:
-					for (int i = 0; i < powerUps.size(); i++)
+					for (std::size_t i = 0; i < powerUps.size(); i++)
 					{
 						if (powerUps[i]->getTypeOfPowerUp() == TypeOfPowerUp::SubstractLife)
 							powerUps[i]->setActive(true);
 					}
 					break;
 				case 400:
-					for (int i = 0; i < powerUps.size(); i++)
+					for (std::size_t i = 0; i < powerUps.size(); i++)
 					{
 						if (powerUps[i]->getTypeOfPowerUp() == TypeOfPowerUp::MultiplyPlayerSpeed)
 							powerUps[i]->setActive(true);
 						player->setSpeed(player->getNormalSpeed());
 					}
 				case 600:
-					for (int i = 0; i < powerUps.size(); i++)
+					for (std::size_t i = 0; i < powerUps.size(); i++)
 					{
 						if (powerUps[i]->getTypeOfPowerUp() == TypeOfPowerUp::SLowPlayerDown)
 							powerUps[i]->setActive(true);
@@ -308,7 +308,7 @@ namespace BreakoutGame
 				}
 
 				// Bola - PowerUp 
-				for (int i = 0; i < powerUps.size(); i++)
+				for (std::size_t i = 0; i < powerUps.size(); i++)
 				{
 					if (powerUps[i]->getActive())
 					{
@@ -317,7 +317,7 @@ namespace BreakoutGame
 						{
 							powerUps[i]->setActive(false);
 							// Nueva posicion
-							powerUps[i]->setNewRndPos(player->getPos(), player->getSize(), { ball->getPos().x + ball->getRadius(), ball->getPos().y + ball->getRadius() }, ball->getRadius(), columns * bricks[0][0]->getSize().y, linePosY);
+							powerUps[i]->setNewRndPos(player->getPos(), player->getSize(), { ball->getPos().x + ball->getRadius(), ball->getPos().y + ball->getRadius() }, static_cast<float>(ball->getRadius()), static_cast<int>(columns * bricks[0][0]->getSize().y), linePosY);
 
 							switch (powerUps[i]->getTypeOfPowerUp())
 							{
@@ -390,7 +390,7 @@ namespace BreakoutGame
 				}
 			}
 
-			for (int i = 0; i < powerUps.size(); i++)
+			for (std::size_t i = 0; i < powerUps.size(); i++)
 			{
 				if (powerUps[i]->getActive())
 					powerUps[i]->Draw();
@@ -483,7 +483,7 @@ namespace BreakoutGame
 		if (player->getLives() > 0)
 			finalMultiplier *= player->getLives();
 
-		player->setPoints(baseScore * finalMultiplier);
+		player->setPoints(static_cast<int>(baseScore * finalMultiplier));
 
 		if (player->getPoints() > highscore)
 		{
@@ -527,7 +527,7 @@ namespace BreakoutGame
 
 		timeMultiplier = 1.0;
 
-		for (int i = 0; i < powerUps.size(); i++)
+		for (std::size_t i = 0; i < powerUps.size(); i++)
 		{
 			powerUps[i]->setActive(false);
 		}

@@ -18,8 +18,8 @@ namespace BreakoutGame
 
 	void Ball::setPos(int x, int y)
 	{
-		this->pos.x = x;
-		this->pos.y = y;
+		this->pos.x = static_cast<float>(x);
+		this->pos.y = static_cast<float>(y);
 	}
 
 	void Ball::setSpeed(Vector2 speed)
@@ -126,7 +126,7 @@ namespace BreakoutGame
 					// Al golpear en el medio de la plataforma la velocidad en x se mantiene				
 				}
 
-				speed.x *= 1.1; // Se multiplica de a poco la velocidad para agregar dificultad
+				speed.x *= 1.1f; // Se multiplica de a poco la velocidad para agregar dificultad
 
 				PlaySound(ballSound);
 			}
@@ -143,6 +143,6 @@ namespace BreakoutGame
 
 	void Ball::Draw()
 	{
-		DrawTexture(texture, pos.x - 16, pos.y - 16, WHITE);
+		DrawTexture(texture, static_cast<int>(pos.x) - 16, static_cast<int>(pos.y) - 16, WHITE);
 	}
 }

@@ -17,14 +17,14 @@ namespace BreakoutGame
 
 	void Brick::setPos(int x, int y)
 	{
-		this->pos.x = x;
-		this->pos.y = y;
+		this->pos.x = static_cast<float>(x);
+		this->pos.y = static_cast<float>(y);
 	}
 
 	void Brick::setSize(int x, int y)
 	{
-		this->size.x = x;
-		this->size.y = y;
+		this->size.x = static_cast<float>(x);
+		this->size.y = static_cast<float>(y);
 	}
 
 	void Brick::setActive(bool active)
@@ -54,6 +54,6 @@ namespace BreakoutGame
 
 	void Brick::Draw()
 	{
-		DrawTexture(texture, pos.x, pos.y, WHITE);
+		DrawTexture(texture, static_cast<int>(pos.x), static_cast<int>(pos.y), WHITE);
 	}
 }

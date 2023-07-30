@@ -19,8 +19,7 @@ namespace BreakoutGame
 			for (int j = 0; j < columns; j++)
 			{
 				// Como indica el doble for se ubican primero abajo del anterior 
-				bricks[i][j]->setPos(i * bricks[i][j]->getSize().x,
-					j * bricks[i][j]->getSize().y);
+				bricks[i][j]->setPos(static_cast<int>(i * bricks[i][j]->getSize().x), static_cast<int>(j * bricks[i][j]->getSize().y));
 			}
 			// Y luego a la derecha
 		}

@@ -9,7 +9,7 @@ namespace BreakoutGame
 		InitWindow(screenWidth, screenHeight, "Breakout by Matias Pierpaoli");
 		InitAudioDevice(); // Sistema de audio
 
-		srand(time(NULL)); // Semilla para el random
+		srand(static_cast<unsigned int>(time(nullptr))); // Semilla para el random
 
 		SetTargetFPS(60); // Frames por segundos deseados
 

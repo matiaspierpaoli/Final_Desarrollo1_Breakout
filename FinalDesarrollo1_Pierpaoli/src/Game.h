@@ -24,7 +24,7 @@ namespace BreakoutGame
 		bool pause; // Condicion de pausa
 		bool isMusicMuted;
 
-		float muteStartTime;
+		double muteStartTime;
 		float musicMuteDuration;
 
 		// Contador custom

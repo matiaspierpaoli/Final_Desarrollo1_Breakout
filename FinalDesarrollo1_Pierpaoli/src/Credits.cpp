@@ -9,12 +9,12 @@ namespace BreakoutGame
 		exitBox.width = 120;
 		exitBox.height = 50;
 		exitBox.x = GetScreenWidth() / 2 - exitBox.width / 2;
-		exitBox.y = GetScreenHeight() - 100;
+		exitBox.y = static_cast<float>(GetScreenHeight() - 100);
 
 		musicURLBox.width = 370;
 		musicURLBox.height = 33;
 		musicURLBox.x = GetScreenWidth() / 2 - musicURLBox.width / 2;
-		musicURLBox.y = GetScreenHeight() - 250;
+		musicURLBox.y = static_cast<float>(GetScreenHeight() - 250);
 
 		texture = LoadTexture("res/screens/Credits.png");
 
