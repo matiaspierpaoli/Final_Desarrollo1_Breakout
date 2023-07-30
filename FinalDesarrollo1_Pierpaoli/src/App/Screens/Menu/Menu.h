@@ -1,6 +1,6 @@
 #pragma once
 #include "raylib.h"
-#include "../SceneManager/SceneManager.h"
+#include "..\SceneManager\SceneManager.h"
 
 namespace BreakoutGame
 {

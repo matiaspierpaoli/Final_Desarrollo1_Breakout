@@ -1,7 +1,7 @@
 #pragma once
 #include "raylib.h"
-#include "URLOpener.h"
-#include "SceneManager.h"
+#include "..\..\src\App\URLOpener\URLOpener.h"
+#include "..\SceneManager\SceneManager.h"
 
 namespace BreakoutGame
 {

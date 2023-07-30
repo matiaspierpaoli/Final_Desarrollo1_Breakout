@@ -1,5 +1,5 @@
 #pragma once
-#include "Brick.h"
+#include "..\GamePlayElements\Brick\Brick.h"
 
 namespace BreakoutGame
 {

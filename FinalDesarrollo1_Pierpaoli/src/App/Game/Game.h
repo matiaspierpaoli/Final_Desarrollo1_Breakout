@@ -2,12 +2,12 @@
 #include <vector>
 #include <fstream>
 
-#include "Player.h"
-#include "Ball.h"
-#include "Brick.h"
-#include "Level.h"
-#include "PowerUp.h"
-#include "SceneManager.h"
+#include "GamePlayElements/Player/Player.h"
+#include "GamePlayElements/Ball/Ball.h"
+#include "GamePlayElements/Brick/Brick.h"
+#include "GamePlayElements/PowerUp/PowerUp.h"
+#include "..\Screens\SceneManager\SceneManager.h"
+#include "Level/Level.h"
 
 namespace BreakoutGame
 {

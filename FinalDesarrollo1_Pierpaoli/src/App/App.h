@@ -1,10 +1,10 @@
 #pragma once
-#include "ScreenProperties.h"
-#include "SceneManager.h"
-#include "Menu.h"
-#include "Rules.h"
-#include "Game.h"
-#include "Credits.h"
+#include "Screens/ScreenProperties.h"
+#include "Screens/SceneManager/SceneManager.h"
+#include "Screens/Menu/Menu.h"
+#include "Screens/Rules/Rules.h"
+#include "Game/Game.h"
+#include "Screens/Credits/Credits.h"
 
 namespace BreakoutGame
 {

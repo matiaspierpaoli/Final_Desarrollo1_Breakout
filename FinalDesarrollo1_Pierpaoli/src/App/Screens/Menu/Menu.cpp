@@ -1,5 +1,6 @@
 #include "Menu.h"
 
+
 namespace BreakoutGame
 {
 	Menu::Menu(SceneManager* sceneManager)

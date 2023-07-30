@@ -11,78 +11,84 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\App.cpp">
+    <ClCompile Include="src\App\App.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\Ball.cpp">
+    <ClCompile Include="src\App\Game\GamePlayElements\Ball\Ball.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\Brick.cpp">
+    <ClCompile Include="src\App\Game\GamePlayElements\Brick\Brick.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\Credits.cpp">
+    <ClCompile Include="src\App\Screens\Credits\Credits.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\Game.cpp">
+    <ClCompile Include="src\App\Game\Game.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level.cpp">
+    <ClCompile Include="src\App\Game\Level\Level.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\main.cpp">
+    <ClCompile Include="src\App\main.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\Menu.cpp">
+    <ClCompile Include="src\App\Screens\Menu\Menu.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\Player.cpp">
+    <ClCompile Include="src\App\Game\GamePlayElements\Player\Player.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\PowerUp.cpp">
+    <ClCompile Include="src\App\Game\GamePlayElements\PowerUp\PowerUp.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\Rules.cpp">
+    <ClCompile Include="src\App\Screens\Rules\Rules.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\ScreenManager.cpp">
+    <ClCompile Include="src\App\Screens\SceneManager\ScreenManager.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\URLOpener.cpp">
+    <ClCompile Include="src\App\URLOpener\URLOpener.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\App.h">
+    <ClInclude Include="src\App\App.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ball.h">
+    <ClInclude Include="src\App\Game\GamePlayElements\Ball\Ball.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\Brick.h">
+    <ClInclude Include="src\App\Game\GamePlayElements\Brick\Brick.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\Credits.h">
+    <ClInclude Include="src\App\Screens\Credits\Credits.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\Game.h">
+    <ClInclude Include="src\App\Game\Game.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level.h">
+    <ClInclude Include="src\App\Game\Level\Level.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\Menu.h">
+    <ClInclude Include="src\App\Screens\Menu\Menu.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\Player.h">
+    <ClInclude Include="src\App\Game\GamePlayElements\Player\Player.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\PowerUp.h">
+    <ClInclude Include="src\App\Game\GamePlayElements\PowerUp\PowerUp.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\URLOpener.h">
+    <ClInclude Include="src\App\URLOpener\URLOpener.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\SceneManager.h">
+    <ClInclude Include="src\App\Screens\SceneManager\SceneManager.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\App\Screens\ScreenProperties.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\App\Screens\Rules\Rules.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
