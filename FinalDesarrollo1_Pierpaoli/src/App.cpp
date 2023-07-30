@@ -11,7 +11,7 @@ namespace BreakoutGame
 
 		srand(static_cast<unsigned int>(time(nullptr))); // Semilla para el random
 
-		SetTargetFPS(60); // Frames por segundos deseados
+		//SetTargetFPS(60); // Frames por segundos deseados
 
 		// El manager original de cambio de pantallas
 		sceneManager = new SceneManager();

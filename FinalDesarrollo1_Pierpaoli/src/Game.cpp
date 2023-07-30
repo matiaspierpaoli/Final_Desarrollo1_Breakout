@@ -31,10 +31,6 @@ namespace BreakoutGame
 		victoryScreenTexture = { NULL };
 		defeatScreenTexture = { NULL };
 
-
-		// Random para la activacion de powerUps
-		rndPowerUpActivation = 0;
-
 		// Booleanos
 		win = false;
 		pause = false;
@@ -53,6 +49,11 @@ namespace BreakoutGame
 		maxTimeMultiplier = 2.0;
 
 		highscore = LoadHighscore();
+
+		powerUpTimer = 0.0f;
+		powerUpDelay = 5.0f;
+		minPowerUpDelay = 3.0f;
+		maxPowerUpDelay = 6.0f;
 
 		// Objetos
 		player = { NULL };
@@ -233,43 +234,12 @@ namespace BreakoutGame
 					timer = 0;
 				}
 
-				// Activacion de PowerUp
-				rndPowerUpActivation = GetRandomValue(0, 800);
-
-				// El switch mas dudoso jaja
-				switch (rndPowerUpActivation) // 1 chance en 800 para cada powerUp (siendo 60 por segundo)
+				powerUpTimer += GetFrameTime();
+				if (powerUpTimer >= powerUpDelay)
 				{
-				case 0:
-					for (std::size_t i = 0; i < powerUps.size(); i++)
-					{
-						if (powerUps[i]->getTypeOfPowerUp() == TypeOfPowerUp::AddLife)
-							powerUps[i]->setActive(true);
-					}
-					break;
-				case 200:
-					for (std::size_t i = 0; i < powerUps.size(); i++)
-					{
-						if (powerUps[i]->getTypeOfPowerUp() == TypeOfPowerUp::SubstractLife)
-							powerUps[i]->setActive(true);
-					}
-					break;
-				case 400:
-					for (std::size_t i = 0; i < powerUps.size(); i++)
-					{
-						if (powerUps[i]->getTypeOfPowerUp() == TypeOfPowerUp::MultiplyPlayerSpeed)
-							powerUps[i]->setActive(true);
-						player->setSpeed(player->getNormalSpeed());
-					}
-				case 600:
-					for (std::size_t i = 0; i < powerUps.size(); i++)
-					{
-						if (powerUps[i]->getTypeOfPowerUp() == TypeOfPowerUp::SLowPlayerDown)
-							powerUps[i]->setActive(true);
-						player->setSpeed(player->getNormalSpeed());
-					}
-					break;
-				default:
-					break;
+					SpawnRandomPowerUp();
+					powerUpTimer = 0.0f;
+					powerUpDelay = GetRandomValue(minPowerUpDelay, maxPowerUpDelay);
 				}
 
 				// Movimiento de Bola
@@ -514,6 +484,41 @@ namespace BreakoutGame
 		return highscore;
 	}
 
+	void Game::SpawnRandomPowerUp()
+	{
+		int rndPowerUpActivation = GetRandomValue(0, 3);
+
+		switch (rndPowerUpActivation)
+		{
+		case 0:
+			ActivatePowerUpByType(TypeOfPowerUp::AddLife);
+			break;
+		case 1:
+			ActivatePowerUpByType(TypeOfPowerUp::SubstractLife);
+			break;
+		case 2:
+			ActivatePowerUpByType(TypeOfPowerUp::MultiplyPlayerSpeed);
+			break;
+		case 3:
+			ActivatePowerUpByType(TypeOfPowerUp::SLowPlayerDown);
+			break;
+		default:
+			break;
+		}
+	}
+
+	void Game::ActivatePowerUpByType(TypeOfPowerUp type)
+	{
+		for (std::size_t i = 0; i < powerUps.size(); i++)
+		{
+			if (powerUps[i]->getTypeOfPowerUp() == type)
+			{
+				powerUps[i]->setActive(true);
+				break; 
+			}
+		}
+	}
+
 	void Game::Reset()
 	{
 		player->Reset();
@@ -526,6 +531,8 @@ namespace BreakoutGame
 		timer = 0.0f;
 
 		timeMultiplier = 1.0;
+
+		powerUpTimer = 0.0f;
 
 		for (std::size_t i = 0; i < powerUps.size(); i++)
 		{

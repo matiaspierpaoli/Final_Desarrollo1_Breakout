@@ -18,8 +18,6 @@ namespace BreakoutGame
 		static const int rows = 15;
 		static const int columns = 6;
 
-		int rndPowerUpActivation; // Random para activar powerUps en Update()
-
 		bool win; // Condicion de victoria/derrota
 		bool pause; // Condicion de pausa
 		bool isMusicMuted;
@@ -39,6 +37,12 @@ namespace BreakoutGame
 		const double maxAllowedTime = 120.0;
 		float penaltyDivisionFactor; // Cuan mayor el numero del divisor menor la penitencia
 		int highscore;
+
+		// PowerUp activation
+		float powerUpTimer;
+		float powerUpDelay;
+		float minPowerUpDelay;
+		float maxPowerUpDelay;
 
 		SceneManager* sceneManager; // Copia desde App
 
@@ -84,8 +88,9 @@ namespace BreakoutGame
 		void Reset();
 		void CalculateScore();
 		void SaveHighscore(int highscore);
+		void SpawnRandomPowerUp();
+		void ActivatePowerUpByType(TypeOfPowerUp type);
 		int LoadHighscore();
-
 	public:
 		Game(SceneManager* sceneManager, Music musicRef);
 		~Game();
