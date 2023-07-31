@@ -2,13 +2,13 @@
 
 namespace BreakoutGame
 {
-	Ball::Ball(Vector2 pos, Vector2 speed, int radius, bool active, Texture2D texture)
+	Ball::Ball(Vector2 _pos, Vector2 _speed, int _radius, bool _active, Texture2D _texture)
 	{
-		this->pos = pos;
-		this->speed = speed;
-		this->radius = radius;
-		this->active = active;
-		this->texture = texture;
+		pos = _pos;
+		speed = _speed;
+		radius = _radius;
+		active = _active;
+		texture = _texture;
 	}
 
 	Ball::~Ball()
@@ -16,25 +16,25 @@ namespace BreakoutGame
 
 	}
 
-	void Ball::setPos(int x, int y)
+	void Ball::setPos(int _x, int _y)
 	{
-		this->pos.x = static_cast<float>(x);
-		this->pos.y = static_cast<float>(y);
+		pos.x = static_cast<float>(_x);
+		pos.y = static_cast<float>(_y);
 	}
 
-	void Ball::setSpeed(Vector2 speed)
+	void Ball::setSpeed(Vector2 _speed)
 	{
-		this->speed = speed;
+		speed = _speed;
 	}
 
-	void Ball::setActive(bool active)
+	void Ball::setActive(bool _active)
 	{
-		this->active = active;
+		active = _active;
 	}
 
-	void Ball::setTexture(Texture2D texture)
+	void Ball::setTexture(Texture2D _texture)
 	{
-		this->texture = texture;
+		texture = _texture;
 	}
 
 	int Ball::getRadius()

@@ -2,17 +2,17 @@
 
 namespace BreakoutGame
 {
-	Player::Player(Vector2 size, int normalSpeed, int lives, Texture2D texture)
+	Player::Player(Vector2 _size, int _normalSpeed, int _lives, Texture2D _texture)
 	{
-		this->size = size;
-		this->normalSpeed = normalSpeed;
+		size = _size;
+		normalSpeed = _normalSpeed;
 		speed = normalSpeed;
-		this->lives = lives;
-		this->texture = texture;
+		lives = _lives;
+		texture = _texture;
 		points = 0;
 		currentBricksDestroyed = 0;
 
-		setPos(static_cast<float>(GetScreenWidth()) / 2 - size.x / 2, static_cast<float>(GetScreenHeight()) - size.y - 60);
+		setPos(GetScreenWidth() / 2 - size.x / 2, GetScreenHeight() - size.y - 60);
 	}
 
 	Player::~Player()
@@ -20,41 +20,41 @@ namespace BreakoutGame
 
 	}
 
-	void Player::setPos(int x, int y)
+	void Player::setPos(float _x, float _y)
 	{
-		this->pos.x = x;
-		this->pos.y = y;
+		pos.x = _x;
+		pos.y = _y;
 	}
 
-	void Player::setSize(int x, int y)
+	void Player::setSize(float _x, float _y)
 	{
-		this->size.x = x;
-		this->size.y = y;
+		size.x = _x;
+		size.y = _y;
 	}
 
-	void Player::setSpeed(int speed)
+	void Player::setSpeed(int _speed)
 	{
-		this->speed = speed;
+		speed = _speed;
 	}
 
-	void Player::setLives(int lives)
+	void Player::setLives(int _lives)
 	{
-		this->lives = lives;
+		lives = _lives;
 	}
 
-	void Player::setTexture(Texture2D texture)
+	void Player::setTexture(Texture2D _texture)
 	{
-		this->texture = texture;
+		texture = _texture;
 	}
 
-	void Player::setPoints(int points)
+	void Player::setPoints(int _points)
 	{
-		this->points = points;
+		points = _points;
 	}
 
-	void Player::setCurrentBricksDestroyed(int currentBricksDestroyed)
+	void Player::setCurrentBricksDestroyed(int _currentBricksDestroyed)
 	{
-		this->currentBricksDestroyed = currentBricksDestroyed;
+		currentBricksDestroyed = _currentBricksDestroyed;
 	}
 
 	void Player::reduceLive()
@@ -127,6 +127,6 @@ namespace BreakoutGame
 
 	void Player::Draw()
 	{
-		DrawTexture(texture, pos.x, pos.y, WHITE);
+		DrawTexture(texture, static_cast<int>(pos.x), static_cast<int>(pos.y), WHITE);
 	}
 }

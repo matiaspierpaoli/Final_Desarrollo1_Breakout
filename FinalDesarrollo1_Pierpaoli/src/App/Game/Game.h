@@ -41,8 +41,8 @@ namespace BreakoutGame
 		// PowerUp activation
 		float powerUpTimer;
 		float powerUpDelay;
-		float minPowerUpDelay;
-		float maxPowerUpDelay;
+		int minPowerUpDelay;
+		int maxPowerUpDelay;
 
 		SceneManager* sceneManager; // Copia desde App
 

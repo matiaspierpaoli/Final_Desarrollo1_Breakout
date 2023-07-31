@@ -17,8 +17,8 @@ namespace BreakoutGame
 		return scene;
 	}
 
-	void SceneManager::setScene(Scene scene)
+	void SceneManager::setScene(Scene _scene)
 	{
-		this->scene = scene;
+		scene = _scene;
 	}
 }

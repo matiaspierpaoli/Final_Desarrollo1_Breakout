@@ -20,8 +20,8 @@ namespace BreakoutGame
 		Player(Vector2 size, int normalSpeed, int lives, Texture2D texture);
 		~Player();
 
-		void setPos(int x, int y);
-		void setSize(int x, int y);
+		void setPos(float x, float y);
+		void setSize(float x, float y);
 		void setSpeed(int speed);
 		void setLives(int lives);
 		void setTexture(Texture2D texture);

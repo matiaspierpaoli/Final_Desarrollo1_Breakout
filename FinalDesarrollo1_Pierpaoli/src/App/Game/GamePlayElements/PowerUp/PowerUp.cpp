@@ -2,13 +2,13 @@
 
 namespace BreakoutGame
 {
-	PowerUp::PowerUp(Vector2 pos, Vector2 size, bool active, TypeOfPowerUp typeOfPowerUp, Texture2D texture)
+	PowerUp::PowerUp(Vector2 _pos, Vector2 _size, bool _active, TypeOfPowerUp _typeOfPowerUp, Texture2D _texture)
 	{
-		this->pos = pos;
-		this->size = size;
-		this->active = active;
-		this->typeOfPowerUp = typeOfPowerUp;
-		this->texture = texture;
+		pos = _pos;
+		size = _size;
+		active = _active;
+		typeOfPowerUp = _typeOfPowerUp;
+		texture = _texture;
 
 		activationCondition = false;
 		newPos = { 0,0 };
@@ -19,29 +19,29 @@ namespace BreakoutGame
 
 	}
 
-	void PowerUp::setPos(Vector2 pos)
+	void PowerUp::setPos(Vector2 _pos)
 	{
-		this->pos = pos;
+		pos = _pos;
 	}
 
-	void PowerUp::setSize(Vector2 size)
+	void PowerUp::setSize(Vector2 _size)
 	{
-		this->size = size;
+		size = _size;
 	}
 
-	void PowerUp::setActive(bool active)
+	void PowerUp::setActive(bool _active)
 	{
-		this->active = active;
+		active = _active;
 	}
 
-	void PowerUp::setTexture(Texture2D texture)
+	void PowerUp::setTexture(Texture2D _texture)
 	{
-		this->texture = texture;
+		texture = _texture;
 	}
 
-	void PowerUp::setTypeOfPowerUp(TypeOfPowerUp typeOfPowerUp)
+	void PowerUp::setTypeOfPowerUp(TypeOfPowerUp _typeOfPowerUp)
 	{
-		this->typeOfPowerUp = typeOfPowerUp;
+		typeOfPowerUp = _typeOfPowerUp;
 	}
 
 	Vector2 PowerUp::getPos()
@@ -75,8 +75,8 @@ namespace BreakoutGame
 		{
 			activationCondition = false;
 
-			newPos.x = GetRandomValue(1, GetScreenWidth() - 32);
-			newPos.y = GetRandomValue(topLine + size.y + 50, botLine - size.y - 50);
+			newPos.x = static_cast<float>(GetRandomValue(1, GetScreenWidth() - 32));
+			newPos.y = static_cast<float>(GetRandomValue(static_cast<int>(topLine + size.y + 50), static_cast<int>(botLine - size.y - 50)));
 
 			// Bola - PowerUp
 			if (CheckCollisionCircleRec(ballCenter, ballRadius, { newPos.x, newPos.y, size.x, size.y }))
@@ -93,6 +93,6 @@ namespace BreakoutGame
 
 	void PowerUp::Draw()
 	{
-		DrawTexture(texture, pos.x, pos.y, WHITE);
+		DrawTexture(texture, static_cast<int>(pos.x), static_cast<int>(pos.y), WHITE);
 	}
 }

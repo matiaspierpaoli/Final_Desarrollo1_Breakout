@@ -2,14 +2,14 @@
 
 namespace BreakoutGame
 {
-	Rules::Rules(SceneManager* sceneManager)
+	Rules::Rules(SceneManager* _sceneManager)
 	{
-		this->sceneManager = sceneManager; // Manager de rules = manager de app
+		sceneManager = _sceneManager; // Manager de rules = manager de app
 
 		exitBox.width = 120;
 		exitBox.height = 50;
 		exitBox.x = GetScreenWidth() / 2 - exitBox.width / 2;
-		exitBox.y = GetScreenHeight() - 100;
+		exitBox.y = static_cast<float>(GetScreenHeight() - 100);
 
 		texture = LoadTexture("res/screens/Rules.png");
 	}

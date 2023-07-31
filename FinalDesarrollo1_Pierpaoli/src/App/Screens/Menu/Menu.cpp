@@ -3,34 +3,34 @@
 
 namespace BreakoutGame
 {
-	Menu::Menu(SceneManager* sceneManager)
+	Menu::Menu(SceneManager* _sceneManager)
 	{
-		this->sceneManager = sceneManager; // Manager de menu = manager de app
+		sceneManager = _sceneManager; // Manager de menu = manager de app
 
 		titleBox.width = 450;
 		titleBox.height = 75;
-		titleBox.x = GetScreenWidth() / 2 - titleBox.width / 2;
+		titleBox.x = static_cast<float>(GetScreenWidth() / 2 - titleBox.width / 2);
 		titleBox.y = 50;
 
 		playBox.width = 180;
 		playBox.height = 75;
-		playBox.x = GetScreenWidth() / 2 - playBox.width / 2;
-		playBox.y = GetScreenHeight() / 2 - 100;
+		playBox.x = static_cast<float>(GetScreenWidth() / 2 - playBox.width / 2);
+		playBox.y = static_cast<float>(GetScreenHeight() / 2 - 100);
 
 		rulesBox.width = 230;
 		rulesBox.height = 75;
-		rulesBox.x = GetScreenWidth() / 2 - rulesBox.width / 2;
-		rulesBox.y = GetScreenHeight() / 2;
+		rulesBox.x = static_cast<float>(GetScreenWidth() / 2 - rulesBox.width / 2);
+		rulesBox.y = static_cast<float>(GetScreenHeight() / 2);
 
 		creditsBox.width = 300;
 		creditsBox.height = 75;
-		creditsBox.x = GetScreenWidth() / 2 - creditsBox.width / 2;
-		creditsBox.y = GetScreenHeight() / 2 + 100;
+		creditsBox.x = static_cast<float>(GetScreenWidth() / 2 - creditsBox.width / 2);
+		creditsBox.y = static_cast<float>(GetScreenHeight() / 2 + 100);
 
 		exitBox.width = 120;
 		exitBox.height = 50;
-		exitBox.x = GetScreenWidth() / 2 - exitBox.width / 2;
-		exitBox.y = GetScreenHeight() - 100;
+		exitBox.x = static_cast<float>(GetScreenWidth() / 2 - exitBox.width / 2);
+		exitBox.y = static_cast<float>(GetScreenHeight() - 100);
 
 		texture = LoadTexture("res/screens/MainMenu.png");
 	}

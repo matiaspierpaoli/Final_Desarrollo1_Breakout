@@ -2,12 +2,12 @@
 
 namespace BreakoutGame
 {
-	Brick::Brick(Vector2 pos, Vector2 size, bool active, Texture2D texture)
+	Brick::Brick(Vector2 _pos, Vector2 _size, bool _active, Texture2D _texture)
 	{
-		this->pos = pos;
-		this->size = size;
-		this->active = active;
-		this->texture = texture;
+		pos = _pos;
+		size = _size;
+		active = _active;
+		texture = _texture;
 	}
 
 	Brick::~Brick()
@@ -15,26 +15,26 @@ namespace BreakoutGame
 
 	}
 
-	void Brick::setPos(int x, int y)
+	void Brick::setPos(int _x, int _y)
 	{
-		this->pos.x = static_cast<float>(x);
-		this->pos.y = static_cast<float>(y);
+		pos.x = static_cast<float>(_x);
+		pos.y = static_cast<float>(_y);
 	}
 
-	void Brick::setSize(int x, int y)
+	void Brick::setSize(int _x, int _y)
 	{
-		this->size.x = static_cast<float>(x);
-		this->size.y = static_cast<float>(y);
+		size.x = static_cast<float>(_x);
+		size.y = static_cast<float>(_y);
 	}
 
-	void Brick::setActive(bool active)
+	void Brick::setActive(bool _active)
 	{
-		this->active = active;
+		active = _active;
 	}
 
-	void Brick::setTexture(Texture2D texture)
+	void Brick::setTexture(Texture2D _texture)
 	{
-		this->texture = texture;
+		texture = _texture;
 	}
 
 	Vector2 Brick::getPos()

@@ -2,10 +2,10 @@
 
 namespace BreakoutGame
 {
-	Game::Game(SceneManager* sceneManager, Music musicRef)
+	Game::Game(SceneManager* _sceneManager, Music _musicRef)
 	{
-		this->sceneManager = sceneManager; // manager de game = manager de app
-		this->musicRef = musicRef;
+		sceneManager = _sceneManager; // manager de game = manager de app
+		musicRef = _musicRef;
 
 		// Efectos de sonido
 		ballSound = { NULL };
@@ -52,8 +52,8 @@ namespace BreakoutGame
 
 		powerUpTimer = 0.0f;
 		powerUpDelay = 5.0f;
-		minPowerUpDelay = 3.0f;
-		maxPowerUpDelay = 6.0f;
+		minPowerUpDelay = 3;
+		maxPowerUpDelay = 6;
 
 		// Objetos
 		player = { NULL };
@@ -242,7 +242,7 @@ namespace BreakoutGame
 				{
 					SpawnRandomPowerUp();
 					powerUpTimer = 0.0f;
-					powerUpDelay = GetRandomValue(minPowerUpDelay, maxPowerUpDelay);
+					powerUpDelay = static_cast<float>(GetRandomValue(minPowerUpDelay, maxPowerUpDelay));
 				}
 
 				// Movimiento de Bola
@@ -438,16 +438,16 @@ namespace BreakoutGame
 			}
 		}
 
-		for (auto&& powerUps : powerUps) // Eliminacion de vector en for automactico
+		for (auto&& _powerUps : powerUps) // Eliminacion de vector en for automactico
 		{
-			delete powerUps;
+			delete _powerUps;
 		}
 		powerUps.clear();
 	}
 
 	void Game::CalculateScore()
 	{
-		double timeMultiplier = maxAllowedTime / currentTime;
+		timeMultiplier = maxAllowedTime / currentTime;
 		timeMultiplier += (1.0 - timeMultiplier) * timeBonusFactor;
 		timeMultiplier = fmin(timeMultiplier, maxTimeMultiplier);
 
@@ -465,26 +465,26 @@ namespace BreakoutGame
 		}
 	}
 
-	void Game::SaveHighscore(int highscore)
+	void Game::SaveHighscore(int _highscore)
 	{
 		std::ofstream outputFile("./highscore.bin", std::ios::binary);
 		if (outputFile.is_open())
 		{
-			outputFile.write(reinterpret_cast<const char*>(&highscore), sizeof(highscore));
+			outputFile.write(reinterpret_cast<const char*>(&_highscore), sizeof(_highscore));
 			outputFile.close();
 		}
 	}
 
 	int Game::LoadHighscore()
 	{
-		int highscore = 0;
+		int newHighscore = 0;
 		std::ifstream inputFile("./highscore.bin", std::ios::binary);
 		if (inputFile.is_open())
 		{
-			inputFile.read(reinterpret_cast<char*>(&highscore), sizeof(highscore));
+			inputFile.read(reinterpret_cast<char*>(&newHighscore), sizeof(newHighscore));
 			inputFile.close();
 		}
-		return highscore;
+		return newHighscore;
 	}
 
 	void Game::SpawnRandomPowerUp()

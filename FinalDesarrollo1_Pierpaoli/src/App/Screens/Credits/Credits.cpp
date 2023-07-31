@@ -2,9 +2,9 @@
 
 namespace BreakoutGame
 {
-	Credits::Credits(SceneManager* sceneManager)
+	Credits::Credits(SceneManager* _sceneManager)
 	{
-		this->sceneManager = sceneManager; // Manager de credits = manager de app
+		sceneManager = _sceneManager; // Manager de credits = manager de app
 
 		exitBox.width = 120;
 		exitBox.height = 50;
