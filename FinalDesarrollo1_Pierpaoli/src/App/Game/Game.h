@@ -19,7 +19,7 @@ namespace BreakoutGame
 		static const int columns = 6;
 
 		bool win; // Condicion de victoria/derrota
-		bool pause; // Condicion de pausa
+		bool gameplayPause; // Condicion de pausa
 		bool isMusicMuted;
 
 		double muteStartTime;
@@ -100,5 +100,6 @@ namespace BreakoutGame
 		void Update();
 		void Draw();
 		void DeInit();
+		void setGameplayPause(bool value);
 	};
 }

@@ -33,7 +33,7 @@ namespace BreakoutGame
 
 		// Booleanos
 		win = false;
-		pause = false;
+		gameplayPause = false;
 		isMusicMuted = false;
 
 		muteStartTime = 0;
@@ -97,7 +97,7 @@ namespace BreakoutGame
 		// Inicializacion de objetos, booleanos, sonidos y texturas
 
 		win = false;
-		pause = false;
+		gameplayPause = false;
 
 		ballSound = LoadSound("res/ballSound.mp3");
 		defeatSound = LoadSound("res/defeatSound.mp3");
@@ -173,9 +173,9 @@ namespace BreakoutGame
 	{
 		if (!win)
 		{
-			if (IsKeyPressed(KEY_P)) pause = !pause; // Activacion/Desactivacion de pausa
+			if (IsKeyPressed(KEY_P)) gameplayPause = !gameplayPause; // Activacion/Desactivacion de pausa
 
-			if (!pause)
+			if (!gameplayPause)
 			{
 				// Activate Ball
 				if (!ball->getActive())
@@ -197,7 +197,7 @@ namespace BreakoutGame
 			{
 				if (IsKeyPressed(KEY_M)) // Si en pausa se presiona M se vuelve al menu habiendo reseteado posiciones y booleanos
 				{
-					pause = false;
+					gameplayPause = false;
 					sceneManager->setScene(Scene::MENU);
 					Reset();
 				}
@@ -207,7 +207,7 @@ namespace BreakoutGame
 		{
 			if (IsKeyPressed(KEY_M)) // Si al terminar el juego se presiona M se vuelve al menu habiendo reseteado posiciones y booleanos
 			{
-				pause = false;
+				gameplayPause = false;
 				sceneManager->setScene(Scene::MENU);
 				Reset();
 				SetMusicVolume(musicRef, defaultMusicVolume);
@@ -215,7 +215,7 @@ namespace BreakoutGame
 
 			if (IsKeyPressed(KEY_R)) // Si al terminar el juego se presiona R se vuelve a jugar habiendo reseteado posiciones y booleanos
 			{
-				pause = false;
+				gameplayPause = false;
 				win = false;
 				Reset();
 				SetMusicVolume(musicRef, defaultMusicVolume);
@@ -228,7 +228,7 @@ namespace BreakoutGame
 	{
 		if (!win)
 		{
-			if (!pause)
+			if (!gameplayPause)
 			{
 				timer += GetFrameTime();
 				if (timer >= 1.0f)
@@ -374,7 +374,7 @@ namespace BreakoutGame
 			// Tiempo Actual
 			DrawText(TextFormat("Time: %4i", static_cast<int>(currentTime)), static_cast<int>(GetScreenWidth() - 250), static_cast<int>(GetScreenHeight() - 40), 40, DARKGREEN);
 
-			if (pause) // Si pausa == true
+			if (gameplayPause) // Si pausa == true
 			{
 				DrawText(TextFormat("Press P to unpause"), static_cast<int>(GetScreenWidth() / 2) - 190, static_cast<int>(GetScreenHeight() / 2) + 20, 40, RED);
 				DrawText(TextFormat("Press M to go back to menu"), static_cast<int>(GetScreenWidth() / 2) - 250, static_cast<int>(GetScreenHeight() / 2) + 70, 40, RED);
@@ -528,7 +528,7 @@ namespace BreakoutGame
 		ball->reset();
 
 		win = false;
-		pause = false;
+		gameplayPause = false;
 
 		currentTime = 0;
 		timer = 0.0f;
@@ -549,5 +549,10 @@ namespace BreakoutGame
 				bricks[i][j]->setActive(true);
 			}
 		}
+	}
+
+	void Game::setGameplayPause(bool value)
+	{ 
+		gameplayPause = value; 
 	}
 }

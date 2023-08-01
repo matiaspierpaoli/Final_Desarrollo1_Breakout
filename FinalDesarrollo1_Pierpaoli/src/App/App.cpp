@@ -50,9 +50,25 @@ namespace BreakoutGame
 		game->Init(); // Inicializacion de objetos de juegos, booleanos y carga de texturas
 		PlayMusicStream(music);
 
-		while (!shouldExit && sceneManager->getScene() != Scene::EXIT) // Loop princiapl de cierre y cambio de ventana
+		while (!shouldExit) // Loop princiapl de cierre y cambio de ventana
 		{
+			if (WindowShouldClose())
+			{
+				if (sceneManager->getScene() == Scene::GAMEPLAY) 
+				{
+					game->setGameplayPause(true);
+				}
+
+				if (sceneManager->getScene() == Scene::MENU)
+				{
+					shouldExit = true;
+				}
+
+				sceneManager->setScene(Scene::MENU);
+			}
+
 			UpdateMusicStream(music);
+
 			switch (sceneManager->getScene())
 			{
 			case Scene::MENU:
