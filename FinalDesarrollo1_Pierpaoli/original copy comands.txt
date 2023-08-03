@@ -1,0 +1,7 @@
+MKDIR "$(TargetDir)res\"
+XCOPY "res\" "$(TargetDir)res\" /e /h /y /s
+XCOPY "raylib-3.7.0_win32_msvc16\" "$(TargetDir)" /e /h /y /s /exclude:exclude.txt
+XCOPY "raylib-4.5.0_win64_msvc16\" "$(TargetDir)" /e /h /y /s /exclude:exclude.txt
+
+
+visual studio -> call "$(SolutionDir)copy_files.bat" "$(SolutionDir)" "$(TargetDir)"

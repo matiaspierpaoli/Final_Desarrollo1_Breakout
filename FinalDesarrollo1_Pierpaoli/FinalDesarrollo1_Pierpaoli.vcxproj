@@ -137,8 +137,8 @@
     </Link>
     <PreBuildEvent>
       <Command>MKDIR "$(TargetDir)res\"
-XCOPY "$(SolutionDir)res\" "$(TargetDir)res\" /e /h /y /s
-XCOPY "$(SolutionDir)raylib-3.7.0_win32_msvc16\" "$(TargetDir)" /e /h /y /s /exclude:exclude.txt</Command>
+XCOPY "res\" "$(TargetDir)res\" /e /h /y /s
+XCOPY "raylib-3.7.0_win32_msvc16\" "$(TargetDir)" /e /h /y /s /exclude:exclude.txt</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -164,8 +164,8 @@ XCOPY "$(SolutionDir)raylib-3.7.0_win32_msvc16\" "$(TargetDir)" /e /h /y /s /exc
     </Link>
     <PreBuildEvent>
       <Command>MKDIR "$(TargetDir)res\"
-XCOPY "$(SolutionDir)res\" "$(TargetDir)res\" /e /h /y /s
-XCOPY "$(SolutionDir)raylib-3.7.0_win32_msvc16\" "$(TargetDir)" /e /h /y /s /exclude:exclude.txt</Command>
+XCOPY "res\" "$(TargetDir)res\" /e /h /y /s
+XCOPY "raylib-3.7.0_win32_msvc16\" "$(TargetDir)" /e /h /y /s /exclude:exclude.txt</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -185,8 +185,8 @@ XCOPY "$(SolutionDir)raylib-3.7.0_win32_msvc16\" "$(TargetDir)" /e /h /y /s /exc
     </Link>
     <PreBuildEvent>
       <Command>MKDIR "$(TargetDir)res\"
-XCOPY "$(SolutionDir)res\" "$(TargetDir)res\" /e /h /y /s
-XCOPY "$(SolutionDir)raylib-3.7.0_win32_msvc16\" "$(TargetDir)" /e /h /y /s /exclude:exclude.txt</Command>
+XCOPY "res\" "$(TargetDir)res\" /e /h /y /s
+XCOPY "raylib-4.5.0_win64_msvc16\" "$(TargetDir)" /e /h /y /s /exclude:exclude.txt</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -211,8 +211,8 @@ XCOPY "$(SolutionDir)raylib-3.7.0_win32_msvc16\" "$(TargetDir)" /e /h /y /s /exc
     </Link>
     <PreBuildEvent>
       <Command>MKDIR "$(TargetDir)res\"
-XCOPY "$(SolutionDir)res\" "$(TargetDir)res\" /e /h /y /s
-XCOPY "$(SolutionDir)raylib-3.7.0_win32_msvc16\" "$(TargetDir)" /e /h /y /s /exclude:exclude.txt</Command>
+XCOPY "res\" "$(TargetDir)res\" /e /h /y /s
+XCOPY "raylib-4.5.0_win64_msvc16\" "$(TargetDir)" /e /h /y /s /exclude:exclude.txt</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
