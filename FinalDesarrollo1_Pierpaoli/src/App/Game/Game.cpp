@@ -273,8 +273,34 @@ namespace BreakoutGame
 							if (CheckCollisionCircleRec(ball->getPos(), static_cast<float>(ball->getRadius()), { bricks[i][j]->getPos().x, bricks[i][j]->getPos().y, bricks[i][j]->getSize().x, bricks[i][j]->getSize().y }))
 							{
 								bricks[i][j]->setActive(false);
-								ball->changeYDirection(); // Cambio de direccion en y
-								player->setCurrentBricksDestroyed(player->getCurrentBricksDestroyed() + 1); // 1 ladrillo destruido
+
+								// Calcular la distancia entre el centro de la bola y las esquinas del ladrillo
+								float ballDistX = ball->getPos().x - bricks[i][j]->getPos().x - bricks[i][j]->getSize().x / 2;
+								float ballDistY = ball->getPos().y - bricks[i][j]->getPos().y - bricks[i][j]->getSize().y / 2;
+
+								// Calcular la mitad del ancho del ladrillo y la mitad de su alto
+								float brickHalfWidth = bricks[i][j]->getSize().x / 2;
+								float brickHalfHeight = bricks[i][j]->getSize().y / 2;
+
+								if (ballDistX < brickHalfWidth && ballDistY < brickHalfHeight)
+								{
+									// La colision es diagonal
+									ball->changeXDirection();
+									ball->changeYDirection();
+								}
+								else if (ballDistX < brickHalfWidth)
+								{
+									// La colision es desde arriba o abajo
+									ball->changeYDirection();
+								}
+								else if (ballDistY < brickHalfHeight)
+								{
+									// La colision es desde uno de los costados
+									ball->changeXDirection();
+								}
+
+								player->setCurrentBricksDestroyed(player->getCurrentBricksDestroyed() + 1);
+								break;
 							}
 						}
 					}
